@@ -9,7 +9,9 @@
 /coverage
 
 # production
+
 /build
+PokeDex.code-workspace
 
 # misc
 .DS_Store
