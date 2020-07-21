@@ -30,16 +30,21 @@ const App = () => {
   };
 
   const getEntry = async (entry) => {
+    //get pokemon source url
     let pokeDexEntry = globalPokedexIndex.find((obj) => obj.name === entry);
     let dataURL = pokeDexEntry.url;
+    //get pokemon data
     let entryDataFetch = await fetch(`${dataURL}`);
     let pokedexDataEntry = await entryDataFetch.json();
-    let primarySprite = pokedexDataEntry.sprites.front_default;
+    //value return
     let name = capitalizeString(pokedexDataEntry.name);
     let id = pokedexDataEntry.id;
+    let primarySprite = pokedexDataEntry.sprites.front_default;
+    let types = pokedexDataEntry.types;
 
-    console.log(`Selected Pokemon: ( #${id}, ${name}) `);
-    return { name, primarySprite, id };
+    console.log("types", types);
+    //console.log(`Selected Pokemon: ( #${id}, ${name}) `);
+    return { name, primarySprite, id, types };
   };
 
   return (
@@ -48,13 +53,14 @@ const App = () => {
         <div style={{ textAlign: "center" }}>
           <p
             onClick={() =>
-              getEntry("snorlax").then((res) => {
+              getEntry("garchomp").then((res) => {
                 setPokeDexEntry((prevState) => {
                   return {
                     ...prevState,
                     photo: res.primarySprite,
                     name: res.name,
                     id: res.id,
+                    types: res.types,
                   };
                 });
               })
@@ -64,15 +70,20 @@ const App = () => {
           </p>
           {pokeDexEntry ? (
             <div>
+              <p> Name: {pokeDexEntry.name}</p>
+              <p>PokeDex #{pokeDexEntry.id}</p>
               <img
                 alt="Pokemon"
                 src={pokeDexEntry.photo}
                 height="250"
                 width="250"
               />
-              <p>PokeDex Entry: {pokeDexEntry.id}</p>
-
-              <p> Name: {pokeDexEntry.name} </p>
+              <p>
+                Types:
+                {pokeDexEntry.types.map(
+                  (i) => " " + capitalizeString(i.type.name) + " "
+                )}
+              </p>
             </div>
           ) : null}
         </div>
