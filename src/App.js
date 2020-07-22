@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useReducer } from "react";
 
 //style lib
-import { Grid } from "semantic-ui-react";
+import { Grid, Button, Icon } from "semantic-ui-react";
 //context
 import AppContext from "./context/AppContext";
 import reducer from "./context/reducer";
@@ -24,14 +24,20 @@ const App = () => {
       "https://pokeapi.co/api/v2/pokemon?limit=809"
     ).catch((err) => console.error(err));
     let pokedexIndex = await fetchPokedex.json();
+    let refinedIndex = pokedexIndex.results.map((i, k) => {
+      return { pokedexId: `${k + 1}`, pokemonName: i.name, url: i.url };
+    });
+
     return dispatch({
       type: "GET_POKEDEX_INDEX",
-      payload: pokedexIndex.results,
+      payload: refinedIndex,
     });
   };
 
   return (
-    globalPokedexIndex && (
+    globalPokedexIndex &&
+    (console.log(globalPokedexIndex),
+    (
       <AppContext.Provider value={{ state, dispatch }}>
         <h1
           style={{
@@ -57,7 +63,7 @@ const App = () => {
           </Grid.Row>
         </Grid>
       </AppContext.Provider>
-    )
+    ))
   );
 };
 

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Form, Segment } from "semantic-ui-react";
 import AppContext from "../context/AppContext";
-import { capitalizeString } from ".";
+import { capitalizeString, PokemonSearch } from ".";
 
 const DexInput = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -48,6 +48,17 @@ const DexInput = () => {
       })
       .catch((err) => console.log("Error @ Submit"));
 
+  const handleChangeTest = (value, match) => {
+    // value: holds the user input value
+    // match: whether the value matches one the values in the dictionary/suggestion
+    if (match) {
+      //fetchSomething(value);
+      setPokemonForm((prevState) => {
+        return { ...prevState, value };
+      });
+    }
+  };
+
   return (
     <Segment
       inverted
@@ -66,6 +77,7 @@ const DexInput = () => {
           <Form.Button content="Submit" />
         </Form>
       </div>
+      <PokemonSearch />
     </Segment>
   );
 };
