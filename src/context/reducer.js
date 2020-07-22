@@ -6,6 +6,11 @@ export default function reducer(state, { type, payload }) {
         ...state,
         globalPokedexIndex: payload,
       };
+    case "UPDATE_POKEDEX_ENTRY":
+      return {
+        ...state,
+        pokeDexEntry: payload,
+      };
 
     default:
       return state;
