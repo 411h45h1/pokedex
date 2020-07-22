@@ -60,8 +60,10 @@
 
 .container {
   display: flex;
+  flex-direction: row;
 }
 
 .pokedexId {
-  width: 15%;
+  width: 35%;
+  display: relitive;
 }

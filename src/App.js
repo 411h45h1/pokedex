@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useReducer } from "react";
 
 //style lib
-import { Grid, Button, Icon } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 //context
 import AppContext from "./context/AppContext";
 import reducer from "./context/reducer";

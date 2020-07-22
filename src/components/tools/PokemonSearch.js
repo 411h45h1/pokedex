@@ -1,32 +1,14 @@
 import React, { useState, useContext } from "react";
+import { Button } from "semantic-ui-react";
 import Autosuggest from "react-autosuggest";
 import "./Autosuggest.css";
 import AppContext from "../../context/AppContext";
-const users = [
-  {
-    pokemonName: "1111111",
-    pokedexId: "aaaa@aaa",
-  },
-  {
-    pokemonName: "2222",
-    pokedexId: "bbb@bbbb",
-  },
-  {
-    pokemonName: "333",
-    pokedexId: "ccc@ccc",
-  },
-  {
-    pokemonName: "444",
-    pokedexId: "dddd@dddd",
-  },
-  {
-    pokemonName: "555",
-    pokedexId: "eee@eeee",
-  },
-];
+import capitalizeString from "./capitalize";
 
 const PokemonSearch = () => {
   const context = useContext(AppContext);
+  const { dispatch } = useContext(AppContext);
+
   const [state, setState] = useState({
     pokemonName: "",
     pokemonNameSuggestions: [],
@@ -41,7 +23,7 @@ const PokemonSearch = () => {
     pokedexIdSuggestions,
   } = state;
 
-  const nicknameInputProps = {
+  const pokemonNameInputProps = {
     placeholder: "Pokemon Name",
     value: pokemonName,
     onChange: (event, { newValue }) =>
@@ -49,7 +31,7 @@ const PokemonSearch = () => {
         return { ...prevState, pokemonName: newValue };
       }),
   };
-  const emailInputProps = {
+  const pokedexIdInputProps = {
     placeholder: "Id #",
     value: pokedexId,
     onChange: (event, { newValue }) =>
@@ -81,59 +63,100 @@ const PokemonSearch = () => {
     </span>
   );
 
+  const getEntry = async (entry) => {
+    //get pokemon source url
+    let entryFound = context.state.globalPokedexIndex.find(
+      (obj) => obj.pokemonName === entry
+    );
+    let dataURL = entryFound.url;
+    //get pokemon data
+    let entryDataFetch = await fetch(`${dataURL}`).catch((err) =>
+      console.log(err)
+    );
+
+    let pokedexDataEntry = await entryDataFetch.json();
+    //value return
+
+    let name = capitalizeString(pokedexDataEntry.name);
+    let id = pokedexDataEntry.id;
+    let primarySprite = pokedexDataEntry.sprites.front_default;
+    let types = pokedexDataEntry.types;
+
+    console.log(`Selected Pokemon: ( #${id}, ${name} )`);
+    return { name, primarySprite, id, types };
+  };
+
+  const handleSubmit = () =>
+    getEntry(state.pokemonName)
+      .then((res) => {
+        dispatch({
+          type: "UPDATE_POKEDEX_ENTRY",
+          payload: {
+            photo: res.primarySprite,
+            name: res.name,
+            id: res.id,
+            types: res.types,
+          },
+        });
+      })
+      .catch((err) => console.log("Error @ Submit"));
+
   return (
     <div className="container">
-      <div className="pokedexId">
+      <Button content="Submit" onClick={() => handleSubmit()} />
+
+      <form>
+        <div className="pokedexId">
+          <Autosuggest
+            suggestions={pokedexIdSuggestions}
+            onSuggestionsFetchRequested={({ value }) =>
+              setState((prevState) => {
+                return {
+                  ...prevState,
+                  pokedexIdSuggestions: getSuggestions(value),
+                };
+              })
+            }
+            onSuggestionsClearRequested={() =>
+              setState((prevState) => {
+                return { ...prevState, pokedexIdSuggestions: [] };
+              })
+            }
+            onSuggestionSelected={(event, { suggestion }) =>
+              setState((prevState) => {
+                return { ...prevState, pokemonName: suggestion.pokemonName };
+              })
+            }
+            getSuggestionValue={getSuggestionEmail}
+            renderSuggestion={renderSuggestion}
+            inputProps={pokedexIdInputProps}
+          />
+        </div>
         <Autosuggest
-          suggestions={pokedexIdSuggestions}
+          suggestions={pokemonNameSuggestions}
           onSuggestionsFetchRequested={({ value }) =>
             setState((prevState) => {
               return {
                 ...prevState,
-                pokedexIdSuggestions: getSuggestions(value),
+                pokemonNameSuggestions: getSuggestions(value),
               };
             })
           }
           onSuggestionsClearRequested={() =>
             setState((prevState) => {
-              return { ...prevState, pokedexIdSuggestions: [] };
+              return { ...prevState, pokemonNameSuggestions: [] };
             })
           }
           onSuggestionSelected={(event, { suggestion }) =>
             setState((prevState) => {
-              return { ...prevState, pokemonName: suggestion.pokemonName };
+              return { ...prevState, pokedexId: suggestion.pokedexId };
             })
           }
-          getSuggestionValue={getSuggestionEmail}
+          getSuggestionValue={getSuggestionNickname}
           renderSuggestion={renderSuggestion}
-          inputProps={emailInputProps}
+          inputProps={pokemonNameInputProps}
         />
-      </div>
-
-      <Autosuggest
-        suggestions={pokemonNameSuggestions}
-        onSuggestionsFetchRequested={({ value }) =>
-          setState((prevState) => {
-            return {
-              ...prevState,
-              pokemonNameSuggestions: getSuggestions(value),
-            };
-          })
-        }
-        onSuggestionsClearRequested={() =>
-          setState((prevState) => {
-            return { ...prevState, pokemonNameSuggestions: [] };
-          })
-        }
-        onSuggestionSelected={(event, { suggestion }) =>
-          setState((prevState) => {
-            return { ...prevState, pokedexId: suggestion.pokedexId };
-          })
-        }
-        getSuggestionValue={getSuggestionNickname}
-        renderSuggestion={renderSuggestion}
-        inputProps={nicknameInputProps}
-      />
+      </form>
     </div>
   );
 };
