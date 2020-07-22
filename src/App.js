@@ -1,17 +1,17 @@
 import React, { useEffect, useContext, useReducer } from "react";
 
 //style lib
-import { Grid, Segment } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 //context
 import AppContext from "./context/AppContext";
 import reducer from "./context/reducer";
 //components
-import { DexInput, capitalizeString } from "./components";
+import { PokedexInput, PokedexOutput } from "./components";
 
 const App = () => {
   const initialState = useContext(AppContext);
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { globalPokedexIndex, pokeDexEntry } = state;
+  const { globalPokedexIndex } = state;
 
   useEffect(() => {
     if (!globalPokedexIndex) {
@@ -33,7 +33,7 @@ const App = () => {
   return (
     globalPokedexIndex && (
       <AppContext.Provider value={{ state, dispatch }}>
-        <p
+        <h1
           style={{
             textAlign: "center",
             fontWeight: "bold",
@@ -41,42 +41,18 @@ const App = () => {
             marginBottom: -5,
           }}
         >
-          Ahmed's Pokedex
-        </p>
+          Ahmed's Pokédex
+        </h1>
 
         <Grid>
           <Grid.Row style={{ margin: "0px 100px 0px 100px " }}>
             <Grid.Column width={8}>
               {/*Left Square*/}
-              <DexInput />
+              <PokedexInput />
             </Grid.Column>
             <Grid.Column width={8}>
               {/*Right Square*/}
-
-              <Segment
-                inverted
-                color="grey"
-                style={{ textAlign: "center", minHeight: 600 }}
-              >
-                {pokeDexEntry ? (
-                  <div>
-                    <p> Name: {pokeDexEntry.name}</p>
-                    <p>PokeDex #{pokeDexEntry.id}</p>
-                    <img
-                      alt="Pokemon"
-                      src={pokeDexEntry.photo}
-                      height="250"
-                      width="250"
-                    />
-                    <p>
-                      Types:
-                      {pokeDexEntry.types.map(
-                        (i) => " " + capitalizeString(i.type.name) + " "
-                      )}
-                    </p>
-                  </div>
-                ) : null}
-              </Segment>
+              <PokedexOutput />
             </Grid.Column>
           </Grid.Row>
         </Grid>

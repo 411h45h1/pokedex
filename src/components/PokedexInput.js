@@ -1,9 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Form, Segment } from "semantic-ui-react";
 import AppContext from "../context/AppContext";
-
-const capitalizeString = (string) =>
-  string.charAt(0).toUpperCase() + string.slice(1);
+import { capitalizeString } from ".";
 
 const DexInput = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -36,17 +34,19 @@ const DexInput = () => {
     });
 
   const handleSubmit = () =>
-    getEntry(pokemonForm.pokemon).then((res) => {
-      dispatch({
-        type: "UPDATE_POKEDEX_ENTRY",
-        payload: {
-          photo: res.primarySprite,
-          name: res.name,
-          id: res.id,
-          types: res.types,
-        },
-      });
-    });
+    getEntry(pokemonForm.pokemon)
+      .then((res) => {
+        dispatch({
+          type: "UPDATE_POKEDEX_ENTRY",
+          payload: {
+            photo: res.primarySprite,
+            name: res.name,
+            id: res.id,
+            types: res.types,
+          },
+        });
+      })
+      .catch((err) => console.log("Error @ Submit"));
 
   return (
     <Segment
