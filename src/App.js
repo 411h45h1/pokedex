@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useContext, useReducer } from "react";
+import { Grid, Segment } from "semantic-ui-react";
+
 //context
 import AppContext from "./context/AppContext";
 import reducer from "./context/reducer";
@@ -50,43 +52,67 @@ const App = () => {
   return (
     globalPokedexIndex && (
       <AppContext.Provider value={{ state, dispatch }}>
-        <div style={{ textAlign: "center" }}>
-          <p
-            onClick={() =>
-              getEntry("garchomp").then((res) => {
-                setPokeDexEntry((prevState) => {
-                  return {
-                    ...prevState,
-                    photo: res.primarySprite,
-                    name: res.name,
-                    id: res.id,
-                    types: res.types,
-                  };
-                });
-              })
-            }
-          >
-            Ahmed's Pokedex
-          </p>
-          {pokeDexEntry ? (
-            <div>
-              <p> Name: {pokeDexEntry.name}</p>
-              <p>PokeDex #{pokeDexEntry.id}</p>
-              <img
-                alt="Pokemon"
-                src={pokeDexEntry.photo}
-                height="250"
-                width="250"
-              />
-              <p>
-                Types:
-                {pokeDexEntry.types.map(
-                  (i) => " " + capitalizeString(i.type.name) + " "
-                )}
-              </p>
-            </div>
-          ) : null}
-        </div>
+        <p
+          style={{
+            textAlign: "center",
+            fontWeight: "bold",
+            fontSize: 75,
+            marginBottom: -5,
+          }}
+        >
+          Ahmed's Pokedex
+        </p>
+
+        <Grid>
+          <Grid.Row style={{ margin: "0px 100px 0px 100px " }}>
+            <Grid.Column width={8}>
+              <Segment
+                inverted
+                color="brown"
+                style={{ textAlign: "center", minHeight: 600 }}
+                onClick={() =>
+                  getEntry("garchomp").then((res) => {
+                    setPokeDexEntry((prevState) => {
+                      return {
+                        ...prevState,
+                        photo: res.primarySprite,
+                        name: res.name,
+                        id: res.id,
+                        types: res.types,
+                      };
+                    });
+                  })
+                }
+              ></Segment>
+            </Grid.Column>
+            <Grid.Column width={8}>
+              <Segment
+                inverted
+                color="grey"
+                style={{ textAlign: "center", minHeight: 600 }}
+              >
+                {pokeDexEntry ? (
+                  <div>
+                    <p> Name: {pokeDexEntry.name}</p>
+                    <p>PokeDex #{pokeDexEntry.id}</p>
+                    <img
+                      alt="Pokemon"
+                      src={pokeDexEntry.photo}
+                      height="250"
+                      width="250"
+                    />
+                    <p>
+                      Types:
+                      {pokeDexEntry.types.map(
+                        (i) => " " + capitalizeString(i.type.name) + " "
+                      )}
+                    </p>
+                  </div>
+                ) : null}
+              </Segment>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </AppContext.Provider>
     )
   );
