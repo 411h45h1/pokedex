@@ -22,6 +22,12 @@ export default function reducer(state, { type, payload }) {
         ...state,
         pokedexId: payload,
       };
+    case "CLEAR_FORM_POKEDEX_ENTRIES":
+      return {
+        ...state,
+        pokemonName: "",
+        pokedexId: "",
+      };
 
     //updating form data
     case "UPDATE_POKEDEX_ID_SUGGESTIONS":

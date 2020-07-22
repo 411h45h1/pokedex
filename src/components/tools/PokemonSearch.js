@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
-import { Button } from "semantic-ui-react";
 import Autosuggest from "react-autosuggest";
 import "./Autosuggest.css";
 import AppContext from "../../context/AppContext";
-import capitalizeString from "./capitalize";
+import { Grid } from "semantic-ui-react";
 
 const PokemonSearch = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -48,54 +47,14 @@ const PokemonSearch = () => {
 
   const renderSuggestion = (suggestion) => (
     <span>
-      Pokedex: #{suggestion.pokedexId} - {suggestion.pokemonName}
+      #{suggestion.pokedexId} - {suggestion.pokemonName}
     </span>
   );
 
-  const getEntry = async (entry) => {
-    //get pokemon source url
-    let entryFound = globalPokedexIndex.find(
-      (obj) => obj.pokemonName === entry
-    );
-    let dataURL = entryFound.url;
-    //get pokemon data
-    let entryDataFetch = await fetch(`${dataURL}`).catch((err) =>
-      console.log(err)
-    );
-
-    let pokedexDataEntry = await entryDataFetch.json();
-    //value return
-
-    let name = capitalizeString(pokedexDataEntry.name);
-    let id = pokedexDataEntry.id;
-    let primarySprite = pokedexDataEntry.sprites.front_default;
-    let types = pokedexDataEntry.types;
-
-    console.log(`Selected Pokemon: ( #${id}, ${name} )`);
-    return { name, primarySprite, id, types };
-  };
-
-  const handleSubmit = () =>
-    getEntry(pokemonName)
-      .then((res) => {
-        dispatch({
-          type: "UPDATE_POKEDEX_ENTRY",
-          payload: {
-            photo: res.primarySprite,
-            name: res.name,
-            id: res.id,
-            types: res.types,
-          },
-        });
-      })
-      .catch((err) => console.log("Error @ Submit"));
-
   return (
-    <div className="container">
-      <Button content="Submit" onClick={() => handleSubmit()} />
-
-      <form>
-        <div className="pokedexId">
+    <Grid columns="equal">
+      <Grid.Row>
+        <Grid.Column width={2}>
           <Autosuggest
             suggestions={pokedexIdSuggestions}
             onSuggestionsFetchRequested={({ value }) =>
@@ -117,30 +76,33 @@ const PokemonSearch = () => {
             renderSuggestion={renderSuggestion}
             inputProps={pokedexIdInputProps}
           />
-        </div>
-        <Autosuggest
-          suggestions={pokemonNameSuggestions}
-          onSuggestionsFetchRequested={({ value }) =>
-            dispatch({
-              type: "UPDATE_POKEDEX_NAME_SUGGESTIONS",
-              payload: getSuggestions(value),
-            })
-          }
-          onSuggestionsClearRequested={() =>
-            dispatch({ type: "CLEAR_POKEDEX_NAME_SUGGESTIONS" })
-          }
-          onSuggestionSelected={(event, { suggestion }) =>
-            dispatch({
-              type: "STORE_POKEDEX_NAME_SUGGESTIONS",
-              payload: suggestion.pokedexId,
-            })
-          }
-          getSuggestionValue={getSuggestionNickname}
-          renderSuggestion={renderSuggestion}
-          inputProps={pokemonNameInputProps}
-        />
-      </form>
-    </div>
+        </Grid.Column>
+
+        <Grid.Column width={14}>
+          <Autosuggest
+            suggestions={pokemonNameSuggestions}
+            onSuggestionsFetchRequested={({ value }) =>
+              dispatch({
+                type: "UPDATE_POKEDEX_NAME_SUGGESTIONS",
+                payload: getSuggestions(value),
+              })
+            }
+            onSuggestionsClearRequested={() =>
+              dispatch({ type: "CLEAR_POKEDEX_NAME_SUGGESTIONS" })
+            }
+            onSuggestionSelected={(event, { suggestion }) =>
+              dispatch({
+                type: "STORE_POKEDEX_NAME_SUGGESTIONS",
+                payload: suggestion.pokedexId,
+              })
+            }
+            getSuggestionValue={getSuggestionNickname}
+            renderSuggestion={renderSuggestion}
+            inputProps={pokemonNameInputProps}
+          />{" "}
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
   );
 };
 

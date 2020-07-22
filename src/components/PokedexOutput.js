@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Segment } from "semantic-ui-react";
+import { Segment, Header } from "semantic-ui-react";
 import AppContext from "../context/AppContext";
 import { capitalizeString } from ".";
 
@@ -14,13 +14,18 @@ const DexOutput = () => {
     >
       {pokeDexEntry ? (
         <div>
-          <p> Name: {pokeDexEntry.name}</p>
-          <p>Pokédex #{pokeDexEntry.id}</p>
+          <Header as="h1" floated="right">
+            Name: {pokeDexEntry.name}
+          </Header>
+          <Header as="h1" floated="left">
+            Pokédex #{pokeDexEntry.id}
+          </Header>
+
           <img
             alt="Pokemon"
             src={pokeDexEntry.photo}
-            height="250"
-            width="250"
+            height="60%"
+            width="60%"
           />
           <p>
             Types:
