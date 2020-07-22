@@ -1,0 +1,73 @@
+{
+  "name": "pokedex",
+  "homepage": "./",
+  "main": "src/start.js",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@react-navigation/native": "^5.1.6",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "cross-env": "^7.0.2",
+    "electron-dl": "^3.0.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "framer-motion": "^1.10.3",
+    "gulp": "^3.9.1",
+    "prop-types": "^15.6.1",
+    "react": "^16.13.1",
+    "react-custom-scrollbars": "^4.2.1",
+    "react-dom": "^16.13.1",
+    "react-player": "^2.0.1",
+    "react-scripts": "3.4.1",
+    "semantic-ui-react": "^0.88.2",
+    "theme-ui": "^0.3.1"
+  },
+  "scripts": {
+    "start": "nf start -p 3000",
+    "electron:spark": "yarn build && electron-packager .",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "electron": "electron .",
+    "electron-start": "node src/start-react",
+    "react-start": "cross-env BROWSER=none react-scripts start",
+    "pack": "build --dir",
+    "dist": "npm run build && build",
+    "postinstall": "install-app-deps"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "description": "MIT",
+  "devDependencies": {
+    "electron": "^8.2.3",
+    "electron-builder": "^22.5.1",
+    "enzyme": "^3.3.0"
+  },
+  "build": {
+    "appId": "com.electron.electron-with-create-react-app",
+    "win": {
+      "iconUrl": "https://cdn2.iconfinder.com/data/icons/designer-skills/128/react-256.png"
+    },
+    "directories": {
+      "buildResources": "public"
+    }
+  }
+}
