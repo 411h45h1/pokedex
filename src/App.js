@@ -15,7 +15,7 @@ const App = () => {
 
   useEffect(() => {
     if (!globalPokedexIndex) {
-      getGlobalPokedexIndex();
+      getGlobalPokedexIndex().then(() => console.log(`Fetched api index`));
     }
   }, [globalPokedexIndex]);
 
@@ -35,19 +35,18 @@ const App = () => {
   };
 
   return (
-    globalPokedexIndex &&
-    (console.log(globalPokedexIndex),
-    (
+    globalPokedexIndex && (
       <AppContext.Provider value={{ state, dispatch }}>
         <h1
           style={{
-            textAlign: "center",
+            textAlign: "flex-start",
             fontWeight: "bold",
             fontSize: 75,
             marginBottom: -5,
+            marginLeft: 20,
           }}
         >
-          Ahmed's Pokédex
+          Pokédex
         </h1>
 
         <Grid>
@@ -63,7 +62,7 @@ const App = () => {
           </Grid.Row>
         </Grid>
       </AppContext.Provider>
-    ))
+    )
   );
 };
 

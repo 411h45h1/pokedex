@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { Button } from "semantic-ui-react";
 import Autosuggest from "react-autosuggest";
 import "./Autosuggest.css";
@@ -6,17 +6,10 @@ import AppContext from "../../context/AppContext";
 import capitalizeString from "./capitalize";
 
 const PokemonSearch = () => {
-  const context = useContext(AppContext);
-  const { dispatch } = useContext(AppContext);
-
-  const [state, setState] = useState({
-    pokemonName: "",
-    pokemonNameSuggestions: [],
-    pokedexId: "",
-    pokedexIdSuggestions: [],
-  });
+  const { state, dispatch } = useContext(AppContext);
 
   const {
+    globalPokedexIndex,
     pokemonName,
     pokemonNameSuggestions,
     pokedexId,
@@ -27,17 +20,13 @@ const PokemonSearch = () => {
     placeholder: "Pokemon Name",
     value: pokemonName,
     onChange: (event, { newValue }) =>
-      setState((prevState) => {
-        return { ...prevState, pokemonName: newValue };
-      }),
+      dispatch({ type: "UPDATE_FORM_POKEDEX_NAME", payload: newValue }),
   };
   const pokedexIdInputProps = {
     placeholder: "Id #",
     value: pokedexId,
     onChange: (event, { newValue }) =>
-      setState((prevState) => {
-        return { ...prevState, pokedexId: newValue };
-      }),
+      dispatch({ type: "UPDATE_FORM_POKEDEX_ID", payload: newValue }),
   };
 
   const escapeRegexCharacters = (str) =>
@@ -47,7 +36,7 @@ const PokemonSearch = () => {
     const escapedValue = escapeRegexCharacters(value.trim());
     const regex = new RegExp("^" + escapedValue, "i");
 
-    return context.state.globalPokedexIndex.filter(
+    return globalPokedexIndex.filter(
       (pokemon) =>
         regex.test(pokemon.pokemonName) || regex.test(pokemon.pokedexId)
     );
@@ -65,7 +54,7 @@ const PokemonSearch = () => {
 
   const getEntry = async (entry) => {
     //get pokemon source url
-    let entryFound = context.state.globalPokedexIndex.find(
+    let entryFound = globalPokedexIndex.find(
       (obj) => obj.pokemonName === entry
     );
     let dataURL = entryFound.url;
@@ -87,7 +76,7 @@ const PokemonSearch = () => {
   };
 
   const handleSubmit = () =>
-    getEntry(state.pokemonName)
+    getEntry(pokemonName)
       .then((res) => {
         dispatch({
           type: "UPDATE_POKEDEX_ENTRY",
@@ -110,21 +99,18 @@ const PokemonSearch = () => {
           <Autosuggest
             suggestions={pokedexIdSuggestions}
             onSuggestionsFetchRequested={({ value }) =>
-              setState((prevState) => {
-                return {
-                  ...prevState,
-                  pokedexIdSuggestions: getSuggestions(value),
-                };
+              dispatch({
+                type: "UPDATE_POKEDEX_ID_SUGGESTIONS",
+                payload: getSuggestions(value),
               })
             }
             onSuggestionsClearRequested={() =>
-              setState((prevState) => {
-                return { ...prevState, pokedexIdSuggestions: [] };
-              })
+              dispatch({ type: "CLEAR_POKEDEX_ID_SUGGESTIONS" })
             }
             onSuggestionSelected={(event, { suggestion }) =>
-              setState((prevState) => {
-                return { ...prevState, pokemonName: suggestion.pokemonName };
+              dispatch({
+                type: "STORE_POKEDEX_ID_SUGGESTIONS",
+                payload: suggestion.pokemonName,
               })
             }
             getSuggestionValue={getSuggestionEmail}
@@ -135,21 +121,18 @@ const PokemonSearch = () => {
         <Autosuggest
           suggestions={pokemonNameSuggestions}
           onSuggestionsFetchRequested={({ value }) =>
-            setState((prevState) => {
-              return {
-                ...prevState,
-                pokemonNameSuggestions: getSuggestions(value),
-              };
+            dispatch({
+              type: "UPDATE_POKEDEX_NAME_SUGGESTIONS",
+              payload: getSuggestions(value),
             })
           }
           onSuggestionsClearRequested={() =>
-            setState((prevState) => {
-              return { ...prevState, pokemonNameSuggestions: [] };
-            })
+            dispatch({ type: "CLEAR_POKEDEX_NAME_SUGGESTIONS" })
           }
           onSuggestionSelected={(event, { suggestion }) =>
-            setState((prevState) => {
-              return { ...prevState, pokedexId: suggestion.pokedexId };
+            dispatch({
+              type: "STORE_POKEDEX_NAME_SUGGESTIONS",
+              payload: suggestion.pokedexId,
             })
           }
           getSuggestionValue={getSuggestionNickname}
