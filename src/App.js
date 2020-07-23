@@ -44,11 +44,11 @@ const App = () => {
                 Pokédex
               </Header>
             </Grid.Column>
-            <Grid.Column width={11}>
+            <Grid.Column width={10}>
               {/*Left Square*/}
               <PokedexInput />
             </Grid.Column>
-            <Grid.Column width={5}>
+            <Grid.Column width={6}>
               {/*Right Square*/}
               <PokedexOutput />
             </Grid.Column>

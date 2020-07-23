@@ -3,7 +3,7 @@ import { Segment } from "semantic-ui-react";
 import AppContext from "../context/AppContext";
 import { capitalizeString } from ".";
 
-const DexOutput = ({ height }) => {
+const PokedexOutput = ({ height }) => {
   const { state } = useContext(AppContext);
   const { pokeDexEntry } = state;
   return (
@@ -34,4 +34,4 @@ const DexOutput = ({ height }) => {
   );
 };
 
-export default DexOutput;
+export default PokedexOutput;

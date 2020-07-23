@@ -1,17 +1,9 @@
 import React, { useContext } from "react";
-import {
-  Segment,
-  Icon,
-  Grid,
-  Label,
-  Image,
-  Header,
-  Button,
-} from "semantic-ui-react";
+import { Segment, Grid, Label, Image } from "semantic-ui-react";
 import AppContext from "../context/AppContext";
 import { capitalizeString } from ".";
 
-const DexOutput = () => {
+const PokedexOutput = () => {
   const { state, dispatch } = useContext(AppContext);
   const { pokeDexEntry, globalPokedexIndex } = state;
 
@@ -92,7 +84,7 @@ const DexOutput = () => {
         content="Shuffle"
         onClick={() => handleRandomPokemon()}
       />
-      <Label as="a" size="huge" color="red" ribbon="right">
+      <Label size="huge" color="red" ribbon="right">
         Pokédex #{pokeDexEntry.id} {pokeDexEntry.name}
       </Label>
       <Grid>
@@ -168,4 +160,4 @@ const DexOutput = () => {
   );
 };
 
-export default DexOutput;
+export default PokedexOutput;

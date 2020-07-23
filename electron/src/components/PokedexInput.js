@@ -3,7 +3,7 @@ import { Form, Segment } from "semantic-ui-react";
 import AppContext from "../context/AppContext";
 import { capitalizeString } from ".";
 
-const DexInput = ({ height }) => {
+const PokedexInput = ({ height }) => {
   const { state, dispatch } = useContext(AppContext);
   const { globalPokedexIndex } = state;
   const [pokemonForm, setPokemonForm] = useState({ pokemon: "" });
@@ -69,4 +69,4 @@ const DexInput = ({ height }) => {
     </Segment>
   );
 };
-export default DexInput;
+export default PokedexInput;
