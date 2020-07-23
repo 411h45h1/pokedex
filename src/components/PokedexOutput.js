@@ -13,7 +13,7 @@ import { capitalizeString } from ".";
 
 const DexOutput = () => {
   const { state, dispatch } = useContext(AppContext);
-  const { pokeDexEntry, globalPokedexIndex, pokedexId } = state;
+  const { pokeDexEntry, globalPokedexIndex } = state;
 
   const getEntry = async (entry) => {
     //get pokemon source url
@@ -67,61 +67,54 @@ const DexOutput = () => {
       .catch((err) => console.log("Error @ Submit", err));
 
   return pokeDexEntry ? (
-    (console.log(pokedexId, pokedexId + 1, pokeDexEntry),
-    (
-      <Segment inverted color="grey" style={{ minHeight: 600 }}>
-        <Label as="a" size="huge" color="red" ribbon="right">
-          Pokédex #{pokeDexEntry.id} {pokeDexEntry.name}
-        </Label>
-        <Grid>
-          <Grid.Row centered columns={1}>
+    <Segment inverted color="grey" style={{ minHeight: 600 }}>
+      <Label as="a" size="huge" color="red" ribbon="right">
+        Pokédex #{pokeDexEntry.id} {pokeDexEntry.name}
+      </Label>
+      <Grid>
+        <Grid.Row centered columns={1}>
+          <Grid.Column>
+            <Image
+              src={pokeDexEntry.photo}
+              alt="Pokemon"
+              height="100%"
+              width="88%"
+            />
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row centered columns={3}>
+          {pokeDexEntry.types.map((i, k) => (
             <Grid.Column>
               <Image
-                src={pokeDexEntry.photo}
-                alt="Pokemon"
-                height="100%"
-                width="88%"
+                key={k}
+                src={require(`../typeIcons/${i.type.name}.png`)}
+                alt="A Pokemon type"
+                width={"75%"}
               />
             </Grid.Column>
-          </Grid.Row>
-          <Grid.Row centered columns={3}>
-            {pokeDexEntry.types.map((i, k) => (
-              <Grid.Column>
-                <Image
-                  key={k}
-                  src={require(`../typeIcons/${i.type.name}.png`)}
-                  alt="A Pokemon type"
-                  width={"75%"}
-                />
-              </Grid.Column>
-            ))}
-          </Grid.Row>
-        </Grid>
-        <div>
-          <Button
-            floated="left"
-            animated="vertical"
-            onClick={() => handlePrev()}
-          >
-            <Button.Content hidden>Back</Button.Content>
-            <Button.Content visible>
-              <Icon name="hand point left outline" />
-            </Button.Content>
-          </Button>
+          ))}
+        </Grid.Row>
+      </Grid>
+      <div>
+        <Button floated="left" animated="vertical" onClick={() => handlePrev()}>
+          <Button.Content hidden>Back</Button.Content>
+          <Button.Content visible>
+            <Icon name="hand point left outline" />
+          </Button.Content>
+        </Button>
 
-          <Button
-            floated="right"
-            animated="vertical"
-            onClick={() => handleNext()}
-          >
-            <Button.Content hidden>Next</Button.Content>
-            <Button.Content visible>
-              <Icon name="hand point right outline" />
-            </Button.Content>
-          </Button>
-        </div>
-      </Segment>
-    ))
+        <Button
+          floated="right"
+          animated="vertical"
+          onClick={() => handleNext()}
+        >
+          <Button.Content hidden>Next</Button.Content>
+          <Button.Content visible>
+            <Icon name="hand point right outline" />
+          </Button.Content>
+        </Button>
+      </div>
+    </Segment>
   ) : (
     <Segment inverted color="grey" style={{ minHeight: 600 }}>
       <Grid centered>
