@@ -7,7 +7,6 @@ const AppContext = createContext({
   pokemonName: "",
   pokemonNameSuggestions: [],
   pokedexId: null,
-  // pokedexIdSuggestions: [],
 });
 
 export default AppContext;

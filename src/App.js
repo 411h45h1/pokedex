@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useReducer } from "react";
 
 //style lib
-import { Grid } from "semantic-ui-react";
+import { Grid, Header } from "semantic-ui-react";
 //context
 import AppContext from "./context/AppContext";
 import reducer from "./context/reducer";
@@ -37,20 +37,13 @@ const App = () => {
   return (
     globalPokedexIndex && (
       <AppContext.Provider value={{ state, dispatch }}>
-        <h1
-          style={{
-            textAlign: "flex-start",
-            fontWeight: "bold",
-            fontSize: 75,
-            marginBottom: -5,
-            marginLeft: 20,
-          }}
-        >
-          Pokédex
-        </h1>
-
-        <Grid>
-          <Grid.Row style={{ margin: "0px 100px 0px 100px " }}>
+        <Grid style={{ margin: "0px 100px 0px 100px " }}>
+          <Grid.Row>
+            <Grid.Column width={16}>
+              <Header style={{ marginLeft: 20, fontSize: "10vh" }}>
+                Pokédex
+              </Header>
+            </Grid.Column>
             <Grid.Column width={11}>
               {/*Left Square*/}
               <PokedexInput />

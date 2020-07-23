@@ -66,8 +66,32 @@ const DexOutput = () => {
       })
       .catch((err) => console.log("Error @ Submit", err));
 
+  const handleRandomPokemon = () =>
+    getEntry(Math.floor(Math.random() * 810))
+      .then((res) => {
+        dispatch({
+          type: "UPDATE_POKEDEX_ENTRY",
+          payload: {
+            photo: res.primarySprite,
+            name: res.name,
+            id: res.id,
+            types: res.types,
+          },
+        });
+      })
+      .catch((err) => console.log("Error @ Submit", err));
+
   return pokeDexEntry ? (
-    <Segment inverted color="grey" style={{ minHeight: 600 }}>
+    <Segment inverted color="grey">
+      <Label
+        as="a"
+        color="black"
+        size="large"
+        attached="top left"
+        icon="random"
+        content="Shuffle"
+        onClick={() => handleRandomPokemon()}
+      />
       <Label as="a" size="huge" color="red" ribbon="right">
         Pokédex #{pokeDexEntry.id} {pokeDexEntry.name}
       </Label>
@@ -95,32 +119,50 @@ const DexOutput = () => {
           ))}
         </Grid.Row>
       </Grid>
-      <div>
-        <Button floated="left" animated="vertical" onClick={() => handlePrev()}>
-          <Button.Content hidden>Back</Button.Content>
-          <Button.Content visible>
-            <Icon name="hand point left outline" />
-          </Button.Content>
-        </Button>
-
-        <Button
-          floated="right"
-          animated="vertical"
+      <div style={{ marginTop: "10%" }}>
+        <Label
+          as="a"
+          color="black"
+          size="big"
+          attached="bottom left"
+          icon="hand point left outline"
+          content="Back"
+          onClick={() => handlePrev()}
+        />
+        <Label
+          as="a"
+          color="black"
+          size="big"
+          attached="bottom right"
+          icon="hand point right outline"
+          content="Next"
           onClick={() => handleNext()}
-        >
-          <Button.Content hidden>Next</Button.Content>
-          <Button.Content visible>
-            <Icon name="hand point right outline" />
-          </Button.Content>
-        </Button>
+        />
       </div>
     </Segment>
   ) : (
-    <Segment inverted color="grey" style={{ minHeight: 600 }}>
-      <Grid centered>
-        <Header as="h3" style={{}} textAlign="center">
-          No content loaded
-        </Header>
+    <Segment inverted color="grey">
+      <Label
+        as="a"
+        color="black"
+        size="large"
+        attached="top left"
+        icon="random"
+        content="Shuffle"
+        onClick={() => handleRandomPokemon()}
+      />
+      <Grid>
+        <Grid.Row>
+          <Grid.Column textAlign="center">
+            {/* <Button
+              onClick={() => handleRandomPokemon()}
+              content="Random"
+              icon="random"
+              labelPosition="left"
+              size="massive"
+            /> */}
+          </Grid.Column>
+        </Grid.Row>
       </Grid>
     </Segment>
   );

@@ -17,7 +17,7 @@ const PokemonSearch = () => {
   } = state;
 
   const pokemonNameInputProps = {
-    placeholder: "Pokemon Name",
+    placeholder: "Pokedex # or Pokemon Name",
     value: pokemonName,
     onChange: (event, { newValue }) =>
       dispatch({ type: "UPDATE_FORM_POKEDEX_NAME", payload: newValue }),
@@ -124,27 +124,6 @@ const PokemonSearch = () => {
 
           <Grid.Column width={4}>
             <Form.Field>
-              {/* <Autosuggest
-                suggestions={pokedexIdSuggestions}
-                onSuggestionsFetchRequested={({ value }) =>
-                  dispatch({
-                    type: "UPDATE_POKEDEX_ID_SUGGESTIONS",
-                    payload: getSuggestions(value),
-                  })
-                }
-                onSuggestionsClearRequested={() =>
-                  dispatch({ type: "CLEAR_POKEDEX_ID_SUGGESTIONS" })
-                }
-                onSuggestionSelected={(event, { suggestion }) =>
-                  dispatch({
-                    type: "STORE_POKEDEX_ID_SUGGESTIONS",
-                    payload: suggestion.pokemonName,
-                  })
-                }
-                getSuggestionValue={getSuggestionEmail}
-                renderSuggestion={renderSuggestion}
-                inputProps={pokedexIdInputProps}
-              /> */}
               <div style={{ margin: 0, marginTop: 7 }}>
                 {pokemonName.length || pokedexId > 0 ? (
                   <Button
