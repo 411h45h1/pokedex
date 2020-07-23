@@ -1,39 +1,38 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Grid, Segment, Image } from "semantic-ui-react";
 import AppContext from "../../context/AppContext";
+
 const PokemonTypeSearch = () => {
-  const [types, setTypes] = useState({
-    bug: false,
-    dark: false,
-    dragon: false,
-    electric: false,
-    fairy: false,
-    fighting: false,
-    fire: false,
-    flying: false,
-    ghost: false,
-    grass: false,
-    ground: false,
-    ice: false,
-    normal: false,
-    poison: false,
-    psychic: false,
-    rock: false,
-    steel: false,
-    water: false,
-  });
+  const { state, dispatch } = useContext(AppContext);
+  const { firstTypeSelected, secondTypeSelected } = state;
+
+  const handleUpdate = (value) => {
+    if (!firstTypeSelected) {
+      // Update first selected
+      dispatch({ type: "UPDATE_FIRST_SELECTED_TYPE", payload: value });
+    } else if (firstTypeSelected && !secondTypeSelected) {
+      // Update second selected
+      dispatch({ type: "UPDATE_SECOND_SELECTED_TYPE", payload: value });
+    } else {
+      // Clear
+      dispatch({ type: "CLEAR_SELECTED_TYPE" });
+    }
+  };
+
   return (
     <Grid>
-      <Grid.Row centered columns="4">
+      <Grid.Row centered columns="3">
         <Grid.Column>
           <Segment
             inverted
-            color={types.bug ? "green" : null}
-            onClick={() =>
-              setTypes((prevState) => {
-                return { ...prevState, bug: !prevState.bug };
-              })
+            color={
+              firstTypeSelected === "bug"
+                ? "green"
+                : secondTypeSelected === "bug"
+                ? "green"
+                : null
             }
+            onClick={() => handleUpdate("bug")}
           >
             <Image
               src={require("../../typeIcons/bug.png")}
@@ -45,12 +44,14 @@ const PokemonTypeSearch = () => {
         <Grid.Column>
           <Segment
             inverted
-            color={types.dark ? "green" : null}
-            onClick={() =>
-              setTypes((prevState) => {
-                return { ...prevState, dark: !prevState.dark };
-              })
+            color={
+              firstTypeSelected === "dark"
+                ? "green"
+                : secondTypeSelected === "dark"
+                ? "green"
+                : null
             }
+            onClick={() => handleUpdate("dark")}
           >
             <Image
               src={require("../../typeIcons/dark.png")}
@@ -62,12 +63,14 @@ const PokemonTypeSearch = () => {
         <Grid.Column>
           <Segment
             inverted
-            color={types.dragon ? "green" : null}
-            onClick={() =>
-              setTypes((prevState) => {
-                return { ...prevState, dragon: !prevState.dragon };
-              })
+            color={
+              firstTypeSelected === "dragon"
+                ? "green"
+                : secondTypeSelected === "dragon"
+                ? "green"
+                : null
             }
+            onClick={() => handleUpdate("dragon")}
           >
             <Image
               src={require("../../typeIcons/dragon.png")}
@@ -78,16 +81,18 @@ const PokemonTypeSearch = () => {
         </Grid.Column>
       </Grid.Row>
       {/*----------------------------------------------------------------------------------------------------------*/}
-      <Grid.Row centered columns="4">
+      <Grid.Row centered columns="3">
         <Grid.Column>
           <Segment
             inverted
-            color={types.electric ? "green" : null}
-            onClick={() =>
-              setTypes((prevState) => {
-                return { ...prevState, electric: !prevState.electric };
-              })
+            color={
+              firstTypeSelected === "electric"
+                ? "green"
+                : secondTypeSelected === "electric"
+                ? "green"
+                : null
             }
+            onClick={() => handleUpdate("electric")}
           >
             <Image
               src={require("../../typeIcons/electric.png")}
@@ -99,12 +104,14 @@ const PokemonTypeSearch = () => {
         <Grid.Column>
           <Segment
             inverted
-            color={types.fairy ? "green" : null}
-            onClick={() =>
-              setTypes((prevState) => {
-                return { ...prevState, fairy: !prevState.fairy };
-              })
+            color={
+              firstTypeSelected === "fairy"
+                ? "green"
+                : secondTypeSelected === "fairy"
+                ? "green"
+                : null
             }
+            onClick={() => handleUpdate("fairy")}
           >
             <Image
               src={require("../../typeIcons/fairy.png")}
@@ -116,12 +123,14 @@ const PokemonTypeSearch = () => {
         <Grid.Column>
           <Segment
             inverted
-            color={types.fighting ? "green" : null}
-            onClick={() =>
-              setTypes((prevState) => {
-                return { ...prevState, fighting: !prevState.fighting };
-              })
+            color={
+              firstTypeSelected === "fighting"
+                ? "green"
+                : secondTypeSelected === "fighting"
+                ? "green"
+                : null
             }
+            onClick={() => handleUpdate("fighting")}
           >
             <Image
               src={require("../../typeIcons/fighting.png")}
@@ -132,16 +141,18 @@ const PokemonTypeSearch = () => {
         </Grid.Column>
       </Grid.Row>
       {/*----------------------------------------------------------------------------------------------------------*/}
-      <Grid.Row centered columns="4">
+      <Grid.Row centered columns="3">
         <Grid.Column>
           <Segment
             inverted
-            color={types.fire ? "green" : null}
-            onClick={() =>
-              setTypes((prevState) => {
-                return { ...prevState, fire: !prevState.fire };
-              })
+            color={
+              firstTypeSelected === "fire"
+                ? "green"
+                : secondTypeSelected === "fire"
+                ? "green"
+                : null
             }
+            onClick={() => handleUpdate("fire")}
           >
             <Image
               src={require("../../typeIcons/fire.png")}
@@ -153,12 +164,14 @@ const PokemonTypeSearch = () => {
         <Grid.Column>
           <Segment
             inverted
-            color={types.flying ? "green" : null}
-            onClick={() =>
-              setTypes((prevState) => {
-                return { ...prevState, flying: !prevState.flying };
-              })
+            color={
+              firstTypeSelected === "flying"
+                ? "green"
+                : secondTypeSelected === "flying"
+                ? "green"
+                : null
             }
+            onClick={() => handleUpdate("flying")}
           >
             <Image
               src={require("../../typeIcons/flying.png")}
@@ -170,12 +183,14 @@ const PokemonTypeSearch = () => {
         <Grid.Column>
           <Segment
             inverted
-            color={types.ghost ? "green" : null}
-            onClick={() =>
-              setTypes((prevState) => {
-                return { ...prevState, ghost: !prevState.ghost };
-              })
+            color={
+              firstTypeSelected === "ghost"
+                ? "green"
+                : secondTypeSelected === "ghost"
+                ? "green"
+                : null
             }
+            onClick={() => handleUpdate("ghost")}
           >
             <Image
               src={require("../../typeIcons/ghost.png")}
@@ -186,16 +201,18 @@ const PokemonTypeSearch = () => {
         </Grid.Column>
       </Grid.Row>
 
-      <Grid.Row centered columns="4">
+      <Grid.Row centered columns="3">
         <Grid.Column>
           <Segment
             inverted
-            color={types.grass ? "green" : null}
-            onClick={() =>
-              setTypes((prevState) => {
-                return { ...prevState, grass: !prevState.grass };
-              })
+            color={
+              firstTypeSelected === "grass"
+                ? "green"
+                : secondTypeSelected === "grass"
+                ? "green"
+                : null
             }
+            onClick={() => handleUpdate("grass")}
           >
             <Image
               src={require("../../typeIcons/grass.png")}
@@ -207,12 +224,14 @@ const PokemonTypeSearch = () => {
         <Grid.Column>
           <Segment
             inverted
-            color={types.ground ? "green" : null}
-            onClick={() =>
-              setTypes((prevState) => {
-                return { ...prevState, ground: !prevState.ground };
-              })
+            color={
+              firstTypeSelected === "ground"
+                ? "green"
+                : secondTypeSelected === "ground"
+                ? "green"
+                : null
             }
+            onClick={() => handleUpdate("ground")}
           >
             <Image
               src={require("../../typeIcons/ground.png")}
@@ -224,12 +243,14 @@ const PokemonTypeSearch = () => {
         <Grid.Column>
           <Segment
             inverted
-            color={types.ice ? "green" : null}
-            onClick={() =>
-              setTypes((prevState) => {
-                return { ...prevState, ice: !prevState.ice };
-              })
+            color={
+              firstTypeSelected === "ice"
+                ? "green"
+                : secondTypeSelected === "ice"
+                ? "green"
+                : null
             }
+            onClick={() => handleUpdate("ice")}
           >
             <Image
               src={require("../../typeIcons/ice.png")}
@@ -240,16 +261,18 @@ const PokemonTypeSearch = () => {
         </Grid.Column>
       </Grid.Row>
       {/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  */}
-      <Grid.Row centered columns="4">
+      <Grid.Row centered columns="3">
         <Grid.Column>
           <Segment
             inverted
-            color={types.normal ? "green" : null}
-            onClick={() =>
-              setTypes((prevState) => {
-                return { ...prevState, normal: !prevState.normal };
-              })
+            color={
+              firstTypeSelected === "normal"
+                ? "green"
+                : secondTypeSelected === "normal"
+                ? "green"
+                : null
             }
+            onClick={() => handleUpdate("normal")}
           >
             <Image
               src={require("../../typeIcons/normal.png")}
@@ -261,12 +284,14 @@ const PokemonTypeSearch = () => {
         <Grid.Column>
           <Segment
             inverted
-            color={types.poison ? "green" : null}
-            onClick={() =>
-              setTypes((prevState) => {
-                return { ...prevState, poison: !prevState.poison };
-              })
+            color={
+              firstTypeSelected === "poison"
+                ? "green"
+                : secondTypeSelected === "poison"
+                ? "green"
+                : null
             }
+            onClick={() => handleUpdate("poison")}
           >
             <Image
               src={require("../../typeIcons/poison.png")}
@@ -278,12 +303,14 @@ const PokemonTypeSearch = () => {
         <Grid.Column>
           <Segment
             inverted
-            color={types.psychic ? "green" : null}
-            onClick={() =>
-              setTypes((prevState) => {
-                return { ...prevState, psychic: !prevState.psychic };
-              })
+            color={
+              firstTypeSelected === "psychic"
+                ? "green"
+                : secondTypeSelected === "psychic"
+                ? "green"
+                : null
             }
+            onClick={() => handleUpdate("psychic")}
           >
             <Image
               src={require("../../typeIcons/psychic.png")}
@@ -294,16 +321,18 @@ const PokemonTypeSearch = () => {
         </Grid.Column>
       </Grid.Row>
       {/*----------------------------------------------------------------------------------------------------------*/}
-      <Grid.Row centered columns="4">
+      <Grid.Row centered columns="3">
         <Grid.Column>
           <Segment
             inverted
-            color={types.rock ? "green" : null}
-            onClick={() =>
-              setTypes((prevState) => {
-                return { ...prevState, rock: !prevState.rock };
-              })
+            color={
+              firstTypeSelected === "rock"
+                ? "green"
+                : secondTypeSelected === "rock"
+                ? "green"
+                : null
             }
+            onClick={() => handleUpdate("rock")}
           >
             <Image
               src={require("../../typeIcons/rock.png")}
@@ -315,12 +344,14 @@ const PokemonTypeSearch = () => {
         <Grid.Column>
           <Segment
             inverted
-            color={types.steel ? "green" : null}
-            onClick={() =>
-              setTypes((prevState) => {
-                return { ...prevState, steel: !prevState.steel };
-              })
+            color={
+              firstTypeSelected === "steel"
+                ? "green"
+                : secondTypeSelected === "steel"
+                ? "green"
+                : null
             }
+            onClick={() => handleUpdate("steel")}
           >
             <Image
               src={require("../../typeIcons/steel.png")}
@@ -332,12 +363,14 @@ const PokemonTypeSearch = () => {
         <Grid.Column>
           <Segment
             inverted
-            color={types.water ? "green" : null}
-            onClick={() =>
-              setTypes((prevState) => {
-                return { ...prevState, water: !prevState.water };
-              })
+            color={
+              firstTypeSelected === "water"
+                ? "green"
+                : secondTypeSelected === "water"
+                ? "green"
+                : null
             }
+            onClick={() => handleUpdate("water")}
           >
             <Image
               src={require("../../typeIcons/water.png")}

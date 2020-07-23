@@ -40,6 +40,24 @@ export default function reducer(state, { type, payload }) {
         ...state,
         pokedexId: payload,
       };
+    //Type Search
+    case "UPDATE_FIRST_SELECTED_TYPE":
+      return {
+        ...state,
+        firstTypeSelected: payload,
+      };
+    case "UPDATE_SECOND_SELECTED_TYPE":
+      return {
+        ...state,
+        secondTypeSelected: payload,
+      };
+    case "CLEAR_SELECTED_TYPE":
+      return {
+        ...state,
+        firstTypeSelected: null,
+        secondTypeSelected: null,
+      };
+
     default:
       return state;
   }

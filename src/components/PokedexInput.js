@@ -1,6 +1,6 @@
 import React from "react";
-import { Grid, Segment, Button, Label } from "semantic-ui-react";
-import { PokemonSearch, PokemonTypeSearch } from ".";
+import { Grid, Segment, Label } from "semantic-ui-react";
+import { PokemonSearch, PokemonTypeSearch, TypeSearchOutput } from ".";
 
 const PokedexInput = () => {
   return (
@@ -17,11 +17,11 @@ const PokedexInput = () => {
         Search Pokemon based on their type
       </Label>
       <Grid style={{ marginTop: 10, marginBottom: 10 }}>
-        <Grid.Column width={12}>
+        <Grid.Column width={10}>
           <PokemonTypeSearch />
         </Grid.Column>
-        <Grid.Column width={4}>
-          <Button content="Click" />
+        <Grid.Column width={6}>
+          <TypeSearchOutput />
         </Grid.Column>
       </Grid>
     </Segment>

@@ -100,9 +100,8 @@ const PokedexOutput = () => {
         </Grid.Row>
         <Grid.Row centered columns={3}>
           {pokeDexEntry.types.map((i, k) => (
-            <Grid.Column>
+            <Grid.Column key={k}>
               <Image
-                key={k}
                 src={require(`../typeIcons/${i.type.name}.png`)}
                 alt="A Pokemon type"
                 width={"75%"}
