@@ -10,7 +10,11 @@ const PokemonTypeSearch = () => {
     if (!firstTypeSelected) {
       // Update first selected
       dispatch({ type: "UPDATE_FIRST_SELECTED_TYPE", payload: value });
-    } else if (firstTypeSelected && !secondTypeSelected) {
+    } else if (
+      firstTypeSelected &&
+      !secondTypeSelected &&
+      firstTypeSelected !== value
+    ) {
       // Update second selected
       dispatch({ type: "UPDATE_SECOND_SELECTED_TYPE", payload: value });
     } else {
