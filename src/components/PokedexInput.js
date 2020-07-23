@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Segment, Button } from "semantic-ui-react";
+import { Grid, Segment, Button, Header } from "semantic-ui-react";
 import AppContext from "../context/AppContext";
 import { PokemonSearch, capitalizeString } from ".";
 
@@ -55,9 +55,24 @@ const DexInput = () => {
       color="brown"
       style={{ textAlign: "center", minHeight: 600 }}
     >
-      <PokemonSearch />
-      <Button color="red" content="Clear" onClick={() => handleClear()} />
-      <Button content="Submit" onClick={() => handleSubmit()} />
+      <Grid>
+        <Grid.Row>
+          <Grid.Column>
+            <Header as="h1" floated="left" inverted>
+              Search
+            </Header>
+          </Grid.Column>
+        </Grid.Row>
+
+        <Grid.Row>
+          <Grid.Column>
+            <PokemonSearch />
+
+            <Button color="red" content="Clear" onClick={() => handleClear()} />
+            <Button content="Submit" onClick={() => handleSubmit()} />
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     </Segment>
   );
 };
