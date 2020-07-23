@@ -3,7 +3,7 @@ import { createContext } from "react";
 const AppContext = createContext({
   globalPokedexIndex: null,
   pokeDexEntry: null,
-  //form
+  //name form
   pokemonName: "",
   pokemonNameSuggestions: [],
   pokedexId: null,

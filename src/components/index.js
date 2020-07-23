@@ -4,3 +4,4 @@ export { default as PokedexOutput } from "./PokedexOutput";
 //toos
 export { default as capitalizeString } from "./tools/capitalize";
 export { default as PokemonSearch } from "./tools/PokemonSearch";
+export { default as PokemonTypeSearch } from "./tools/PokemonTypeSearch";

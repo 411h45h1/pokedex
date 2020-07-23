@@ -92,6 +92,7 @@ const PokemonSearch = () => {
     dispatch({
       type: "CLEAR_FORM_POKEDEX_ENTRIES",
     });
+
   return (
     <Form>
       <Grid>
