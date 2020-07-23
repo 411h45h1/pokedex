@@ -51,11 +51,11 @@ const App = () => {
 
         <Grid>
           <Grid.Row style={{ margin: "0px 100px 0px 100px " }}>
-            <Grid.Column width={8}>
+            <Grid.Column width={11}>
               {/*Left Square*/}
               <PokedexInput />
             </Grid.Column>
-            <Grid.Column width={8}>
+            <Grid.Column width={5}>
               {/*Right Square*/}
               <PokedexOutput />
             </Grid.Column>

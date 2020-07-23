@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Autosuggest from "react-autosuggest";
 import "./Autosuggest.css";
 import AppContext from "../../context/AppContext";
-import { Grid } from "semantic-ui-react";
+import { Grid, Form } from "semantic-ui-react";
 
 const PokemonSearch = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -52,57 +52,63 @@ const PokemonSearch = () => {
   );
 
   return (
-    <Grid columns="equal">
-      <Grid.Row>
-        <Grid.Column width={2}>
-          <Autosuggest
-            suggestions={pokedexIdSuggestions}
-            onSuggestionsFetchRequested={({ value }) =>
-              dispatch({
-                type: "UPDATE_POKEDEX_ID_SUGGESTIONS",
-                payload: getSuggestions(value),
-              })
-            }
-            onSuggestionsClearRequested={() =>
-              dispatch({ type: "CLEAR_POKEDEX_ID_SUGGESTIONS" })
-            }
-            onSuggestionSelected={(event, { suggestion }) =>
-              dispatch({
-                type: "STORE_POKEDEX_ID_SUGGESTIONS",
-                payload: suggestion.pokemonName,
-              })
-            }
-            getSuggestionValue={getSuggestionEmail}
-            renderSuggestion={renderSuggestion}
-            inputProps={pokedexIdInputProps}
-          />
-        </Grid.Column>
+    <Form>
+      <Grid columns="equal">
+        <Grid.Row>
+          <Grid.Column width={3}>
+            <Form.Field>
+              <Autosuggest
+                suggestions={pokedexIdSuggestions}
+                onSuggestionsFetchRequested={({ value }) =>
+                  dispatch({
+                    type: "UPDATE_POKEDEX_ID_SUGGESTIONS",
+                    payload: getSuggestions(value),
+                  })
+                }
+                onSuggestionsClearRequested={() =>
+                  dispatch({ type: "CLEAR_POKEDEX_ID_SUGGESTIONS" })
+                }
+                onSuggestionSelected={(event, { suggestion }) =>
+                  dispatch({
+                    type: "STORE_POKEDEX_ID_SUGGESTIONS",
+                    payload: suggestion.pokemonName,
+                  })
+                }
+                getSuggestionValue={getSuggestionEmail}
+                renderSuggestion={renderSuggestion}
+                inputProps={pokedexIdInputProps}
+              />
+            </Form.Field>
+          </Grid.Column>
 
-        <Grid.Column width={14}>
-          <Autosuggest
-            suggestions={pokemonNameSuggestions}
-            onSuggestionsFetchRequested={({ value }) =>
-              dispatch({
-                type: "UPDATE_POKEDEX_NAME_SUGGESTIONS",
-                payload: getSuggestions(value),
-              })
-            }
-            onSuggestionsClearRequested={() =>
-              dispatch({ type: "CLEAR_POKEDEX_NAME_SUGGESTIONS" })
-            }
-            onSuggestionSelected={(event, { suggestion }) =>
-              dispatch({
-                type: "STORE_POKEDEX_NAME_SUGGESTIONS",
-                payload: suggestion.pokedexId,
-              })
-            }
-            getSuggestionValue={getSuggestionNickname}
-            renderSuggestion={renderSuggestion}
-            inputProps={pokemonNameInputProps}
-          />{" "}
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
+          <Grid.Column width={13}>
+            <Form.Field>
+              <Autosuggest
+                suggestions={pokemonNameSuggestions}
+                onSuggestionsFetchRequested={({ value }) =>
+                  dispatch({
+                    type: "UPDATE_POKEDEX_NAME_SUGGESTIONS",
+                    payload: getSuggestions(value),
+                  })
+                }
+                onSuggestionsClearRequested={() =>
+                  dispatch({ type: "CLEAR_POKEDEX_NAME_SUGGESTIONS" })
+                }
+                onSuggestionSelected={(event, { suggestion }) =>
+                  dispatch({
+                    type: "STORE_POKEDEX_NAME_SUGGESTIONS",
+                    payload: suggestion.pokedexId,
+                  })
+                }
+                getSuggestionValue={getSuggestionNickname}
+                renderSuggestion={renderSuggestion}
+                inputProps={pokemonNameInputProps}
+              />
+            </Form.Field>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </Form>
   );
 };
 

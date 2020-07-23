@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
-import { Grid, Segment, Button, Header } from "semantic-ui-react";
+import { Grid, Segment, Button, Label } from "semantic-ui-react";
 import AppContext from "../context/AppContext";
 import { PokemonSearch, capitalizeString } from ".";
 
 const DexInput = () => {
   const { state, dispatch } = useContext(AppContext);
-  const { globalPokedexIndex, pokemonName } = state;
+  const { globalPokedexIndex, pokemonName, pokedexId } = state;
   const getEntry = async (entry) => {
     //get pokemon source url
     let entryFound = globalPokedexIndex.find(
@@ -50,28 +50,23 @@ const DexInput = () => {
     });
 
   return (
-    <Segment
-      inverted
-      color="brown"
-      style={{ textAlign: "center", minHeight: 600 }}
-    >
-      <Grid>
-        <Grid.Row>
-          <Grid.Column>
-            <Header as="h1" floated="left" inverted>
-              Search
-            </Header>
-          </Grid.Column>
-        </Grid.Row>
-
-        <Grid.Row>
-          <Grid.Column>
-            <PokemonSearch />
-
+    <Segment inverted color="brown" style={{ minHeight: 600 }}>
+      <Label as="a" size="huge" color="teal" ribbon>
+        Search
+      </Label>
+      <Grid style={{ marginTop: 10 }}>
+        <Grid.Column>
+          <PokemonSearch />
+          {pokemonName.length || pokedexId.length > 0 ? (
             <Button color="red" content="Clear" onClick={() => handleClear()} />
-            <Button content="Submit" onClick={() => handleSubmit()} />
-          </Grid.Column>
-        </Grid.Row>
+          ) : null}
+          <Button
+            content="Search"
+            color="blue"
+            disabled={pokemonName.length + pokedexId.length > 1 ? false : true}
+            onClick={() => handleSubmit()}
+          />
+        </Grid.Column>
       </Grid>
     </Segment>
   );
