@@ -25,7 +25,7 @@ const App = () => {
     ).catch((err) => console.error(err));
     let pokedexIndex = await fetchPokedex.json();
     let refinedIndex = pokedexIndex.results.map((i, k) => {
-      return { pokedexId: `${k + 1}`, pokemonName: i.name, url: i.url };
+      return { pokedexId: k + 1, pokemonName: i.name, url: i.url };
     });
 
     return dispatch({

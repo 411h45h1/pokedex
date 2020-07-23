@@ -6,8 +6,8 @@ const AppContext = createContext({
   //form
   pokemonName: "",
   pokemonNameSuggestions: [],
-  pokedexId: "",
-  pokedexIdSuggestions: [],
+  pokedexId: null,
+  // pokedexIdSuggestions: [],
 });
 
 export default AppContext;

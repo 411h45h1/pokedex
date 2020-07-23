@@ -17,11 +17,7 @@ export default function reducer(state, { type, payload }) {
         ...state,
         pokemonName: payload,
       };
-    case "UPDATE_FORM_POKEDEX_ID":
-      return {
-        ...state,
-        pokedexId: payload,
-      };
+
     case "CLEAR_FORM_POKEDEX_ENTRIES":
       return {
         ...state,
@@ -29,23 +25,6 @@ export default function reducer(state, { type, payload }) {
         pokedexId: "",
       };
 
-    //updating form data
-    case "UPDATE_POKEDEX_ID_SUGGESTIONS":
-      return {
-        ...state,
-        pokedexIdSuggestions: payload,
-      };
-    case "CLEAR_POKEDEX_ID_SUGGESTIONS":
-      return {
-        ...state,
-        pokedexIdSuggestions: [],
-      };
-    case "STORE_POKEDEX_ID_SUGGESTIONS":
-      return {
-        ...state,
-        pokemonName: payload,
-      };
-    //
     case "UPDATE_POKEDEX_NAME_SUGGESTIONS":
       return {
         ...state,
