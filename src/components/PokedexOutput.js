@@ -59,7 +59,7 @@ const PokedexOutput = () => {
       .catch((err) => console.log("Error @ Submit", err));
 
   const handleRandomPokemon = () =>
-    getEntry(Math.floor(Math.random() * 810))
+    getEntry(Math.floor(Math.random() * 808))
       .then((res) => {
         dispatch({
           type: "UPDATE_POKEDEX_ENTRY",
