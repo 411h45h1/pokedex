@@ -18,7 +18,12 @@ const PokemonTypeSearch = () => {
     let allWantedPokemon = typeDataEntry.pokemon.map((i, k) => {
       let name = i.pokemon.name;
       let url = i.pokemon.url;
-      return { name: name, typePossible: type, url: url };
+
+      return {
+        name: name,
+        typePossible: type,
+        url: url,
+      };
     });
 
     return { allWantedPokemon };

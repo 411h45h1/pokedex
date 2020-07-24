@@ -11,14 +11,55 @@ const TypeSearchOutput = () => {
     firstPokemonTypeArr,
     secondPokemonTypeArr,
     renderedSearch,
+    globalPokedexIndex,
   } = state;
 
   const [secondTypeLoaded, setSecondTypeLoaded] = useState(false);
 
+  const getEntry = async (entry) => {
+    //get pokemon source url
+    let entryFound = globalPokedexIndex.find(
+      (obj) => obj.pokemonName === entry
+    );
+    console.log(entry);
+    let dataURL = entryFound.url;
+
+    //get pokemon data
+    let entryDataFetch = await fetch(`${dataURL}`).catch((err) =>
+      console.log(err)
+    );
+
+    let pokedexDataEntry = await entryDataFetch.json();
+    //value return
+
+    let name = capitalizeString(pokedexDataEntry.name);
+    let id = pokedexDataEntry.id;
+    let primarySprite = pokedexDataEntry.sprites.front_default;
+    let types = pokedexDataEntry.types;
+
+    console.log(`Selected Pokemon: ( #${id}, ${name} )`);
+    return { name, primarySprite, id, types };
+  };
+
+  const handleSubmit = (pokemonName) =>
+    getEntry(pokemonName)
+      .then((res) => {
+        dispatch({
+          type: "UPDATE_POKEDEX_ENTRY",
+          payload: {
+            photo: res.primarySprite,
+            name: res.name,
+            id: res.id,
+            types: res.types,
+          },
+        });
+      })
+      .catch((err) => console.log("Error @ typeSearch Submit", err));
+
   const RenderList = () =>
     renderedSearch.length > 1 ? (
       renderedSearch.map((i, k) => (
-        <List.Item key={k} as="a">
+        <List.Item key={k} as="a" onClick={() => handleSubmit(i.name)}>
           <List.Content verticalAlign="middle" style={{ fontWeight: "bold" }}>
             {capitalizeString(i.name)}
           </List.Content>
