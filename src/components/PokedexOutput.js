@@ -81,23 +81,39 @@ const PokedexOutput = () => {
         size="large"
         attached="top left"
         icon="random"
-        content="Shuffle"
+        content="Random"
         onClick={() => handleRandomPokemon()}
       />
-      <Label size="huge" color="red" ribbon="right">
-        Pokédex #{pokeDexEntry.id} {pokeDexEntry.name}
-      </Label>
+      {pokeDexEntry.id < 808 ? (
+        <Label size="huge" color="red" ribbon="right">
+          Pokédex #{pokeDexEntry.id} - {pokeDexEntry.name}
+        </Label>
+      ) : (
+        <Label size="huge" color="red" ribbon="right">
+          Pokédex {pokeDexEntry.name}
+        </Label>
+      )}
+
       <Grid>
         <Grid.Row centered columns={1}>
           <Grid.Column>
-            <Image
-              src={pokeDexEntry.photo}
-              alt="Pokemon"
-              height="100%"
-              width="88%"
-            />
+            {pokeDexEntry.photo ? (
+              <Image
+                src={pokeDexEntry.photo}
+                alt="Pokemon"
+                height="100%"
+                width="88%"
+              />
+            ) : (
+              <Grid centered>
+                <h6 style={{ fontSize: 30, marginTop: 30 }}>
+                  Api Sprite Not availible
+                </h6>
+              </Grid>
+            )}
           </Grid.Column>
         </Grid.Row>
+
         <Grid.Row centered columns={3}>
           {pokeDexEntry.types.map((i, k) => (
             <Grid.Column key={k}>
@@ -111,24 +127,50 @@ const PokedexOutput = () => {
         </Grid.Row>
       </Grid>
       <div style={{ marginTop: "10%" }}>
-        <Label
-          as="a"
-          color="black"
-          size="big"
-          attached="bottom left"
-          icon="hand point left outline"
-          content="Back"
-          onClick={() => handlePrev()}
-        />
-        <Label
-          as="a"
-          color="black"
-          size="big"
-          attached="bottom right"
-          icon="hand point right outline"
-          content="Next"
-          onClick={() => handleNext()}
-        />
+        {pokeDexEntry.id < 807 ? (
+          pokeDexEntry.id !== 1 ? (
+            <>
+              <Label
+                as="a"
+                color="black"
+                size="big"
+                attached="bottom left"
+                icon="hand point left outline"
+                content="Back"
+                onClick={() => handlePrev()}
+              />
+              <Label
+                as="a"
+                color="black"
+                size="big"
+                attached="bottom right"
+                icon="hand point right outline"
+                content="Next"
+                onClick={() => handleNext()}
+              />
+            </>
+          ) : (
+            <Label
+              as="a"
+              color="black"
+              size="big"
+              attached="bottom right"
+              icon="hand point right outline"
+              content="Next"
+              onClick={() => handleNext()}
+            />
+          )
+        ) : (
+          <Label
+            as="a"
+            color="black"
+            size="big"
+            attached="bottom left"
+            icon="hand point left outline"
+            content="Back"
+            onClick={() => handlePrev()}
+          />
+        )}
       </div>
     </Segment>
   ) : (
@@ -139,7 +181,7 @@ const PokedexOutput = () => {
         size="large"
         attached="top left"
         icon="random"
-        content="Shuffle"
+        content="Click here to see a random Pokémon"
         onClick={() => handleRandomPokemon()}
       />
       <Grid>
