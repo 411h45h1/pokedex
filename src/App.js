@@ -7,6 +7,7 @@ import AppContext from "./context/AppContext";
 import reducer from "./context/reducer";
 //components
 import { PokedexInput, PokedexOutput } from "./components";
+import PokemonLogo from "./PokemonLogo";
 
 const App = () => {
   const initialState = useContext(AppContext);
@@ -40,8 +41,8 @@ const App = () => {
         <Grid style={{ margin: "0px 100px 0px 100px " }}>
           <Grid.Row>
             <Grid.Column width={16}>
-              <Header style={{ marginLeft: 20, fontSize: "10vh" }}>
-                Pokédex
+              <Header>
+                <PokemonLogo height={150} width={400} />
               </Header>
             </Grid.Column>
             <Grid.Column width={10}>

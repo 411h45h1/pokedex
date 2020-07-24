@@ -120,7 +120,6 @@ const TypeSearchOutput = () => {
       dispatch({ type: "UPDATE_SEARCH", payload: bothTypes });
 
       setSecondTypeLoaded(true);
-      //update renderer
     }
   }, [
     firstPokemonTypeArr,
