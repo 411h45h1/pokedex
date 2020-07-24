@@ -18,22 +18,15 @@ const TypeSearchOutput = () => {
   const RenderList = () =>
     renderedSearch.length > 1 ? (
       renderedSearch.map((i, k) => (
-        <List.Item key={k}>
-          <List.Content as="a">
-            <List.Header>{capitalizeString(i.name)}</List.Header>
-            <List.Description>
-              <Image
-                src={require(`../../typeIcons/${firstTypeSelected}.png`)}
-              />
-            </List.Description>
-            <List.Description>
-              {secondTypeLoaded && (
-                <Image
-                  src={require(`../../typeIcons/${secondTypeSelected}.png`)}
-                />
-              )}
-            </List.Description>
+        <List.Item key={k} as="a">
+          <List.Content verticalAlign="middle" style={{ fontWeight: "bold" }}>
+            {capitalizeString(i.name)}
           </List.Content>
+          <Image src={require(`../../typeIcons/${firstTypeSelected}.png`)} />
+          {"  "}
+          {secondTypeLoaded && (
+            <Image src={require(`../../typeIcons/${secondTypeSelected}.png`)} />
+          )}
         </List.Item>
       ))
     ) : (
@@ -106,7 +99,6 @@ const TypeSearchOutput = () => {
               {firstTypeSelected && (
                 <div style={{ marginBottom: "20%" }}>
                   <Label
-                    as="a"
                     color="blue"
                     size="huge"
                     attached="top left"
@@ -123,7 +115,7 @@ const TypeSearchOutput = () => {
                 </div>
               )}
 
-              <List divided relaxed>
+              <List divided animated relaxed size="massive">
                 {renderedSearch && <RenderList />}
               </List>
             </Segment>
