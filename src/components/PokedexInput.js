@@ -8,7 +8,7 @@ const PokedexInput = () => {
       <Label size="huge" color="teal" ribbon>
         Search Pokemon based on name or id
       </Label>
-      <Grid style={{ marginTop: 10, marginBottom: 10 }}>
+      <Grid style={{ marginTop: 10 }}>
         <Grid.Column>
           <PokemonSearch />
         </Grid.Column>
@@ -16,11 +16,11 @@ const PokedexInput = () => {
       <Label size="huge" color="yellow" ribbon>
         Search Pokemon based on their type
       </Label>
-      <Grid style={{ marginTop: 10, marginBottom: 10 }}>
-        <Grid.Column width={10}>
+      <Grid style={{ marginTop: 10 }}>
+        <Grid.Column width={9}>
           <PokemonTypeSearch />
         </Grid.Column>
-        <Grid.Column width={6}>
+        <Grid.Column width={7}>
           <TypeSearchOutput />
         </Grid.Column>
       </Grid>

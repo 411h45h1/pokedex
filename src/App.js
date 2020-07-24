@@ -7,7 +7,7 @@ import AppContext from "./context/AppContext";
 import reducer from "./context/reducer";
 //components
 import { PokedexInput, PokedexOutput } from "./components";
-import PokemonLogo from "./PokemonLogo";
+import PokemonLogo from "./assets/PokemonLogo";
 
 const App = () => {
   const initialState = useContext(AppContext);
