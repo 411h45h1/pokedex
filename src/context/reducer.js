@@ -56,6 +56,32 @@ export default function reducer(state, { type, payload }) {
         ...state,
         firstTypeSelected: null,
         secondTypeSelected: null,
+        firstPokemonTypeArr: null,
+        secondPokemonTypeArr: null,
+        renderedSearch: null,
+      };
+    //Type Search (basically all the pokemon with the type passed
+    // firstTypeSelected or secondTypeSelected
+    case "UPDATE_FIRST_POKEMON_LIST_WANTED":
+      return {
+        ...state,
+        firstPokemonTypeArr: payload,
+      };
+    case "UPDATE_SECOND_POKEMON_LIST_WANTED":
+      return {
+        ...state,
+        secondPokemonTypeArr: payload,
+      };
+
+    case "UPDATE_SEARCH":
+      return {
+        ...state,
+        renderedSearch: payload,
+      };
+    case "CLEAR_SEARCH":
+      return {
+        ...state,
+        renderedSearch: null,
       };
 
     default:

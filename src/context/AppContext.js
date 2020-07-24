@@ -10,6 +10,10 @@ const AppContext = createContext({
   //type search
   firstTypeSelected: null,
   secondTypeSelected: null,
+  //
+  firstPokemonTypeArr: null,
+  secondPokemonTypeArr: null,
+  renderedSearch: null,
 });
 
 export default AppContext;

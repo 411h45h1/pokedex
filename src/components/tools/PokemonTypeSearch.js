@@ -6,10 +6,37 @@ const PokemonTypeSearch = () => {
   const { state, dispatch } = useContext(AppContext);
   const { firstTypeSelected, secondTypeSelected } = state;
 
+  const getTypeEntrys = async (type) => {
+    //get pokemon data
+    let fetchType = await fetch(
+      `https://pokeapi.co/api/v2/type/${type}`
+    ).catch((err) => console.log(err));
+
+    let typeDataEntry = await fetchType.json();
+    console.log("ty", typeDataEntry);
+
+    let allWantedPokemon = typeDataEntry.pokemon.map((i, k) => {
+      let name = i.pokemon.name;
+      let url = i.pokemon.url;
+      return { name: name, typePossible: type, url: url };
+    });
+
+    return { allWantedPokemon };
+  };
+
   const handleUpdate = (value) => {
     if (!firstTypeSelected) {
       // Update first selected
       dispatch({ type: "UPDATE_FIRST_SELECTED_TYPE", payload: value });
+
+      getTypeEntrys(value)
+        .then((res) => {
+          dispatch({
+            type: "UPDATE_FIRST_POKEMON_LIST_WANTED",
+            payload: res,
+          });
+        })
+        .catch((err) => console.log("Error @ getTypeEntries"));
     } else if (
       firstTypeSelected &&
       !secondTypeSelected &&
@@ -17,9 +44,18 @@ const PokemonTypeSearch = () => {
     ) {
       // Update second selected
       dispatch({ type: "UPDATE_SECOND_SELECTED_TYPE", payload: value });
+      getTypeEntrys(value)
+        .then((res) => {
+          dispatch({
+            type: "UPDATE_SECOND_POKEMON_LIST_WANTED",
+            payload: res,
+          });
+        })
+        .catch((err) => console.log("Error @ getTypeEntries"));
     } else {
       // Clear
       dispatch({ type: "CLEAR_SELECTED_TYPE" });
+      dispatch({ type: "CLEAR_SEARCH" });
     }
   };
 
