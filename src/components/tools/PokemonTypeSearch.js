@@ -13,7 +13,6 @@ const PokemonTypeSearch = () => {
     ).catch((err) => console.log(err));
 
     let typeDataEntry = await fetchType.json();
-    console.log("ty", typeDataEntry);
 
     let allWantedPokemon = typeDataEntry.pokemon.map((i, k) => {
       let name = i.pokemon.name;
@@ -41,7 +40,7 @@ const PokemonTypeSearch = () => {
             payload: res,
           });
         })
-        .catch((err) => console.log("Error @ getTypeEntries"));
+        .catch((err) => console.log("Error @ getTypeEntries", err));
     } else if (
       firstTypeSelected &&
       !secondTypeSelected &&
@@ -56,7 +55,7 @@ const PokemonTypeSearch = () => {
             payload: res,
           });
         })
-        .catch((err) => console.log("Error @ getTypeEntries"));
+        .catch((err) => console.log("Error @ getTypeEntries", err));
     } else {
       // Clear
       dispatch({ type: "CLEAR_SELECTED_TYPE" });

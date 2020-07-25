@@ -16,73 +16,6 @@ const TypeSearchOutput = () => {
 
   const [secondTypeLoaded, setSecondTypeLoaded] = useState(false);
 
-  const getEntry = async (entry) => {
-    //get pokemon source url
-    let entryFound = globalPokedexIndex.find(
-      (obj) => obj.pokemonName === entry
-    );
-    console.log(entry);
-    let dataURL = entryFound.url;
-
-    //get pokemon data
-    let entryDataFetch = await fetch(`${dataURL}`).catch((err) =>
-      console.log(err)
-    );
-
-    let pokedexDataEntry = await entryDataFetch.json();
-    //value return
-
-    let name = capitalizeString(pokedexDataEntry.name);
-    let id = pokedexDataEntry.id;
-    let primarySprite = pokedexDataEntry.sprites.front_default;
-    let types = pokedexDataEntry.types;
-
-    console.log(`Selected Pokemon: ( #${id}, ${name} )`);
-    return { name, primarySprite, id, types };
-  };
-
-  const handleSubmit = (pokemonName) =>
-    getEntry(pokemonName)
-      .then((res) => {
-        dispatch({
-          type: "UPDATE_POKEDEX_ENTRY",
-          payload: {
-            photo: res.primarySprite,
-            name: res.name,
-            id: res.id,
-            types: res.types,
-          },
-        });
-      })
-      .catch((err) => console.log("Error @ typeSearch Submit", err));
-
-  const RenderList = () =>
-    renderedSearch.length > 1 ? (
-      renderedSearch.map((i, k) => (
-        <List.Item key={k} as="a" onClick={() => handleSubmit(i.name)}>
-          <List.Content verticalAlign="middle" style={{ fontWeight: "bold" }}>
-            {capitalizeString(i.name)}
-          </List.Content>
-          <Image src={require(`../../typeIcons/${firstTypeSelected}.png`)} />
-          {"  "}
-          {secondTypeLoaded && (
-            <Image src={require(`../../typeIcons/${secondTypeSelected}.png`)} />
-          )}
-        </List.Item>
-      ))
-    ) : (
-      <List.Item>
-        <List.Content>
-          <List.Header>There are no pokemon found with the type</List.Header>
-          <List.Description>
-            <Image src={require(`../../typeIcons/${firstTypeSelected}.png`)} />
-
-            <Image src={require(`../../typeIcons/${secondTypeSelected}.png`)} />
-          </List.Description>
-        </List.Content>
-      </List.Item>
-    );
-
   useEffect(() => {
     if (!renderedSearch && firstTypeSelected && !secondTypeSelected) {
       //first click of button
@@ -116,7 +49,6 @@ const TypeSearchOutput = () => {
         }
       });
 
-      console.log("pokemon with both types =>", bothTypes);
       dispatch({ type: "UPDATE_SEARCH", payload: bothTypes });
 
       setSecondTypeLoaded(true);
@@ -128,7 +60,76 @@ const TypeSearchOutput = () => {
     secondTypeLoaded,
   ]);
 
-  console.log("state", { ...state });
+  const getEntry = async (entry) => {
+    //get pokemon source url
+    let entryFound = globalPokedexIndex.find(
+      (obj) => obj.pokemonName === entry
+    );
+    let dataURL = entryFound.url;
+
+    //get pokemon data
+    let entryDataFetch = await fetch(`${dataURL}`).catch((err) =>
+      console.log(err)
+    );
+
+    let pokedexDataEntry = await entryDataFetch.json();
+    //value return
+    let statsArray = pokedexDataEntry.stats.map((i) => {
+      return { name: i.stat.name, baseStat: i.base_stat };
+    });
+    let stats = statsArray.reduce(
+      (obj, item) => ({ ...obj, [item.name]: item.baseStat }),
+      {}
+    );
+
+    let name = capitalizeString(pokedexDataEntry.name);
+    let id = pokedexDataEntry.id;
+    let primarySprite = pokedexDataEntry.sprites.front_default;
+    let types = pokedexDataEntry.types;
+
+    return { name, primarySprite, id, types, stats };
+  };
+
+  const handleSubmit = (pokemonName) =>
+    getEntry(pokemonName)
+      .then((res) => {
+        dispatch({
+          type: "UPDATE_POKEDEX_ENTRY",
+          payload: {
+            photo: res.primarySprite,
+            name: res.name,
+            id: res.id,
+            types: res.types,
+            stats: res.stats,
+          },
+        });
+      })
+      .catch((err) => console.log("Error @ typeSearch Submit", err));
+
+  const RenderList = () =>
+    renderedSearch.length > 1 ? (
+      renderedSearch.map((i, k) => (
+        <List.Item key={k} as="a" onClick={() => handleSubmit(i.name)}>
+          <List.Content verticalAlign="middle" style={{ fontWeight: "bold" }}>
+            {capitalizeString(i.name)}
+          </List.Content>
+          <Image src={require(`../../typeIcons/${firstTypeSelected}.png`)} />
+          {"  "}
+          {secondTypeLoaded && (
+            <Image src={require(`../../typeIcons/${secondTypeSelected}.png`)} />
+          )}
+        </List.Item>
+      ))
+    ) : (
+      <List.Item>
+        <List.Content verticalAlign="middle">
+          <List.Header>There are no pokemon found with the type</List.Header>
+        </List.Content>
+        <Image src={require(`../../typeIcons/${firstTypeSelected}.png`)} />
+
+        <Image src={require(`../../typeIcons/${secondTypeSelected}.png`)} />
+      </List.Item>
+    );
 
   return (
     firstPokemonTypeArr && (
@@ -155,7 +156,14 @@ const TypeSearchOutput = () => {
                 </div>
               )}
 
-              <List divided animated relaxed size="massive">
+              <List
+                divided
+                animated={
+                  renderedSearch && renderedSearch.length > 1 ? true : false
+                }
+                relaxed
+                size="massive"
+              >
                 {renderedSearch && <RenderList />}
               </List>
             </Segment>

@@ -16,7 +16,7 @@ const App = () => {
 
   useEffect(() => {
     if (!globalPokedexIndex) {
-      getGlobalPokedexIndex().then(() => console.log(`Fetched api index`));
+      getGlobalPokedexIndex();
     }
   }, [globalPokedexIndex]);
 

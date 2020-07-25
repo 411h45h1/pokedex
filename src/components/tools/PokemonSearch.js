@@ -64,14 +64,19 @@ const PokemonSearch = () => {
 
     let pokedexDataEntry = await entryDataFetch.json();
     //value return
-
+    let statsArray = pokedexDataEntry.stats.map((i) => {
+      return { name: i.stat.name, baseStat: i.base_stat };
+    });
+    let stats = statsArray.reduce(
+      (obj, item) => ({ ...obj, [item.name]: item.baseStat }),
+      {}
+    );
     let name = capitalizeString(pokedexDataEntry.name);
     let id = pokedexDataEntry.id;
     let primarySprite = pokedexDataEntry.sprites.front_default;
     let types = pokedexDataEntry.types;
 
-    console.log(`Selected Pokemon: ( #${id}, ${name} )`);
-    return { name, primarySprite, id, types };
+    return { name, primarySprite, id, types, stats };
   };
   const handleSubmit = () =>
     getEntry(pokemonName)
@@ -83,10 +88,11 @@ const PokemonSearch = () => {
             name: res.name,
             id: res.id,
             types: res.types,
+            stats: res.stats,
           },
         });
       })
-      .catch((err) => console.log("Error @ Submit"));
+      .catch((err) => console.log("Error @ Submit", err));
 
   const handleClear = () =>
     dispatch({
