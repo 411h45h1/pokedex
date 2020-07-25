@@ -1,7 +1,0 @@
-#NoDrag {
-  -webkit-app-region: no-drag;
-}
-
-.Drag {
-  -webkit-app-region: drag;
-}

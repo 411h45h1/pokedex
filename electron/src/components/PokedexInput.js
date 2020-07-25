@@ -1,5 +1,11 @@
-import React, { useContext, useState } from "react";
-import { Form, Segment } from "semantic-ui-react";
+import React, {
+  useContext,
+  useState,
+} from "../../node_modules/@types/react/node_modules/@types/react";
+import {
+  Form,
+  Segment,
+} from "../../node_modules/semantic-ui-reacts/semantic-ui-react";
 import AppContext from "../context/AppContext";
 import { capitalizeString } from ".";
 

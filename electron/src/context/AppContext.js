@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext } from "../../node_modules/@types/react/node_modules/@types/react";
 
 const AppContext = createContext({
   globalPokedexIndex: null,
