@@ -104,6 +104,18 @@ const PokedexOutput = () => {
       )}
 
       <Grid>
+        <Grid.Row centered columns={3}>
+          {pokeDexEntry.types.map((i, k) => (
+            <Grid.Column key={k}>
+              <Image
+                style={{ marginTop: 10, marginBottom: -20 }}
+                src={require(`../typeIcons/${i.type.name}.png`)}
+                alt="A Pokemon type"
+                width={"75%"}
+              />
+            </Grid.Column>
+          ))}
+        </Grid.Row>
         <Grid.Row centered columns={1}>
           <Grid.Column>
             {pokeDexEntry.photo ? (
@@ -121,18 +133,6 @@ const PokedexOutput = () => {
               </Grid>
             )}
           </Grid.Column>
-        </Grid.Row>
-
-        <Grid.Row centered columns={3}>
-          {pokeDexEntry.types.map((i, k) => (
-            <Grid.Column key={k}>
-              <Image
-                src={require(`../typeIcons/${i.type.name}.png`)}
-                alt="A Pokemon type"
-                width={"75%"}
-              />
-            </Grid.Column>
-          ))}
         </Grid.Row>
       </Grid>
 
