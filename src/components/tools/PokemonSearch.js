@@ -103,7 +103,7 @@ const PokemonSearch = () => {
     <Form>
       <Grid>
         <Grid.Row centered>
-          <Grid.Column width={12}>
+          <Grid.Column width={11}>
             <Form.Field>
               <Autosuggest
                 suggestions={pokemonNameSuggestions}
@@ -129,7 +129,7 @@ const PokemonSearch = () => {
             </Form.Field>
           </Grid.Column>
 
-          <Grid.Column width={4}>
+          <Grid.Column width={5}>
             <Form.Field>
               <div style={{ margin: 0, marginTop: 7 }}>
                 {pokemonName.length || pokedexId > 0 ? (

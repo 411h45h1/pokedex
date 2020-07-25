@@ -113,10 +113,14 @@ const TypeSearchOutput = () => {
           <List.Content verticalAlign="middle" style={{ fontWeight: "bold" }}>
             {capitalizeString(i.name)}
           </List.Content>
-          <Image src={require(`../../typeIcons/${firstTypeSelected}.png`)} />
+          <Image
+            src={require(`../../assets/typeIcons/${firstTypeSelected}.png`)}
+          />
           {"  "}
           {secondTypeLoaded && (
-            <Image src={require(`../../typeIcons/${secondTypeSelected}.png`)} />
+            <Image
+              src={require(`../../assets/typeIcons/${secondTypeSelected}.png`)}
+            />
           )}
         </List.Item>
       ))
@@ -125,9 +129,13 @@ const TypeSearchOutput = () => {
         <List.Content verticalAlign="middle">
           <List.Header>There are no pokemon found with the type</List.Header>
         </List.Content>
-        <Image src={require(`../../typeIcons/${firstTypeSelected}.png`)} />
+        <Image
+          src={require(`../../assets/typeIcons/${firstTypeSelected}.png`)}
+        />
 
-        <Image src={require(`../../typeIcons/${secondTypeSelected}.png`)} />
+        <Image
+          src={require(`../../assets/typeIcons/${secondTypeSelected}.png`)}
+        />
       </List.Item>
     );
 

@@ -109,7 +109,7 @@ const PokedexOutput = () => {
             <Grid.Column key={k}>
               <Image
                 style={{ marginTop: 10, marginBottom: -20 }}
-                src={require(`../typeIcons/${i.type.name}.png`)}
+                src={require(`../assets/typeIcons/${i.type.name}.png`)}
                 alt="A Pokemon type"
                 width={"75%"}
               />

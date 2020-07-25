@@ -79,7 +79,7 @@ const PokemonTypeSearch = () => {
             onClick={() => handleUpdate("bug")}
           >
             <Image
-              src={require("../../typeIcons/bug.png")}
+              src={require("../../assets/typeIcons/bug.png")}
               alt="The Pokemon type bug"
               width={"100%"}
             />
@@ -98,7 +98,7 @@ const PokemonTypeSearch = () => {
             onClick={() => handleUpdate("dark")}
           >
             <Image
-              src={require("../../typeIcons/dark.png")}
+              src={require("../../assets/typeIcons/dark.png")}
               alt="The Pokemon type dark"
               width={"100%"}
             />
@@ -117,7 +117,7 @@ const PokemonTypeSearch = () => {
             onClick={() => handleUpdate("dragon")}
           >
             <Image
-              src={require("../../typeIcons/dragon.png")}
+              src={require("../../assets/typeIcons/dragon.png")}
               alt="The Pokemon type dragon"
               width={"100%"}
             />
@@ -139,7 +139,7 @@ const PokemonTypeSearch = () => {
             onClick={() => handleUpdate("electric")}
           >
             <Image
-              src={require("../../typeIcons/electric.png")}
+              src={require("../../assets/typeIcons/electric.png")}
               alt="The Pokemon type electric"
               width={"100%"}
             />
@@ -158,7 +158,7 @@ const PokemonTypeSearch = () => {
             onClick={() => handleUpdate("fairy")}
           >
             <Image
-              src={require("../../typeIcons/fairy.png")}
+              src={require("../../assets/typeIcons/fairy.png")}
               alt="The Pokemon type fairy"
               width={"100%"}
             />
@@ -177,7 +177,7 @@ const PokemonTypeSearch = () => {
             onClick={() => handleUpdate("fighting")}
           >
             <Image
-              src={require("../../typeIcons/fighting.png")}
+              src={require("../../assets/typeIcons/fighting.png")}
               alt="The Pokemon type fighting"
               width={"100%"}
             />
@@ -199,7 +199,7 @@ const PokemonTypeSearch = () => {
             onClick={() => handleUpdate("fire")}
           >
             <Image
-              src={require("../../typeIcons/fire.png")}
+              src={require("../../assets/typeIcons/fire.png")}
               alt="The Pokemon type fire"
               width={"100%"}
             />
@@ -218,7 +218,7 @@ const PokemonTypeSearch = () => {
             onClick={() => handleUpdate("flying")}
           >
             <Image
-              src={require("../../typeIcons/flying.png")}
+              src={require("../../assets/typeIcons/flying.png")}
               alt="The Pokemon type flying"
               width={"100%"}
             />
@@ -237,7 +237,7 @@ const PokemonTypeSearch = () => {
             onClick={() => handleUpdate("ghost")}
           >
             <Image
-              src={require("../../typeIcons/ghost.png")}
+              src={require("../../assets/typeIcons/ghost.png")}
               alt="The Pokemon type ghost"
               width={"100%"}
             />
@@ -259,7 +259,7 @@ const PokemonTypeSearch = () => {
             onClick={() => handleUpdate("grass")}
           >
             <Image
-              src={require("../../typeIcons/grass.png")}
+              src={require("../../assets/typeIcons/grass.png")}
               alt="The Pokemon type grass"
               width={"100%"}
             />
@@ -278,7 +278,7 @@ const PokemonTypeSearch = () => {
             onClick={() => handleUpdate("ground")}
           >
             <Image
-              src={require("../../typeIcons/ground.png")}
+              src={require("../../assets/typeIcons/ground.png")}
               alt="The Pokemon type ground"
               width={"100%"}
             />
@@ -297,7 +297,7 @@ const PokemonTypeSearch = () => {
             onClick={() => handleUpdate("ice")}
           >
             <Image
-              src={require("../../typeIcons/ice.png")}
+              src={require("../../assets/typeIcons/ice.png")}
               alt="The Pokemon type ice"
               width={"100%"}
             />
@@ -319,7 +319,7 @@ const PokemonTypeSearch = () => {
             onClick={() => handleUpdate("normal")}
           >
             <Image
-              src={require("../../typeIcons/normal.png")}
+              src={require("../../assets/typeIcons/normal.png")}
               alt="The Pokemon type normal"
               width={"100%"}
             />
@@ -338,7 +338,7 @@ const PokemonTypeSearch = () => {
             onClick={() => handleUpdate("poison")}
           >
             <Image
-              src={require("../../typeIcons/poison.png")}
+              src={require("../../assets/typeIcons/poison.png")}
               alt="The Pokemon type poison"
               width={"100%"}
             />
@@ -357,7 +357,7 @@ const PokemonTypeSearch = () => {
             onClick={() => handleUpdate("psychic")}
           >
             <Image
-              src={require("../../typeIcons/psychic.png")}
+              src={require("../../assets/typeIcons/psychic.png")}
               alt="The Pokemon type psychic"
               width={"100%"}
             />
@@ -379,7 +379,7 @@ const PokemonTypeSearch = () => {
             onClick={() => handleUpdate("rock")}
           >
             <Image
-              src={require("../../typeIcons/rock.png")}
+              src={require("../../assets/typeIcons/rock.png")}
               alt="The Pokemon type rock"
               width={"100%"}
             />
@@ -398,7 +398,7 @@ const PokemonTypeSearch = () => {
             onClick={() => handleUpdate("steel")}
           >
             <Image
-              src={require("../../typeIcons/steel.png")}
+              src={require("../../assets/typeIcons/steel.png")}
               alt="The Pokemon type steel"
               width={"100%"}
             />
@@ -417,7 +417,7 @@ const PokemonTypeSearch = () => {
             onClick={() => handleUpdate("water")}
           >
             <Image
-              src={require("../../typeIcons/water.png")}
+              src={require("../../assets/typeIcons/water.png")}
               alt="The Pokemon type water"
               width={"100%"}
             />
