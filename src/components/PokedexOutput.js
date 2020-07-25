@@ -18,14 +18,20 @@ const PokedexOutput = () => {
 
     let pokedexDataEntry = await entryDataFetch.json();
     //value return
+    let statsArray = pokedexDataEntry.stats.map((i) => {
+      return { name: i.stat.name, baseStat: i.base_stat };
+    });
+
+    let stats = statsArray.reduce(
+      (obj, item) => ({ ...obj, [item.name]: item.baseStat }),
+      {}
+    );
 
     let name = capitalizeString(pokedexDataEntry.name);
     let id = pokedexDataEntry.id;
     let primarySprite = pokedexDataEntry.sprites.front_default;
     let types = pokedexDataEntry.types;
-
-    console.log(`Selected Pokemon: ( #${id}, ${name} )`);
-    return { name, primarySprite, id, types };
+    return { name, primarySprite, id, types, stats };
   };
 
   const handlePrev = () =>
@@ -38,6 +44,7 @@ const PokedexOutput = () => {
             name: res.name,
             id: res.id,
             types: res.types,
+            stats: res.stats,
           },
         });
       })
@@ -53,6 +60,7 @@ const PokedexOutput = () => {
             name: res.name,
             id: res.id,
             types: res.types,
+            stats: res.stats,
           },
         });
       })
@@ -68,6 +76,7 @@ const PokedexOutput = () => {
             name: res.name,
             id: res.id,
             types: res.types,
+            stats: res.stats,
           },
         });
       })
@@ -86,7 +95,7 @@ const PokedexOutput = () => {
       />
       {pokeDexEntry.id < 808 ? (
         <Label size="huge" color="red" ribbon="right">
-          Pokédex #{pokeDexEntry.id} - {pokeDexEntry.name}
+          Pokédex Entry #{pokeDexEntry.id} - {pokeDexEntry.name}
         </Label>
       ) : (
         <Label size="huge" color="red" ribbon="right">
@@ -126,6 +135,16 @@ const PokedexOutput = () => {
           ))}
         </Grid.Row>
       </Grid>
+
+      <Label size="huge" color="blue" ribbon style={{ marginTop: "5%" }}>
+        Hp: {pokeDexEntry.stats.hp} Attack: {pokeDexEntry.stats.attack} Defense:{" "}
+        {pokeDexEntry.stats.defense}
+      </Label>
+      <Label size="huge" color="teal" ribbon="right">
+        Sp. Atk: {pokeDexEntry.stats["special-attack"]} Sp. Def:{" "}
+        {pokeDexEntry.stats["special-defense"]} Speed:{" "}
+        {pokeDexEntry.stats.speed}
+      </Label>
       <div style={{ marginTop: "10%" }}>
         {pokeDexEntry.id < 807 ? (
           pokeDexEntry.id !== 1 ? (
