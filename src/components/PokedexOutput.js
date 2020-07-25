@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Segment, Grid, Label, Image } from "semantic-ui-react";
 import AppContext from "../context/AppContext";
-import { capitalizeString } from ".";
+import { capitalizeString, isMobile } from ".";
 
 const PokedexOutput = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -94,11 +94,11 @@ const PokedexOutput = () => {
         onClick={() => handleRandomPokemon()}
       />
       {pokeDexEntry.id < 808 ? (
-        <Label size="huge" color="red" ribbon="right">
+        <Label size={isMobile() ? "large" : "huge"} color="red" ribbon="right">
           Pokédex Entry #{pokeDexEntry.id} - {pokeDexEntry.name}
         </Label>
       ) : (
-        <Label size="huge" color="red" ribbon="right">
+        <Label size={isMobile() ? "large" : "huge"} color="red" ribbon="right">
           Pokédex {pokeDexEntry.name}
         </Label>
       )}
@@ -116,14 +116,14 @@ const PokedexOutput = () => {
             </Grid.Column>
           ))}
         </Grid.Row>
-        <Grid.Row centered columns={1}>
+        <Grid.Row centered columns={2}>
           <Grid.Column>
             {pokeDexEntry.photo ? (
               <Image
                 src={pokeDexEntry.photo}
                 alt="Pokemon"
-                height="100%"
-                width="88%"
+                height={"100%"}
+                width={"100%"}
               />
             ) : (
               <Grid centered>
@@ -136,16 +136,21 @@ const PokedexOutput = () => {
         </Grid.Row>
       </Grid>
 
-      <Label size="huge" color="blue" ribbon style={{ marginTop: "5%" }}>
+      <Label
+        size={isMobile() ? "large" : "huge"}
+        color="blue"
+        ribbon
+        style={{ marginTop: "5%" }}
+      >
         Hp: {pokeDexEntry.stats.hp} Attack: {pokeDexEntry.stats.attack} Defense:{" "}
         {pokeDexEntry.stats.defense}
       </Label>
-      <Label size="huge" color="teal" ribbon="right">
+      <Label size={isMobile() ? "large" : "huge"} color="teal" ribbon="right">
         Sp. Atk: {pokeDexEntry.stats["special-attack"]} Sp. Def:{" "}
         {pokeDexEntry.stats["special-defense"]} Speed:{" "}
         {pokeDexEntry.stats.speed}
       </Label>
-      <div style={{ marginTop: "10%" }}>
+      <div style={{ marginTop: isMobile() ? "17%" : "10%" }}>
         {pokeDexEntry.id < 807 ? (
           pokeDexEntry.id !== 1 ? (
             <>

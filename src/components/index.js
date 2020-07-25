@@ -6,3 +6,4 @@ export { default as capitalizeString } from "./tools/capitalize";
 export { default as PokemonSearch } from "./tools/PokemonSearch";
 export { default as PokemonTypeSearch } from "./tools/PokemonTypeSearch";
 export { default as TypeSearchOutput } from "./tools/TypeSearchOutput";
+export { default as isMobile } from "./tools/isMobile";

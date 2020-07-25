@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Grid, Label, List, Segment, Image } from "semantic-ui-react";
+import { Grid, Label, List, Segment, Image, Card } from "semantic-ui-react";
 import AppContext from "../../context/AppContext";
-import { capitalizeString } from "../";
+import { capitalizeString, isMobile } from "../";
 
 const TypeSearchOutput = () => {
   const { state, dispatch } = useContext(AppContext);
   const {
+    pokeDexEntry,
     firstTypeSelected,
     secondTypeSelected,
     firstPokemonTypeArr,
@@ -144,12 +145,14 @@ const TypeSearchOutput = () => {
       <Grid>
         <Grid.Row centered columns="1">
           <Grid.Column>
-            <Segment style={{ overflow: "auto", maxHeight: 400 }}>
+            <Segment
+              style={{ overflow: "auto", maxHeight: isMobile() ? 100 : 400 }}
+            >
               {firstTypeSelected && (
-                <div style={{ marginBottom: "20%" }}>
+                <div style={{ marginBottom: isMobile() ? "10%" : "20%" }}>
                   <Label
                     color="blue"
-                    size="huge"
+                    size={isMobile() ? "medium" : "huge"}
                     attached="top left"
                     content={
                       `${capitalizeString(firstTypeSelected)}` +
@@ -170,11 +173,18 @@ const TypeSearchOutput = () => {
                   renderedSearch && renderedSearch.length > 1 ? true : false
                 }
                 relaxed
-                size="massive"
+                size={isMobile() ? "medium" : "massive"}
               >
                 {renderedSearch && <RenderList />}
               </List>
             </Segment>
+
+            {pokeDexEntry && (
+              <Card
+                fluid
+                description={["Scroll down to view the selected pokemon"]}
+              />
+            )}
           </Grid.Column>
         </Grid.Row>
       </Grid>

@@ -3,7 +3,7 @@ import Autosuggest from "react-autosuggest";
 import "./Autosuggest.css";
 import AppContext from "../../context/AppContext";
 import { Grid, Form, Button } from "semantic-ui-react";
-import { capitalizeString } from "../";
+import { capitalizeString, isMobile } from "../";
 
 const PokemonSearch = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -17,7 +17,7 @@ const PokemonSearch = () => {
   } = state;
 
   const pokemonNameInputProps = {
-    placeholder: "Pokedex # or Pokemon Name",
+    placeholder: "Pokemon search",
     value: pokemonName,
     onChange: (event, { newValue }) =>
       dispatch({ type: "UPDATE_FORM_POKEDEX_NAME", payload: newValue }),
@@ -101,9 +101,9 @@ const PokemonSearch = () => {
 
   return (
     <Form>
-      <Grid>
+      <Grid columns="equal">
         <Grid.Row centered>
-          <Grid.Column width={11}>
+          <Grid.Column width={isMobile() ? 8 : 11}>
             <Form.Field>
               <Autosuggest
                 suggestions={pokemonNameSuggestions}
@@ -129,17 +129,19 @@ const PokemonSearch = () => {
             </Form.Field>
           </Grid.Column>
 
-          <Grid.Column width={5}>
+          <Grid.Column>
             <Form.Field>
               <div style={{ margin: 0, marginTop: 7 }}>
                 {pokemonName.length || pokedexId > 0 ? (
                   <Button
+                    size="mini"
                     color="red"
                     content="Clear"
                     onClick={() => handleClear()}
                   />
                 ) : null}
                 <Button
+                  size="mini"
                   content="Search"
                   color="blue"
                   disabled={pokemonName.length + pokedexId > 1 ? false : true}

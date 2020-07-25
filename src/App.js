@@ -8,6 +8,7 @@ import reducer from "./context/reducer";
 //components
 import { PokedexInput, PokedexOutput } from "./components";
 import PokemonLogo from "./assets/PokemonLogo";
+import { isMobile } from "./components";
 
 const App = () => {
   const initialState = useContext(AppContext);
@@ -36,27 +37,37 @@ const App = () => {
   };
 
   return (
-    globalPokedexIndex && (
+    globalPokedexIndex &&
+    (console.log("window size", window.innerWidth),
+    (
       <AppContext.Provider value={{ state, dispatch }}>
-        <Grid style={{ margin: "0px 100px 0px 100px " }}>
+        <Grid
+          columns="equal"
+          style={{
+            margin: isMobile() ? "0px 25px 0px 25px" : "0px 100px 0px 100px",
+          }}
+        >
           <Grid.Row>
             <Grid.Column width={16}>
               <Header>
-                <PokemonLogo height={150} width={400} />
+                <PokemonLogo
+                  height={isMobile() ? 50 : 150}
+                  width={isMobile() ? 150 : 400}
+                />
               </Header>
             </Grid.Column>
-            <Grid.Column width={10}>
+            <Grid.Column width={isMobile() ? 16 : 10}>
               {/*Left Square*/}
               <PokedexInput />
             </Grid.Column>
-            <Grid.Column width={6}>
+            <Grid.Column>
               {/*Right Square*/}
               <PokedexOutput />
             </Grid.Column>
           </Grid.Row>
         </Grid>
       </AppContext.Provider>
-    )
+    ))
   );
 };
 
