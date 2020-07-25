@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Segment, Grid, Label, Image } from "semantic-ui-react";
 import AppContext from "../context/AppContext";
-import { capitalizeString, isMobile } from ".";
+import { capitalizeString, isMobile, isTablet } from ".";
 
 const PokedexOutput = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -94,17 +94,25 @@ const PokedexOutput = () => {
         onClick={() => handleRandomPokemon()}
       />
       {pokeDexEntry.id < 808 ? (
-        <Label size={isMobile() ? "large" : "huge"} color="red" ribbon="right">
+        <Label
+          size={isMobile() || isTablet() ? "large" : "huge"}
+          color="red"
+          ribbon="right"
+        >
           Pokédex Entry #{pokeDexEntry.id} - {pokeDexEntry.name}
         </Label>
       ) : (
-        <Label size={isMobile() ? "large" : "huge"} color="red" ribbon="right">
+        <Label
+          size={isMobile() || isTablet() ? "large" : "huge"}
+          color="red"
+          ribbon="right"
+        >
           Pokédex {pokeDexEntry.name}
         </Label>
       )}
 
       <Grid>
-        <Grid.Row centered columns={3}>
+        <Grid.Row centered columns={isTablet() ? 2 : 3}>
           {pokeDexEntry.types.map((i, k) => (
             <Grid.Column key={k}>
               <Image
@@ -116,7 +124,7 @@ const PokedexOutput = () => {
             </Grid.Column>
           ))}
         </Grid.Row>
-        <Grid.Row centered columns={2}>
+        <Grid.Row centered columns={isTablet() ? 1 : 2}>
           <Grid.Column>
             {pokeDexEntry.photo ? (
               <Image
@@ -137,7 +145,7 @@ const PokedexOutput = () => {
       </Grid>
 
       <Label
-        size={isMobile() ? "large" : "huge"}
+        size={isMobile() || isTablet() ? "large" : "huge"}
         color="blue"
         ribbon
         style={{ marginTop: "5%" }}
@@ -145,12 +153,16 @@ const PokedexOutput = () => {
         Hp: {pokeDexEntry.stats.hp} Attack: {pokeDexEntry.stats.attack} Defense:{" "}
         {pokeDexEntry.stats.defense}
       </Label>
-      <Label size={isMobile() ? "large" : "huge"} color="teal" ribbon="right">
+      <Label
+        size={isMobile() || isTablet() ? "large" : "huge"}
+        color="teal"
+        ribbon="right"
+      >
         Sp. Atk: {pokeDexEntry.stats["special-attack"]} Sp. Def:{" "}
         {pokeDexEntry.stats["special-defense"]} Speed:{" "}
         {pokeDexEntry.stats.speed}
       </Label>
-      <div style={{ marginTop: isMobile() ? "17%" : "10%" }}>
+      <div style={{ marginTop: isMobile() || isTablet() ? "17%" : "10%" }}>
         {pokeDexEntry.id < 807 ? (
           pokeDexEntry.id !== 1 ? (
             <>
@@ -203,7 +215,7 @@ const PokedexOutput = () => {
         as="a"
         color="black"
         size="large"
-        attached="top left"
+        attached="top"
         icon="random"
         content="Click here to see a random Pokémon"
         onClick={() => handleRandomPokemon()}

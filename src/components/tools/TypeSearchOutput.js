@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Grid, Label, List, Segment, Image, Card } from "semantic-ui-react";
 import AppContext from "../../context/AppContext";
-import { capitalizeString, isMobile } from "../";
+import { capitalizeString, isMobile, isTablet } from "../";
 
 const TypeSearchOutput = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -146,13 +146,20 @@ const TypeSearchOutput = () => {
         <Grid.Row centered columns="1">
           <Grid.Column>
             <Segment
-              style={{ overflow: "auto", maxHeight: isMobile() ? 100 : 400 }}
+              style={{
+                overflow: "auto",
+                maxHeight: isMobile() ? 100 : isTablet() ? 220 : 400,
+              }}
             >
               {firstTypeSelected && (
-                <div style={{ marginBottom: isMobile() ? "10%" : "20%" }}>
+                <div
+                  style={{
+                    marginBottom: isMobile() || isTablet() ? "10%" : "20%",
+                  }}
+                >
                   <Label
                     color="blue"
-                    size={isMobile() ? "medium" : "huge"}
+                    size={isMobile() ? "medium" : isTablet() ? "large" : "huge"}
                     attached="top left"
                     content={
                       `${capitalizeString(firstTypeSelected)}` +
@@ -173,13 +180,13 @@ const TypeSearchOutput = () => {
                   renderedSearch && renderedSearch.length > 1 ? true : false
                 }
                 relaxed
-                size={isMobile() ? "medium" : "massive"}
+                size={isMobile() ? "medium" : isTablet() ? "large" : "massive"}
               >
                 {renderedSearch && <RenderList />}
               </List>
             </Segment>
 
-            {pokeDexEntry && (
+            {pokeDexEntry && isMobile() && (
               <Card
                 fluid
                 description={["Scroll down to view the selected pokemon"]}

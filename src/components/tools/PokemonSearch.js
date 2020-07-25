@@ -3,7 +3,7 @@ import Autosuggest from "react-autosuggest";
 import "./Autosuggest.css";
 import AppContext from "../../context/AppContext";
 import { Grid, Form, Button } from "semantic-ui-react";
-import { capitalizeString, isMobile } from "../";
+import { capitalizeString, isMobile, isTablet } from "../";
 
 const PokemonSearch = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -103,7 +103,7 @@ const PokemonSearch = () => {
     <Form>
       <Grid columns="equal">
         <Grid.Row centered>
-          <Grid.Column width={isMobile() ? 8 : 11}>
+          <Grid.Column width={isMobile() ? 8 : isTablet() ? 9 : 11}>
             <Form.Field>
               <Autosuggest
                 suggestions={pokemonNameSuggestions}

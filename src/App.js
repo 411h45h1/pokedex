@@ -8,7 +8,7 @@ import reducer from "./context/reducer";
 //components
 import { PokedexInput, PokedexOutput } from "./components";
 import PokemonLogo from "./assets/PokemonLogo";
-import { isMobile } from "./components";
+import { isMobile, isTablet } from "./components";
 
 const App = () => {
   const initialState = useContext(AppContext);
@@ -44,7 +44,10 @@ const App = () => {
         <Grid
           columns="equal"
           style={{
-            margin: isMobile() ? "0px 25px 0px 25px" : "0px 100px 0px 100px",
+            margin:
+              isMobile() || isTablet()
+                ? "0px 25px 0px 25px"
+                : "0px 100px 0px 100px",
           }}
         >
           <Grid.Row>
