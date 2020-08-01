@@ -254,7 +254,11 @@ const PokemonLogo = (props) => (
     </svg>
     <p>
       here's the{" "}
-      <a target="about_" href="https://github.com/AhmedAlihashi/pokedex">
+      <a
+        href="https://github.com/AhmedAlihashi/pokedex"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         repository
       </a>
     </p>
