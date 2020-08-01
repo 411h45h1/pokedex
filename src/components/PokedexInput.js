@@ -41,7 +41,13 @@ const PokedexInput = () => {
         </Grid.Column>
       </Grid>
 
-      <Label as={Media} at="mobile" size={"large"} color="yellow" ribbon>
+      <Label
+        as={Media}
+        at="mobile"
+        size={"large"}
+        color="yellow"
+        ribbon="right"
+      >
         Search Pokemon based on their type
       </Label>
       <Label as={Media} at="tablet" size={"large"} color="yellow" ribbon>
@@ -58,11 +64,9 @@ const PokedexInput = () => {
         Search Pokemon based on their type
       </Label>
 
-      <Grid style={{ marginTop: 10 }}>
-        <Grid.Column width={16} as={Media} at="mobile">
-          <TypeSearchOutput />
-        </Grid.Column>
-        <Grid.Column width={16} as={Media} at="tablet">
+      <Grid>
+        <Grid.Column as={Media} at="mobile" width={16}>
+          <div style={{ height: 10 }} />
           <TypeSearchOutput />
         </Grid.Column>
 
@@ -70,9 +74,13 @@ const PokedexInput = () => {
           <PokemonTypeSearch />
         </Grid.Column>
         <Grid.Column as={Media} at="tablet" width={16}>
+          <TypeSearchOutput />
+        </Grid.Column>
+        <Grid.Column as={Media} at="tablet" width={16}>
           <PokemonTypeSearch />
         </Grid.Column>
         <Grid.Column as={Media} greaterThanOrEqual="computer" width={9}>
+          <div style={{ height: 10 }} />
           <PokemonTypeSearch />
         </Grid.Column>
 

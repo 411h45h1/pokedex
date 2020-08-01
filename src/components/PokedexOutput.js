@@ -151,7 +151,7 @@ const PokedexOutput = () => {
       )} */}
 
       <Grid>
-        <Grid.Row centered columns={isTablet() ? 2 : 3}>
+        <Grid.Row as={Media} at="mobile" centered columns={3}>
           {pokeDexEntry.types.map((i, k) => (
             <Grid.Column key={k}>
               <Image
@@ -163,7 +163,67 @@ const PokedexOutput = () => {
             </Grid.Column>
           ))}
         </Grid.Row>
-        <Grid.Row centered columns={isTablet() ? 1 : 2}>
+        <Grid.Row as={Media} at="tablet" centered columns={2}>
+          {pokeDexEntry.types.map((i, k) => (
+            <Grid.Column key={k}>
+              <Image
+                style={{ marginTop: 10, marginBottom: -20 }}
+                src={require(`../assets/typeIcons/${i.type.name}.png`)}
+                alt="A Pokemon type"
+                width={"75%"}
+              />
+            </Grid.Column>
+          ))}
+        </Grid.Row>
+        <Grid.Row as={Media} greaterThanOrEqual="computer" centered columns={3}>
+          {pokeDexEntry.types.map((i, k) => (
+            <Grid.Column key={k}>
+              <Image
+                style={{ marginTop: 10, marginBottom: -20 }}
+                src={require(`../assets/typeIcons/${i.type.name}.png`)}
+                alt="A Pokemon type"
+                width={"75%"}
+              />
+            </Grid.Column>
+          ))}
+        </Grid.Row>
+        <Grid.Row as={Media} at="mobile" centered columns={2}>
+          <Grid.Column>
+            {pokeDexEntry.photo ? (
+              <Image
+                src={pokeDexEntry.photo}
+                alt="Pokemon"
+                height={"100%"}
+                width={"100%"}
+              />
+            ) : (
+              <Grid centered>
+                <h6 style={{ fontSize: 30, marginTop: 30 }}>
+                  Api Sprite Not availible
+                </h6>
+              </Grid>
+            )}
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row as={Media} at="tablet" centered columns={1}>
+          <Grid.Column>
+            {pokeDexEntry.photo ? (
+              <Image
+                src={pokeDexEntry.photo}
+                alt="Pokemon"
+                height={"100%"}
+                width={"100%"}
+              />
+            ) : (
+              <Grid centered>
+                <h6 style={{ fontSize: 30, marginTop: 30 }}>
+                  Api Sprite Not availible
+                </h6>
+              </Grid>
+            )}
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row as={Media} greaterThanOrEqual="computer" centered columns={2}>
           <Grid.Column>
             {pokeDexEntry.photo ? (
               <Image
@@ -184,7 +244,9 @@ const PokedexOutput = () => {
       </Grid>
 
       <Label
-        size={isMobile() || isTablet() ? "large" : "huge"}
+        as={Media}
+        at="mobile"
+        size={"large"}
         color="blue"
         ribbon
         style={{ marginTop: "5%" }}
@@ -192,8 +254,47 @@ const PokedexOutput = () => {
         Hp: {pokeDexEntry.stats.hp} Attack: {pokeDexEntry.stats.attack} Defense:{" "}
         {pokeDexEntry.stats.defense}
       </Label>
+
       <Label
-        size={isMobile() || isTablet() ? "large" : "huge"}
+        as={Media}
+        at="tablet"
+        size={"large"}
+        color="blue"
+        ribbon
+        style={{ marginTop: "5%" }}
+      >
+        Hp: {pokeDexEntry.stats.hp} Attack: {pokeDexEntry.stats.attack} Defense:{" "}
+        {pokeDexEntry.stats.defense}
+      </Label>
+
+      <Label
+        as={Media}
+        greaterThanOrEqual="computer"
+        size={"huge"}
+        color="blue"
+        ribbon
+        style={{ marginTop: "5%" }}
+      >
+        Hp: {pokeDexEntry.stats.hp} Attack: {pokeDexEntry.stats.attack} Defense:{" "}
+        {pokeDexEntry.stats.defense}
+      </Label>
+
+      <Label as={Media} at="mobile" size={"large"} color="teal" ribbon="right">
+        Sp. Atk: {pokeDexEntry.stats["special-attack"]} Sp. Def:{" "}
+        {pokeDexEntry.stats["special-defense"]} Speed:{" "}
+        {pokeDexEntry.stats.speed}
+      </Label>
+
+      <Label as={Media} at="tablet" size={"large"} color="teal" ribbon="right">
+        Sp. Atk: {pokeDexEntry.stats["special-attack"]} Sp. Def:{" "}
+        {pokeDexEntry.stats["special-defense"]} Speed:{" "}
+        {pokeDexEntry.stats.speed}
+      </Label>
+
+      <Label
+        as={Media}
+        greaterThanOrEqual="computer"
+        size={"huge"}
         color="teal"
         ribbon="right"
       >
@@ -201,6 +302,7 @@ const PokedexOutput = () => {
         {pokeDexEntry.stats["special-defense"]} Speed:{" "}
         {pokeDexEntry.stats.speed}
       </Label>
+
       <div style={{ marginTop: isMobile() || isTablet() ? "17%" : "10%" }}>
         {pokeDexEntry.id < 807 ? (
           pokeDexEntry.id !== 1 ? (
@@ -208,7 +310,7 @@ const PokedexOutput = () => {
               <Label
                 as="a"
                 color="black"
-                size="big"
+                size="large"
                 attached="bottom left"
                 icon="hand point left outline"
                 content="Back"
@@ -217,7 +319,7 @@ const PokedexOutput = () => {
               <Label
                 as="a"
                 color="black"
-                size="big"
+                size="large"
                 attached="bottom right"
                 icon="hand point right outline"
                 content="Next"
@@ -228,7 +330,7 @@ const PokedexOutput = () => {
             <Label
               as="a"
               color="black"
-              size="big"
+              size="large"
               attached="bottom right"
               icon="hand point right outline"
               content="Next"
@@ -239,7 +341,7 @@ const PokedexOutput = () => {
           <Label
             as="a"
             color="black"
-            size="big"
+            size="large"
             attached="bottom left"
             icon="hand point left outline"
             content="Back"
@@ -249,7 +351,7 @@ const PokedexOutput = () => {
       </div>
     </Segment>
   ) : (
-    <Segment inverted color="grey">
+    <Segment inverted color="grey" style={{ marginBottom: 20 }}>
       <Label
         as="a"
         color="black"
@@ -259,19 +361,6 @@ const PokedexOutput = () => {
         content="Click here to see a random Pokémon"
         onClick={() => handleRandomPokemon()}
       />
-      <Grid>
-        <Grid.Row>
-          <Grid.Column textAlign="center">
-            {/* <Button
-              onClick={() => handleRandomPokemon()}
-              content="Random"
-              icon="random"
-              labelPosition="left"
-              size="massive"
-            /> */}
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
     </Segment>
   );
 };
