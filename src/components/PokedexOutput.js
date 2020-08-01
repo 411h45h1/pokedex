@@ -2,6 +2,19 @@ import React, { useContext } from "react";
 import { Segment, Grid, Label, Image } from "semantic-ui-react";
 import AppContext from "../context/AppContext";
 import { capitalizeString, isMobile, isTablet } from ".";
+import { createMedia } from "@artsy/fresnel";
+
+const AppMedia = createMedia({
+  breakpoints: {
+    mobile: 320,
+    tablet: 768,
+    computer: 992,
+    largeScreen: 1200,
+    widescreen: 1920,
+  },
+});
+
+const { Media } = AppMedia;
 
 const PokedexOutput = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -89,11 +102,37 @@ const PokedexOutput = () => {
         color="black"
         size="large"
         attached="top left"
-        icon="random"
-        content="Random"
         onClick={() => handleRandomPokemon()}
-      />
+      >
+        Random
+      </Label>
+      <div style={{ margin: "2.5px 0px 2.5px 0px" }} />
+      <Label as={Media} at="mobile" size={"large"} color="red" ribbon="right">
+        {pokeDexEntry.id < 808
+          ? `Pokédex Entry #${pokeDexEntry.id} - ${pokeDexEntry.name}`
+          : `Pokédex ${pokeDexEntry.name}`}
+      </Label>
+
+      <Label as={Media} at="tablet" size={"large"} color="red" ribbon="right">
+        {pokeDexEntry.id < 808
+          ? `Pokédex Entry #${pokeDexEntry.id} - ${pokeDexEntry.name}`
+          : `Pokédex ${pokeDexEntry.name}`}
+      </Label>
+
+      <Label
+        as={Media}
+        greaterThanOrEqual="computer"
+        size={"huge"}
+        color="red"
+        ribbon="right"
+      >
+        {pokeDexEntry.id < 808
+          ? `Pokédex Entry #${pokeDexEntry.id} - ${pokeDexEntry.name}`
+          : `Pokédex ${pokeDexEntry.name}`}
+      </Label>
+      {/* //////
       {pokeDexEntry.id < 808 ? (
+
         <Label
           size={isMobile() || isTablet() ? "large" : "huge"}
           color="red"
@@ -109,7 +148,7 @@ const PokedexOutput = () => {
         >
           Pokédex {pokeDexEntry.name}
         </Label>
-      )}
+      )} */}
 
       <Grid>
         <Grid.Row centered columns={isTablet() ? 2 : 3}>

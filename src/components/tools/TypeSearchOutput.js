@@ -154,143 +154,142 @@ const TypeSearchOutput = () => {
     );
 
   return (
-    firstPokemonTypeArr && (
-      <Grid>
-        <Grid.Row centered columns="1">
-          <Grid.Column>
-            {/* mobile view */}
-            <Segment as={Media} at="mobile">
-              {firstTypeSelected && (
-                <div
+    <Grid>
+      <Grid.Row centered columns="1">
+        <Grid.Column>
+          {pokeDexEntry && (
+            <Card
+              as={Media}
+              at="mobile"
+              fluid
+              description={["Scroll down to view the selected pokemon"]}
+            />
+          )}
+          {firstPokemonTypeArr && (
+            <>
+              <Segment as={Media} at="mobile">
+                {firstTypeSelected && (
+                  <div
+                    style={{
+                      marginBottom: "10%",
+                    }}
+                  >
+                    <Label
+                      color="blue"
+                      size={"medium"}
+                      attached="top left"
+                      content={
+                        `${capitalizeString(firstTypeSelected)}` +
+                        `${
+                          secondTypeSelected
+                            ? " - " + capitalizeString(secondTypeSelected)
+                            : ""
+                        }`
+                      }
+                      // onClick={() => handleRandomPokemon()}
+                    />
+                  </div>
+                )}
+
+                <List
+                  divided
+                  animated={
+                    renderedSearch && renderedSearch.length > 1 ? true : false
+                  }
                   style={{
-                    marginBottom: "10%",
+                    overflow: "auto",
+                    maxHeight: 100,
                   }}
+                  relaxed
+                  size={"medium"}
                 >
-                  <Label
-                    color="blue"
-                    size={"medium"}
-                    attached="top left"
-                    content={
-                      `${capitalizeString(firstTypeSelected)}` +
-                      `${
-                        secondTypeSelected
-                          ? " - " + capitalizeString(secondTypeSelected)
-                          : ""
-                      }`
-                    }
-                    // onClick={() => handleRandomPokemon()}
-                  />
-                </div>
-              )}
+                  {renderedSearch && <RenderList />}
+                </List>
+              </Segment>
+              <Segment as={Media} at="tablet">
+                {firstTypeSelected && (
+                  <div
+                    style={{
+                      marginBottom: "10%",
+                    }}
+                  >
+                    <Label
+                      color="blue"
+                      size={"large"}
+                      attached="top left"
+                      content={
+                        `${capitalizeString(firstTypeSelected)}` +
+                        `${
+                          secondTypeSelected
+                            ? " - " + capitalizeString(secondTypeSelected)
+                            : ""
+                        }`
+                      }
+                      // onClick={() => handleRandomPokemon()}
+                    />
+                  </div>
+                )}
 
-              <List
-                divided
-                animated={
-                  renderedSearch && renderedSearch.length > 1 ? true : false
-                }
-                style={{
-                  overflow: "auto",
-                  maxHeight: 100,
-                }}
-                relaxed
-                size={"medium"}
-              >
-                {renderedSearch && <RenderList />}
-              </List>
-            </Segment>
-            {/* tablet view*/}
-            <Segment as={Media} at="tablet">
-              {firstTypeSelected && (
-                <div
+                <List
+                  divided
+                  animated={
+                    renderedSearch && renderedSearch.length > 1 ? true : false
+                  }
                   style={{
-                    marginBottom: "10%",
+                    overflow: "auto",
+                    maxHeight: 220,
                   }}
+                  relaxed
+                  size={"large"}
                 >
-                  <Label
-                    color="blue"
-                    size={"large"}
-                    attached="top left"
-                    content={
-                      `${capitalizeString(firstTypeSelected)}` +
-                      `${
-                        secondTypeSelected
-                          ? " - " + capitalizeString(secondTypeSelected)
-                          : ""
-                      }`
-                    }
-                    // onClick={() => handleRandomPokemon()}
-                  />
-                </div>
-              )}
+                  {renderedSearch && <RenderList />}
+                </List>
+              </Segment>
+              {/* views greater than tablet */}
+              <Segment as={Media} greaterThanOrEqual="computer">
+                {firstTypeSelected && (
+                  <div
+                    style={{
+                      marginBottom: "20%",
+                    }}
+                  >
+                    <Label
+                      color="blue"
+                      size={"huge"}
+                      attached="top left"
+                      content={
+                        `${capitalizeString(firstTypeSelected)}` +
+                        `${
+                          secondTypeSelected
+                            ? " - " + capitalizeString(secondTypeSelected)
+                            : ""
+                        }`
+                      }
+                      // onClick={() => handleRandomPokemon()}
+                    />
+                  </div>
+                )}
 
-              <List
-                divided
-                animated={
-                  renderedSearch && renderedSearch.length > 1 ? true : false
-                }
-                style={{
-                  overflow: "auto",
-                  maxHeight: 220,
-                }}
-                relaxed
-                size={"large"}
-              >
-                {renderedSearch && <RenderList />}
-              </List>
-            </Segment>
-            {/* views greater than tablet */}
-            <Segment as={Media} greaterThanOrEqual="computer">
-              {firstTypeSelected && (
-                <div
+                <List
+                  divided
+                  animated={
+                    renderedSearch && renderedSearch.length > 1 ? true : false
+                  }
                   style={{
-                    marginBottom: "20%",
+                    overflow: "auto",
+                    maxHeight: 400,
                   }}
+                  relaxed
+                  size={"massive"}
                 >
-                  <Label
-                    color="blue"
-                    size={"huge"}
-                    attached="top left"
-                    content={
-                      `${capitalizeString(firstTypeSelected)}` +
-                      `${
-                        secondTypeSelected
-                          ? " - " + capitalizeString(secondTypeSelected)
-                          : ""
-                      }`
-                    }
-                    // onClick={() => handleRandomPokemon()}
-                  />
-                </div>
-              )}
-
-              <List
-                divided
-                animated={
-                  renderedSearch && renderedSearch.length > 1 ? true : false
-                }
-                style={{
-                  overflow: "auto",
-                  maxHeight: 400,
-                }}
-                relaxed
-                size={"massive"}
-              >
-                {renderedSearch && <RenderList />}
-              </List>
-            </Segment>
-
-            {pokeDexEntry && (
-              <Card
-                as={Media}
-                at="mobile"
-                fluid
-                description={["Scroll down to view the selected pokemon"]}
-              />
-            )}
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    )
+                  {renderedSearch && <RenderList />}
+                </List>
+              </Segment>
+            </>
+          )}
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
   );
 };
 export default TypeSearchOutput;
