@@ -59,29 +59,29 @@ const App = () => {
         <style>{mediaStyles}</style>
         <MediaContextProvider>
           <AppContext.Provider value={{ state, dispatch }}>
-            <Grid
-              columns="equal"
-              style={{
-                margin:
-                  isMobile() || isTablet()
-                    ? "0px 25px 0px 25px"
-                    : "0px 100px 0px 100px",
-              }}
-            >
+            <Grid style={{ margin: "5px 10px 5px 15px" }}>
               <Grid.Row>
                 <Grid.Column width={16}>
-                  <Header>
-                    <PokemonLogo
-                      height={isMobile() ? 50 : 150}
-                      width={isMobile() ? 150 : 400}
-                    />
+                  <Header as={Media} at="mobile">
+                    <PokemonLogo height={50} width={150} />
+                  </Header>
+                  <Header as={Media} greaterThanOrEqual="tablet">
+                    <PokemonLogo height={150} width={400} />
                   </Header>
                 </Grid.Column>
-                <Grid.Column width={isMobile() ? 16 : 10}>
+                <Grid.Column as={Media} greaterThanOrEqual="tablet" width={10}>
                   {/*Left Square*/}
                   <PokedexInput />
                 </Grid.Column>
-                <Grid.Column>
+                <Grid.Column as={Media} at="mobile" width={16}>
+                  {/*Left Square*/}
+                  <PokedexInput />
+                </Grid.Column>
+                <Grid.Column as={Media} greaterThanOrEqual="tablet" width={6}>
+                  {/*Right Square*/}
+                  <PokedexOutput />
+                </Grid.Column>
+                <Grid.Column as={Media} at="mobile" width={16}>
                   {/*Right Square*/}
                   <PokedexOutput />
                 </Grid.Column>

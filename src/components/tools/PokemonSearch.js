@@ -3,7 +3,20 @@ import Autosuggest from "react-autosuggest";
 import "./Autosuggest.css";
 import AppContext from "../../context/AppContext";
 import { Grid, Form, Button } from "semantic-ui-react";
-import { capitalizeString, isMobile, isTablet } from "../";
+import { capitalizeString } from "../";
+import { createMedia } from "@artsy/fresnel";
+
+const AppMedia = createMedia({
+  breakpoints: {
+    mobile: 320,
+    tablet: 768,
+    computer: 992,
+    largeScreen: 1200,
+    widescreen: 1920,
+  },
+});
+
+const { Media } = AppMedia;
 
 const PokemonSearch = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -103,7 +116,59 @@ const PokemonSearch = () => {
     <Form>
       <Grid columns="equal">
         <Grid.Row centered>
-          <Grid.Column width={isMobile() ? 8 : isTablet() ? 9 : 11}>
+          <Grid.Column as={Media} at="mobile" width={16}>
+            <Form.Field>
+              <Autosuggest
+                suggestions={pokemonNameSuggestions}
+                onSuggestionsFetchRequested={({ value }) =>
+                  dispatch({
+                    type: "UPDATE_POKEDEX_NAME_SUGGESTIONS",
+                    payload: getSuggestions(value),
+                  })
+                }
+                onSuggestionsClearRequested={() =>
+                  dispatch({ type: "CLEAR_POKEDEX_NAME_SUGGESTIONS" })
+                }
+                onSuggestionSelected={(event, { suggestion }) =>
+                  dispatch({
+                    type: "STORE_POKEDEX_NAME_SUGGESTIONS",
+                    payload: suggestion.pokedexId,
+                  })
+                }
+                getSuggestionValue={getSuggestionNickname}
+                renderSuggestion={renderSuggestion}
+                inputProps={pokemonNameInputProps}
+              />
+            </Form.Field>
+          </Grid.Column>
+
+          <Grid.Column as={Media} at="tablet" width={9}>
+            <Form.Field>
+              <Autosuggest
+                suggestions={pokemonNameSuggestions}
+                onSuggestionsFetchRequested={({ value }) =>
+                  dispatch({
+                    type: "UPDATE_POKEDEX_NAME_SUGGESTIONS",
+                    payload: getSuggestions(value),
+                  })
+                }
+                onSuggestionsClearRequested={() =>
+                  dispatch({ type: "CLEAR_POKEDEX_NAME_SUGGESTIONS" })
+                }
+                onSuggestionSelected={(event, { suggestion }) =>
+                  dispatch({
+                    type: "STORE_POKEDEX_NAME_SUGGESTIONS",
+                    payload: suggestion.pokedexId,
+                  })
+                }
+                getSuggestionValue={getSuggestionNickname}
+                renderSuggestion={renderSuggestion}
+                inputProps={pokemonNameInputProps}
+              />
+            </Form.Field>
+          </Grid.Column>
+
+          <Grid.Column as={Media} greaterThanOrEqual="computer" width={11}>
             <Form.Field>
               <Autosuggest
                 suggestions={pokemonNameSuggestions}
@@ -131,7 +196,7 @@ const PokemonSearch = () => {
 
           <Grid.Column>
             <Form.Field>
-              <div style={{ margin: 0, marginTop: 7 }}>
+              <div style={{ margin: "7px 0px 5px 0px" }}>
                 {pokemonName.length || pokedexId > 0 ? (
                   <Button
                     size="mini"
