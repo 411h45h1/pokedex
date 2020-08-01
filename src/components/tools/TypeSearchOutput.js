@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Grid, Label, List, Segment, Image, Card } from "semantic-ui-react";
 import AppContext from "../../context/AppContext";
-import { capitalizeString, isMobile, isTablet } from "../";
+import { capitalizeString } from "../";
 import { createMedia } from "@artsy/fresnel";
 
 const AppMedia = createMedia({

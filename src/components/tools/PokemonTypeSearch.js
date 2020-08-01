@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { Grid, Segment, Image } from "semantic-ui-react";
 import AppContext from "../../context/AppContext";
-import { isMobile } from "../";
 
 const PokemonTypeSearch = () => {
   const { state, dispatch } = useContext(AppContext);

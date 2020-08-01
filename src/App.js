@@ -10,7 +10,6 @@ import reducer from "./context/reducer";
 //components
 import { PokedexInput, PokedexOutput } from "./components";
 import PokemonLogo from "./assets/PokemonLogo";
-import { isMobile, isTablet } from "./components";
 
 const AppMedia = createMedia({
   breakpoints: {

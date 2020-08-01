@@ -1,12 +1,6 @@
 import React from "react";
 import { Grid, Segment, Label } from "semantic-ui-react";
-import {
-  PokemonSearch,
-  PokemonTypeSearch,
-  TypeSearchOutput,
-  isMobile,
-  isTablet,
-} from ".";
+import { PokemonSearch, PokemonTypeSearch, TypeSearchOutput } from ".";
 import { createMedia } from "@artsy/fresnel";
 
 const AppMedia = createMedia({
