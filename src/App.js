@@ -62,12 +62,14 @@ const App = () => {
             <Grid style={{ margin: "5px 10px 5px 15px" }}>
               <Grid.Row>
                 <Grid.Column width={16}>
-                  <Header as={Media} at="mobile">
-                    <PokemonLogo height={50} width={150} />
-                  </Header>
-                  <Header as={Media} greaterThanOrEqual="tablet">
-                    <PokemonLogo height={150} width={400} />
-                  </Header>
+                  <Grid centered style={{ marginBottom: 15 }}>
+                    <Header as={Media} at="mobile">
+                      <PokemonLogo height={80} width={175} />
+                    </Header>
+                    <Header as={Media} greaterThanOrEqual="tablet">
+                      <PokemonLogo height={150} width={400} />
+                    </Header>
+                  </Grid>
                 </Grid.Column>
                 <Grid.Column as={Media} greaterThanOrEqual="tablet" width={10}>
                   {/*Left Square*/}
