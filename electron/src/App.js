@@ -51,9 +51,8 @@ const App = () => {
   };
 
   return (
-    globalPokedexIndex &&
-    (console.log(window.outerHeight, window.outerWidth),
-    (
+    globalPokedexIndex && (
+      // (console.log("H:", window.outerHeight, "W:", window.outerWidth),
       <>
         <style>{mediaStyles}</style>
         <MediaContextProvider>
@@ -91,7 +90,7 @@ const App = () => {
           </AppContext.Provider>
         </MediaContextProvider>
       </>
-    ))
+    )
   );
 };
 
