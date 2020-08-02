@@ -7,10 +7,10 @@ const url = require("url");
 electronDl();
 let mainWindow;
 
-async function createWindow() {
+const createWindow = async () => {
   await app.whenReady();
   mainWindow = new BrowserWindow({
-    icon: __dirname + "/pokeball.ico",
+    icon: __dirname + "/build/pokeball.ico",
     width: 1150,
     height: 750,
     minHeight: 520,
@@ -26,27 +26,17 @@ async function createWindow() {
   mainWindow.loadURL(
     process.env.ELECTRON_START_URL ||
       url.format({
-        pathname: path.join(__dirname, "/../public/index.html"),
+        pathname: path.join(__dirname, "/build/index.html"),
         protocol: "file:",
         slashes: true,
       })
   );
 
-  mainWindow.on("closed", () => {
-    mainWindow = null;
-  });
-}
+  mainWindow.on("closed", () => (mainWindow = null));
+};
 
 app.on("ready", createWindow);
 
-app.on("window-all-closed", () => {
-  if (process.platform !== "darwin") {
-    app.quit();
-  }
-});
+app.on("window-all-closed", () => process.platform !== "darwin" && app.quit());
 
-app.on("activate", () => {
-  if (mainWindow === null) {
-    createWindow();
-  }
-});
+app.on("activate", () => mainWindow === null && createWindow());
