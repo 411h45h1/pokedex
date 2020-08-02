@@ -1,5 +1,5 @@
 {
-  "name": "pokedex",
+  "name": "Ahmeds_Electron_Pokedex",
   "homepage": "./",
   "main": "src/start.js",
   "version": "0.1.0",
@@ -62,10 +62,21 @@
     "enzyme": "^3.3.0"
   },
   "build": {
-    "appId": "com.electron.electron-with-create-react-app",
-    "win": {
-      "iconUrl": "https://cdn2.iconfinder.com/data/icons/designer-skills/128/react-256.png"
+    "productName": "ElectronPokedex",
+    "copyright": "Copyright © 2019 ${author}",
+    "mac": {
+      "icon": "./public/pokeball.ico"
     },
+    "win": {
+      "icon": "./public/pokeball.ico"
+    },
+    "files": [
+      "./build/**/*",
+      "./dist/**/*",
+      "./node_modules/**/*",
+      "./public/**/*",
+      "*.js"
+    ],
     "directories": {
       "buildResources": "public"
     }

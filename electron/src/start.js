@@ -10,9 +10,10 @@ let mainWindow;
 async function createWindow() {
   await app.whenReady();
   mainWindow = new BrowserWindow({
+    icon: __dirname + "/pokeball.ico",
     width: 1150,
     height: 750,
-    minHeight: 470,
+    minHeight: 520,
     minWidth: 465,
     maxHeight: 1500,
     maxWidth: 2050,
