@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useReducer } from "react";
 
 //style lib
-import { Grid, Header } from "semantic-ui-react";
+import { Grid, Header, Segment } from "semantic-ui-react";
 import { createMedia } from "@artsy/fresnel";
 
 //context
@@ -10,6 +10,7 @@ import reducer from "./context/reducer";
 //components
 import { PokedexInput, PokedexOutput } from "./components";
 import PokemonLogo from "./assets/PokemonLogo";
+import { Scrollbars } from "react-custom-scrollbars";
 
 const AppMedia = createMedia({
   breakpoints: {
@@ -51,46 +52,52 @@ const App = () => {
   };
 
   return (
-    globalPokedexIndex && (
-      // (console.log("H:", window.outerHeight, "W:", window.outerWidth),
-      <>
-        <style>{mediaStyles}</style>
-        <MediaContextProvider>
-          <AppContext.Provider value={{ state, dispatch }}>
-            <Grid style={{ margin: "5px 10px 5px 15px" }}>
-              <Grid.Row>
-                <Grid.Column width={16}>
-                  <Grid centered style={{ marginBottom: 15 }}>
-                    <Header as={Media} at="mobile">
-                      <PokemonLogo height={80} width={175} />
-                    </Header>
-                    <Header as={Media} greaterThanOrEqual="tablet">
-                      <PokemonLogo height={150} width={400} />
-                    </Header>
-                  </Grid>
-                </Grid.Column>
-                <Grid.Column as={Media} greaterThanOrEqual="tablet" width={10}>
-                  {/*Left Square*/}
-                  <PokedexInput />
-                </Grid.Column>
-                <Grid.Column as={Media} at="mobile" width={16}>
-                  {/*Left Square*/}
-                  <PokedexInput />
-                </Grid.Column>
-                <Grid.Column as={Media} greaterThanOrEqual="tablet" width={6}>
-                  {/*Right Square*/}
-                  <PokedexOutput />
-                </Grid.Column>
-                <Grid.Column as={Media} at="mobile" width={16}>
-                  {/*Right Square*/}
-                  <PokedexOutput />
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
-          </AppContext.Provider>
-        </MediaContextProvider>
-      </>
-    )
+    <Scrollbars id="NoDrag" style={{ width: "100vw", height: "100vh" }}>
+      {globalPokedexIndex && (
+        // (console.log("H:", window.outerHeight, "W:", window.outerWidth),
+        <>
+          <style>{mediaStyles}</style>
+          <MediaContextProvider>
+            <AppContext.Provider value={{ state, dispatch }}>
+              <Grid style={{ margin: "5px 10px 5px 15px" }}>
+                <Grid.Row>
+                  <Grid.Column width={16}>
+                    <Grid centered style={{ marginBottom: 15 }}>
+                      <Header as={Media} at="mobile">
+                        <PokemonLogo height={80} width={175} />
+                      </Header>
+                      <Header as={Media} greaterThanOrEqual="tablet">
+                        <PokemonLogo height={150} width={400} />
+                      </Header>
+                    </Grid>
+                  </Grid.Column>
+                  <Grid.Column
+                    as={Media}
+                    greaterThanOrEqual="tablet"
+                    width={10}
+                  >
+                    {/*Left Square*/}
+                    <PokedexInput />
+                  </Grid.Column>
+                  <Grid.Column as={Media} at="mobile" width={16}>
+                    {/*Left Square*/}
+                    <PokedexInput />
+                  </Grid.Column>
+                  <Grid.Column as={Media} greaterThanOrEqual="tablet" width={6}>
+                    {/*Right Square*/}
+                    <PokedexOutput />
+                  </Grid.Column>
+                  <Grid.Column as={Media} at="mobile" width={16}>
+                    {/*Right Square*/}
+                    <PokedexOutput />
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+            </AppContext.Provider>
+          </MediaContextProvider>
+        </>
+      )}
+    </Scrollbars>
   );
 };
 
