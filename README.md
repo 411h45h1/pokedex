@@ -7,7 +7,7 @@
 The Pokédex can be viewed [here](https://ahmedalihashi.github.io/pokedex/).
 
 ## Windows Application
-You can download the pre-built version [here](https://1drv.ms/u/s!AoQhMrJoJDR62ljYFqMjK4uWhrGi?e=8xhMuP)   
+You can download the pre-built version [here](https://1drv.ms/u/s!AoQhMrJoJDR62ljYFqMjK4uWhrGi?e=8d7xi7)   
 Alternativly you can build your own version locally
 
 ```
