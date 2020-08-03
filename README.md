@@ -19,5 +19,5 @@ npm run build-win or yarn build~win
 
 ## ScreenShot
 
-<img src='./github/1.png' height='600' width='750' ></img>
-<img src='./github/electron1.png' height='550' width='750' ></img>
+<img src='./github/1.png' height='600' width='800' ></img>
+<img src='./github/electron1.png' height='550' width='800' ></img>
