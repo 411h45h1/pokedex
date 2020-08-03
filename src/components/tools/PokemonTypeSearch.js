@@ -9,22 +9,23 @@ const PokemonTypeSearch = () => {
     "water",
     "electric",
     "dragon",
-    "bug",
-    "dark",
-    "fairy",
-    "fighting",
+    "normal",
     "fire",
     "flying",
+    "dark",
+    "fighting",
+    "bug",
     "ghost",
     "grass",
     "ground",
+    "fairy",
     "ice",
-    "normal",
     "poison",
     "psychic",
     "rock",
     "steel",
   ]);
+
   const getTypeEntrys = async (type) => {
     //get pokemon data
     let fetchType = await fetch(
