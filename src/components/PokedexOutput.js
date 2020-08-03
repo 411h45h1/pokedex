@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Segment, Grid, Label, Image } from "semantic-ui-react";
 import AppContext from "../context/AppContext";
-import { capitalizeString, isMobile, isTablet } from ".";
+import { capitalizeString, isMobile, isTablet, EvolutionStages } from ".";
 import { createMedia } from "@artsy/fresnel";
 
 const AppMedia = createMedia({
@@ -163,14 +163,14 @@ const PokedexOutput = () => {
             </Grid.Column>
           ))}
         </Grid.Row>
-        <Grid.Row as={Media} at="tablet" centered columns={2}>
+        <Grid.Row as={Media} at="tablet" centered columns={3}>
           {pokeDexEntry.types.map((i, k) => (
             <Grid.Column key={k}>
               <Image
                 style={{ marginTop: 10, marginBottom: -20 }}
                 src={require(`../assets/typeIcons/${i.type.name}.png`)}
                 alt="A Pokemon type"
-                width={"75%"}
+                width={"100%"}
               />
             </Grid.Column>
           ))}
@@ -221,8 +221,11 @@ const PokedexOutput = () => {
                 </h6>
               </Grid>
             )}
+
+            <EvolutionStages />
           </Grid.Column>
         </Grid.Row>
+
         <Grid.Row as={Media} greaterThanOrEqual="computer" centered columns={2}>
           <Grid.Column>
             {pokeDexEntry.photo ? (
