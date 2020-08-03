@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^7.1.2",
     "cross-env": "^7.0.2",
     "electron-dl": "^3.0.0",
+    "electron-packager": "^15.0.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-plugin-import": "^2.20.2",
