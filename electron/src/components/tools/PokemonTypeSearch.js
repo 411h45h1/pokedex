@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Grid, Segment, Image } from "semantic-ui-react";
+import React, { useContext, useState } from "react";
+import { Grid, Segment, Image, Button } from "semantic-ui-react";
 import AppContext from "../../context/AppContext";
 
 const PokemonTypeSearch = () => {
