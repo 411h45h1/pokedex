@@ -198,7 +198,7 @@ const PokedexOutput = () => {
               />
             ) : (
               <Grid centered>
-                <h6 style={{ fontSize: 30, marginTop: 30 }}>
+                <h6 style={{ fontSize: 20, marginTop: 30 }}>
                   Api Sprite Not availible
                 </h6>
               </Grid>
@@ -216,7 +216,7 @@ const PokedexOutput = () => {
               />
             ) : (
               <Grid centered>
-                <h6 style={{ fontSize: 30, marginTop: 30 }}>
+                <h6 style={{ fontSize: 20, marginTop: 30 }}>
                   Api Sprite Not availible
                 </h6>
               </Grid>
@@ -234,7 +234,7 @@ const PokedexOutput = () => {
               />
             ) : (
               <Grid centered>
-                <h6 style={{ fontSize: 30, marginTop: 30 }}>
+                <h6 style={{ fontSize: 20, marginTop: 30 }}>
                   Api Sprite Not availible
                 </h6>
               </Grid>
