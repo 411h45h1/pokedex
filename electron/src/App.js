@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useReducer } from "react";
 
 //style lib
+import "App.css";
 import { Grid, Header, Segment } from "semantic-ui-react";
 import { createMedia } from "@artsy/fresnel";
 

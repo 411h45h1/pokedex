@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Grid, Segment, Image } from "semantic-ui-react";
+import { Grid, Segment, Image, Button } from "semantic-ui-react";
 import AppContext from "../../context/AppContext";
 
 const PokemonTypeSearch = () => {
@@ -12,8 +12,8 @@ const PokemonTypeSearch = () => {
     "normal",
     "fire",
     "flying",
-    "dark",
     "fighting",
+    "dark",
     "bug",
     "ghost",
     "grass",
@@ -82,14 +82,16 @@ const PokemonTypeSearch = () => {
       dispatch({ type: "CLEAR_SEARCH" });
     }
   };
+  let x = "ui segment";
+  let y = "ui black button";
 
   return (
     <Grid>
       <Grid.Row columns="3">
-        {pokemonTypes.map((type) => (
-          <Grid.Column style={{ marginBottom: 10 }}>
-            <Segment
-              inverted
+        {pokemonTypes.map((type, key) => (
+          <Grid.Column key={key} style={{ marginBottom: 20 }}>
+            <Button
+              compact
               color={
                 firstTypeSelected === type
                   ? "green"
@@ -104,7 +106,7 @@ const PokemonTypeSearch = () => {
                 alt={`The Pokemon type ${type}`}
                 width={"100%"}
               />
-            </Segment>
+            </Button>
           </Grid.Column>
         ))}
       </Grid.Row>

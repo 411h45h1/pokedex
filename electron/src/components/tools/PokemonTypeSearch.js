@@ -12,8 +12,8 @@ const PokemonTypeSearch = () => {
     "normal",
     "fire",
     "flying",
-    "dark",
     "fighting",
+    "dark",
     "bug",
     "ghost",
     "grass",
@@ -86,10 +86,10 @@ const PokemonTypeSearch = () => {
   return (
     <Grid>
       <Grid.Row columns="3">
-        {pokemonTypes.map((type) => (
-          <Grid.Column style={{ marginBottom: 10 }}>
-            <Segment
-              inverted
+        {pokemonTypes.map((type, key) => (
+          <Grid.Column key={key} style={{ marginBottom: 20 }}>
+            <Button
+              compact
               color={
                 firstTypeSelected === type
                   ? "green"
@@ -104,7 +104,7 @@ const PokemonTypeSearch = () => {
                 alt={`The Pokemon type ${type}`}
                 width={"100%"}
               />
-            </Segment>
+            </Button>
           </Grid.Column>
         ))}
       </Grid.Row>
