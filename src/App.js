@@ -28,11 +28,12 @@ const { Media, MediaContextProvider } = AppMedia;
 const App = () => {
   const initialState = useContext(AppContext);
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { globalPokedexIndex } = state;
+  const { globalPokedexIndex, globalEvolutionChain } = state;
 
   useEffect(() => {
     if (!globalPokedexIndex) {
       getGlobalPokedexIndex();
+      getEvoChain();
     }
   }, [globalPokedexIndex]);
 
@@ -50,6 +51,47 @@ const App = () => {
       payload: refinedIndex,
     });
   };
+  const getEvoChain = async () => {
+    let rootEvoChain = await fetch(
+      "https://pokeapi.co/api/v2/evolution-chain?limit=419"
+    ).catch((err) => console.error(err));
+    let rootEvoChainEntry = await rootEvoChain.json();
+    let ArrEvoChain = rootEvoChainEntry.results.map((i) => i.url);
+    console.log("evo", ArrEvoChain);
+    Promise.all(
+      ArrEvoChain.map((url) => fetch(url).then((resp) => resp.json()))
+    ).then((data) => {
+      let evoChain = data.map((i) => i.chain);
+
+      function collectResults(gamesPlayed) {
+        let res = gamesPlayed.map((pokemon) => {
+          let result = {
+            base: pokemon.species.name,
+            nextEvo: getResults(pokemon.evolves_to, 0),
+          };
+          return result;
+        });
+        return res;
+      }
+      function getResults(evolves_to, level) {
+        const LEVELS = ["second", "third", "fourth"];
+        if (!evolves_to.length) return {};
+        else {
+          let result = {};
+          result[LEVELS[level]] = evolves_to[0].species.name;
+          let resultsPrevious = getResults(evolves_to[0].evolves_to, ++level);
+
+          return Object.assign(result, resultsPrevious);
+        }
+      }
+      // console.log("res", evoChain);
+      dispatch({
+        type: "UPDATE_EVOLUTION_CHAIN",
+        payload: collectResults(evoChain),
+      });
+    });
+  };
+  console.log("Global Evolution Chain", globalEvolutionChain);
 
   return (
     <Scrollbars style={{ width: "100vw", height: "100vh" }}>

@@ -10,7 +10,22 @@ export default function reducer(state, { type, payload }) {
       return {
         ...state,
         pokeDexEntry: payload,
+        onEvolutionChain: false,
       };
+
+    //evolution chain
+    case "UPDATE_EVOLUTION_CHAIN":
+      return {
+        ...state,
+        globalEvolutionChain: payload,
+      };
+
+    case "LOAD_EVOLUTION_STAGES":
+      return {
+        ...state,
+        onEvolutionChain: true,
+      };
+
     //FORM
     case "UPDATE_FORM_POKEDEX_NAME":
       return {

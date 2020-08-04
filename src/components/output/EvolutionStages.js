@@ -1,10 +1,17 @@
-import React, { useContext } from "react";
-import { Grid, Image } from "semantic-ui-react";
+import React, { useContext, useState, useEffect } from "react";
+import { Grid, Image, Segment, Card, Button } from "semantic-ui-react";
 import AppContext from "../../context/AppContext";
 
 const EvolutionStages = () => {
   const { state, dispatch } = useContext(AppContext);
-  const { pokeDexEntry, globalPokedexIndex } = state;
+  const { pokeDexEntry, globalPokedexIndex, onEvolutionChain } = state;
+  const [evoSprites, setEvoSprites] = useState([]);
+
+  useEffect(() => {
+    if (onEvolutionChain) {
+      renderEvoChain().then(() => setEvoSprites([]));
+    }
+  }, [pokeDexEntry, onEvolutionChain]);
 
   const renderEvoChain = async () => {
     const evoChain = pokeDexEntry.evolutionChain;
@@ -12,47 +19,62 @@ const EvolutionStages = () => {
 
     console.log("chain", evoChain);
     let first = evoChain.species.name;
-    evoArr.push(first);
-    //check second
-    if (evoChain.evolves_to.length > 0) {
-      let secondEvo = evoChain.evolves_to[0].species.name;
-      evoArr.push(secondEvo);
+    let secondEvo = evoChain.evolves_to[0].species.name;
+    let thirdEvo =
+      evoChain.evolves_to[0].evolves_to[0] &&
+      evoChain.evolves_to[0].evolves_to[0].species.name;
 
-      if (evoChain.evolves_to[0].evolves_to.length > 0) {
-        let thirdEvo = evoChain.evolves_to[0].evolves_to[0].species.name;
-        evoArr.push(thirdEvo);
-      }
+    if (first && secondEvo && thirdEvo) {
+      evoArr.push(first, secondEvo, thirdEvo);
+    } else if (first && secondEvo && !thirdEvo) {
+      evoArr.push(first, secondEvo);
+    } else if (first && !secondEvo && !thirdEvo) {
+      evoArr.push(first);
     }
 
     console.log("evoChain names", evoArr);
     //TODO figure out how to get the related data from evoArr (pics)
-    // let evoArrSprites = evoArr.map((i, k) => {
-    //   let entryFound = globalPokedexIndex.find((obj) => obj.pokemonName === i);
-    //   let dataURL = entryFound.url;
+    evoArr.forEach(async (evo) => {
+      let entryFound = globalPokedexIndex.find(
+        (obj) => obj.pokemonName === evo
+      );
+      let dataURL = entryFound.url;
 
-    //   //get pokemon data
-    //   let entryDataFetch = fetch(`${dataURL}`).catch((err) => console.log(err));
+      //get pokemon data
+      let entryDataFetch = await fetch(`${dataURL}`).catch((err) =>
+        console.log(err)
+      );
 
-    //   let pokedexDataEntry = entryDataFetch.json();
-    //   return { url: pokedexDataEntry };
-    // });
-    // console.log("pics found", evoArrSprites);
+      let pokedexDataEntry = await entryDataFetch.json();
+      let sprite = pokedexDataEntry.sprites.front_default;
+      return setEvoSprites((preState) => [...preState, sprite]);
+    });
   };
-
+  console.log("state", evoSprites);
   return (
     <Grid centered>
-      <Grid.Row columns={3}>
-        <Grid.Column>
-          {pokeDexEntry.photo ? (
-            renderEvoChain()
+      <Grid.Row columns={"equal"}>
+        {pokeDexEntry.photo ? (
+          onEvolutionChain ? (
+            evoSprites.map((i, k) => (
+              <Grid.Column key={k}>
+                <Card>
+                  <Image src={i} alt="Pokemon" height={"100%"} width={"100%"} />
+                </Card>
+              </Grid.Column>
+            ))
           ) : (
-            <Grid centered>
-              <h6 style={{ fontSize: 20, marginTop: 30 }}>
-                Api Sprite Not availible
-              </h6>
-            </Grid>
-          )}
-        </Grid.Column>
+            <Button onClick={() => dispatch({ type: "LOAD_EVOLUTION_STAGES" })}>
+              Evolution Stages
+            </Button>
+          )
+        ) : (
+          <Grid centered>
+            <h6 style={{ fontSize: 20, marginTop: 30 }}>
+              Evolution Data Not Availible
+            </h6>
+          </Grid>
+        )}
       </Grid.Row>
     </Grid>
   );

@@ -14,6 +14,9 @@ const AppContext = createContext({
   firstPokemonTypeArr: null,
   secondPokemonTypeArr: null,
   renderedSearch: null,
+  //
+  globalEvolutionChain: null,
+  onEvolutionChain: false,
 });
 
 export default AppContext;
