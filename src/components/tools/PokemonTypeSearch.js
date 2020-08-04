@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
-import { Grid, Segment, Image, Button } from "semantic-ui-react";
+import { Grid, Image, Button } from "semantic-ui-react";
 import AppContext from "../../context/AppContext";
 
 const PokemonTypeSearch = () => {
   const { state, dispatch } = useContext(AppContext);
   const { firstTypeSelected, secondTypeSelected } = state;
-  const [pokemonTypes, setPokemonTypes] = useState([
+  const [pokemonTypes] = useState([
     "water",
     "electric",
     "dragon",
@@ -82,8 +82,6 @@ const PokemonTypeSearch = () => {
       dispatch({ type: "CLEAR_SEARCH" });
     }
   };
-  let x = "ui segment";
-  let y = "ui black button";
 
   return (
     <Grid>
