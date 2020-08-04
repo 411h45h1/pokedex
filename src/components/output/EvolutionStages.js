@@ -4,7 +4,12 @@ import AppContext from "../../context/AppContext";
 
 const EvolutionStages = () => {
   const { state, dispatch } = useContext(AppContext);
-  const { pokeDexEntry, globalPokedexIndex, onEvolutionChain } = state;
+  const {
+    pokeDexEntry,
+    globalPokedexIndex,
+    onEvolutionChain,
+    globalEvolutionChain,
+  } = state;
   const [evoSprites, setEvoSprites] = useState([]);
 
   useEffect(() => {
@@ -18,36 +23,48 @@ const EvolutionStages = () => {
     let evoArr = [];
 
     console.log("chain", evoChain);
-    let first = evoChain.species.name;
-    let secondEvo = evoChain.evolves_to[0].species.name;
-    let thirdEvo =
-      evoChain.evolves_to[0].evolves_to[0] &&
-      evoChain.evolves_to[0].evolves_to[0].species.name;
+    let neededObj = globalEvolutionChain.find((o) => {
+      return o.base == evoChain;
+    });
+    let baseForm = Object.values(neededObj)[0];
+    let secondForm = Object.values(neededObj)[1].second;
+    let thirdForm = Object.values(neededObj)[1].third;
 
-    if (first && secondEvo && thirdEvo) {
-      evoArr.push(first, secondEvo, thirdEvo);
-    } else if (first && secondEvo && !thirdEvo) {
-      evoArr.push(first, secondEvo);
-    } else if (first && !secondEvo && !thirdEvo) {
-      evoArr.push(first);
-    }
+    console.log("needed evo chain", baseForm, secondForm, thirdForm);
+    evoArr = [baseForm, secondForm, thirdForm];
+    // let secondEvo = evoChain.evolves_to[0].species.name;
+    // let thirdEvo =
+    //   evoChain.evolves_to[0].evolves_to[0] &&
+    //   evoChain.evolves_to[0].evolves_to[0].species.name;
+
+    // if (first && secondEvo && thirdEvo) {
+    //   evoArr.push(first, secondEvo, thirdEvo);
+    // } else if (first && secondEvo && !thirdEvo) {
+    //   evoArr.push(first, secondEvo);
+    // } else if (first && !secondEvo && !thirdEvo) {
+    //   evoArr.push(first);
+    // }
 
     console.log("evoChain names", evoArr);
     //TODO figure out how to get the related data from evoArr (pics)
     evoArr.forEach(async (evo) => {
-      let entryFound = globalPokedexIndex.find(
-        (obj) => obj.pokemonName === evo
-      );
-      let dataURL = entryFound.url;
+      if (evo) {
+        let entryFound = globalPokedexIndex.find(
+          (obj) => obj.pokemonName === evo
+        );
+        let dataURL = entryFound.url;
 
-      //get pokemon data
-      let entryDataFetch = await fetch(`${dataURL}`).catch((err) =>
-        console.log(err)
-      );
+        //get pokemon data
+        let entryDataFetch = await fetch(`${dataURL}`).catch((err) =>
+          console.log(err)
+        );
 
-      let pokedexDataEntry = await entryDataFetch.json();
-      let sprite = pokedexDataEntry.sprites.front_default;
-      return setEvoSprites((preState) => [...preState, sprite]);
+        let pokedexDataEntry = await entryDataFetch.json();
+        let sprite = pokedexDataEntry.sprites.front_default;
+        return setEvoSprites((preState) => [...preState, sprite]);
+      } else {
+        return null;
+      }
     });
   };
   console.log("state", evoSprites);

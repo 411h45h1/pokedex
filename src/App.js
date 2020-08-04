@@ -33,9 +33,11 @@ const App = () => {
   useEffect(() => {
     if (!globalPokedexIndex) {
       getGlobalPokedexIndex();
+    }
+    if (!globalEvolutionChain) {
       getEvoChain();
     }
-  }, [globalPokedexIndex]);
+  }, [globalPokedexIndex, globalEvolutionChain]);
 
   const getGlobalPokedexIndex = async () => {
     let fetchPokedex = await fetch(
@@ -57,7 +59,7 @@ const App = () => {
     ).catch((err) => console.error(err));
     let rootEvoChainEntry = await rootEvoChain.json();
     let ArrEvoChain = rootEvoChainEntry.results.map((i) => i.url);
-    console.log("evo", ArrEvoChain);
+
     Promise.all(
       ArrEvoChain.map((url) => fetch(url).then((resp) => resp.json()))
     ).then((data) => {

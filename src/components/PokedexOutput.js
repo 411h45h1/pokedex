@@ -221,8 +221,6 @@ const PokedexOutput = () => {
                 </h6>
               </Grid>
             )}
-
-            <EvolutionStages />
           </Grid.Column>
         </Grid.Row>
 
@@ -242,6 +240,7 @@ const PokedexOutput = () => {
                 </h6>
               </Grid>
             )}
+            <EvolutionStages />
           </Grid.Column>
         </Grid.Row>
       </Grid>

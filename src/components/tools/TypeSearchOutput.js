@@ -104,20 +104,6 @@ const TypeSearchOutput = () => {
     ).catch((err) => console.log(err));
     let evoChainEntry = await evoChain.json();
     //console.log("evo chain Entry", evoChainEntry);
-    let rootEvo = evoChainEntry.chain.species;
-    //console.log("first evo", rootEvo);
-
-    let rootSpecies = await fetch(`${rootEvo.url}`).catch((err) =>
-      console.log(err)
-    );
-    let rootSpeciesEntry = await rootSpecies.json();
-    //console.log("root species entry", rootSpeciesEntry);
-
-    let rootEvoChain = await fetch(
-      `${rootSpeciesEntry.evolution_chain.url}`
-    ).catch((err) => console.log(err));
-    let rootEvoChainEntry = await rootEvoChain.json();
-    //console.log("root species evoChain entry", rootEvoChainEntry);
 
     let statsArray = pokedexDataEntry.stats.map((i) => {
       return { name: i.stat.name, baseStat: i.base_stat };
@@ -127,12 +113,12 @@ const TypeSearchOutput = () => {
       {}
     );
 
+    let rootEvo = evoChainEntry.chain.species.name;
     let name = capitalizeString(pokedexDataEntry.name);
     let id = pokedexDataEntry.id;
     let primarySprite = pokedexDataEntry.sprites.front_default;
     let types = pokedexDataEntry.types;
-    let rootChain = rootEvoChainEntry.chain;
-    return { name, primarySprite, id, types, stats, rootChain };
+    return { name, primarySprite, id, types, stats, rootEvo };
   };
 
   const handleSubmit = (pokemonName) =>
@@ -146,7 +132,7 @@ const TypeSearchOutput = () => {
             id: res.id,
             types: res.types,
             stats: res.stats,
-            evolutionChain: res.rootChain,
+            evolutionChain: res.rootEvo,
           },
         });
       })
