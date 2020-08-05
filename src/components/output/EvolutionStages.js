@@ -32,6 +32,8 @@ const EvolutionStages = () => {
 
     console.log("needed evo chain", baseForm, secondForm, thirdForm);
     evoArr = [baseForm, secondForm, thirdForm];
+    let filteredEvoArr = evoArr.filter((x) => x);
+
     // let secondEvo = evoChain.evolves_to[0].species.name;
     // let thirdEvo =
     //   evoChain.evolves_to[0].evolves_to[0] &&
@@ -47,25 +49,48 @@ const EvolutionStages = () => {
 
     console.log("evoChain names", evoArr);
     //TODO figure out how to get the related data from evoArr (pics)
-    evoArr.forEach(async (evo) => {
+
+    let urls = filteredEvoArr.map((evo, k) => {
       if (evo) {
         let entryFound = globalPokedexIndex.find(
-          (obj) => obj.pokemonName === evo
-        );
-        let dataURL = entryFound.url;
-
-        //get pokemon data
-        let entryDataFetch = await fetch(`${dataURL}`).catch((err) =>
-          console.log(err)
+          (obj) => obj.pokemonName == evo
         );
 
-        let pokedexDataEntry = await entryDataFetch.json();
-        let sprite = pokedexDataEntry.sprites.front_default;
-        return setEvoSprites((preState) => [...preState, sprite]);
-      } else {
-        return null;
+        return entryFound.url;
       }
     });
+    console.log("avail urls", urls);
+
+    urls.map(async (url) => {
+      //get pokemon data
+      let entryDataFetch = await fetch(`${url}`).catch((err) =>
+        console.log(err)
+      );
+
+      let pokedexDataEntry = await entryDataFetch.json();
+      let sprite = pokedexDataEntry.sprites.front_default;
+      return setEvoSprites((preState) => [...preState, sprite]);
+    });
+
+    // evoArr.map(async (evo, k) => {
+    //   if (evo) {
+    //     let entryFound = globalPokedexIndex.find(
+    //       (obj) => obj.pokemonName == evo
+    //     );
+    //     let dataURL = entryFound.url;
+
+    //     //get pokemon data
+    //     let entryDataFetch = await fetch(`${dataURL}`).catch((err) =>
+    //       console.log(err)
+    //     );
+
+    //     let pokedexDataEntry = await entryDataFetch.json();
+    //     let sprite = pokedexDataEntry.sprites.front_default;
+    //     return setEvoSprites((preState) => [...preState, sprite]);
+    //   } else {
+    //     return null;
+    //   }
+    // });
   };
   console.log("state", evoSprites);
   return (
