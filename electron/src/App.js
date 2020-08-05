@@ -61,17 +61,63 @@ const App = () => {
           <MediaContextProvider>
             <AppContext.Provider value={{ state, dispatch }}>
               <Grid style={{ margin: "5px 10px 5px 15px" }}>
-                <Grid.Row id="Drag">
-                  <Grid.Column width={13}>
-                    <Header as={Media} at="mobile">
-                      <PokemonLogo id="NoDrag" height={80} width={175} />
-                    </Header>
+                <Grid.Row>
+                  <Grid.Column width={16} id="Drag" as={Media} at="mobile">
+                    <Button.Group id="NoDrag" floated="right">
+                      <Button
+                        as={"a"}
+                        href="https://github.com/AhmedAlihashi/pokedex"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        content="Click here for the repository"
+                      />
+                      <Button
+                        icon="power off"
+                        color="red"
+                        onClick={() => {
+                          window.close();
+                        }}
+                      />
+                    </Button.Group>
+                  </Grid.Column>
+
+                  <Grid.Column width={16} id="Drag" as={Media} at="mobile">
+                    <Grid centered>
+                      <Header>
+                        <PokemonLogo
+                          height={100}
+                          width={400}
+                          style={{ marginTop: 20, marginBottom: 20 }}
+                        />
+                      </Header>
+                    </Grid>
+                  </Grid.Column>
+
+                  <Grid.Column
+                    width={10}
+                    id="Drag"
+                    as={Media}
+                    greaterThanOrEqual="tablet"
+                  >
                     <Header as={Media} greaterThanOrEqual="tablet">
-                      <PokemonLogo id="NoDrag" height={150} width={400} />
+                      <PokemonLogo height={150} width={400} style={{}} />
                     </Header>
                   </Grid.Column>
-                  <Grid.Column width={3}>
+
+                  <Grid.Column
+                    width={6}
+                    id="Drag"
+                    as={Media}
+                    greaterThanOrEqual="tablet"
+                  >
                     <Button.Group id="NoDrag" floated="right">
+                      <Button
+                        as={"a"}
+                        href="https://github.com/AhmedAlihashi/pokedex"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        content="Click here for the repository"
+                      />
                       <Button
                         icon="power off"
                         color="red"
