@@ -1,3 +1,11 @@
 .ui.button:hover {
   background: #408fbd;
 }
+
+#NoDrag {
+  -webkit-app-region: no-drag;
+}
+
+#Drag {
+  -webkit-app-region: drag;
+}

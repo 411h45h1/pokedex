@@ -11,13 +11,14 @@ const createWindow = async () => {
   await app.whenReady();
   mainWindow = new BrowserWindow({
     icon: __dirname + "/build/pokeball.ico",
+    frame: false,
+    transparent: true,
     width: 1150,
     height: 750,
     minHeight: 520,
     minWidth: 465,
     maxHeight: 1500,
     maxWidth: 2050,
-    frame: true,
     webPreferences: {
       nodeIntegration: true,
     },

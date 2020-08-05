@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useReducer } from "react";
 
 //style lib
 import "./App.css";
-import { Grid, Header, Segment } from "semantic-ui-react";
+import { Grid, Header, Button, Icon } from "semantic-ui-react";
 import { createMedia } from "@artsy/fresnel";
 
 //context
@@ -53,7 +53,7 @@ const App = () => {
   };
 
   return (
-    <Scrollbars id="NoDrag" style={{ width: "100vw", height: "100vh" }}>
+    <Scrollbars style={{ width: "100vw", height: "100vh" }}>
       {globalPokedexIndex && (
         // (console.log("H:", window.outerHeight, "W:", window.outerWidth),
         <>
@@ -61,8 +61,28 @@ const App = () => {
           <MediaContextProvider>
             <AppContext.Provider value={{ state, dispatch }}>
               <Grid style={{ margin: "5px 10px 5px 15px" }}>
-                <Grid.Row>
-                  <Grid.Column width={16}>
+                <Grid.Row id="Drag">
+                  <Grid.Column width={13}>
+                    <Header as={Media} at="mobile">
+                      <PokemonLogo id="NoDrag" height={80} width={175} />
+                    </Header>
+                    <Header as={Media} greaterThanOrEqual="tablet">
+                      <PokemonLogo id="NoDrag" height={150} width={400} />
+                    </Header>
+                  </Grid.Column>
+                  <Grid.Column width={3}>
+                    <Button.Group id="NoDrag" floated="right">
+                      <Button
+                        icon="power off"
+                        color="red"
+                        onClick={() => {
+                          window.close();
+                        }}
+                      />
+                    </Button.Group>
+                  </Grid.Column>
+
+                  {/* <Grid.Column width={16}>
                     <Grid centered style={{ marginBottom: 15 }}>
                       <Header as={Media} at="mobile">
                         <PokemonLogo height={80} width={175} />
@@ -71,7 +91,7 @@ const App = () => {
                         <PokemonLogo height={150} width={400} />
                       </Header>
                     </Grid>
-                  </Grid.Column>
+                  </Grid.Column> */}
                   <Grid.Column
                     as={Media}
                     greaterThanOrEqual="tablet"

@@ -1,7 +1,7 @@
 import * as React from "react";
 
 const PokemonLogo = (props) => (
-  <>
+  <figure>
     <svg viewBox="0 0 269.469 98.814" {...props}>
       <linearGradient
         gradientTransform="translate(-408 -677.5)"
@@ -252,7 +252,7 @@ const PokemonLogo = (props) => (
         <path d="M253.505 91.83v-2.372h-.887v-.318h2.132v.318h-.89v2.372zM255.106 91.83v-2.69h.536l.637 1.905c.059.177.101.31.128.398.03-.098.079-.241.143-.431l.644-1.872h.48v2.69h-.344V89.58l-.781 2.251h-.321l-.778-2.29v2.29z" />
       </g>
     </svg>
-    <p>
+    <figcaption>
       here's the{" "}
       <a
         href="https://github.com/AhmedAlihashi/pokedex"
@@ -261,8 +261,8 @@ const PokemonLogo = (props) => (
       >
         repository
       </a>
-    </p>
-  </>
+    </figcaption>
+  </figure>
 );
 
 export default PokemonLogo;
