@@ -98,6 +98,7 @@ const PokedexOutput = () => {
   return pokeDexEntry ? (
     <Segment inverted color="grey">
       <Label
+        id="NoDrag"
         as="a"
         color="black"
         size="large"
@@ -308,6 +309,7 @@ const PokedexOutput = () => {
           pokeDexEntry.id !== 1 ? (
             <>
               <Label
+                id="NoDrag"
                 as="a"
                 color="black"
                 size="large"
@@ -317,6 +319,7 @@ const PokedexOutput = () => {
                 onClick={() => handlePrev()}
               />
               <Label
+                id="NoDrag"
                 as="a"
                 color="black"
                 size="large"
@@ -328,6 +331,7 @@ const PokedexOutput = () => {
             </>
           ) : (
             <Label
+              id="NoDrag"
               as="a"
               color="black"
               size="large"
@@ -356,6 +360,7 @@ const PokedexOutput = () => {
         as="a"
         color="black"
         size="large"
+        id="NoDrag"
         attached="top"
         icon="random"
         content="Click here to see a random Pokémon"

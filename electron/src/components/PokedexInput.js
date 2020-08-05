@@ -17,7 +17,7 @@ const { Media } = AppMedia;
 
 const PokedexInput = () => {
   return (
-    <Segment inverted color="brown" style={{ marginBottom: 10 }}>
+    <Segment id="NoDrag" inverted color="brown" style={{ marginBottom: 10 }}>
       <Label as={Media} at="mobile" size={"large"} color="teal" ribbon>
         Search Pokemon based on name or id
       </Label>

@@ -61,7 +61,7 @@ const App = () => {
           <MediaContextProvider>
             <AppContext.Provider value={{ state, dispatch }}>
               <Grid style={{ margin: "5px 10px 5px 15px" }}>
-                <Grid.Row>
+                <Grid.Row id="Drag">
                   <Grid.Column width={16} id="Drag" as={Media} at="mobile">
                     <Button.Group id="NoDrag" floated="right">
                       <Button
@@ -99,7 +99,7 @@ const App = () => {
                     as={Media}
                     greaterThanOrEqual="tablet"
                   >
-                    <Header as={Media} greaterThanOrEqual="tablet">
+                    <Header as={Media} greaterThanOrEqual="tablet" id="NoDrag">
                       <PokemonLogo height={150} width={400} style={{}} />
                     </Header>
                   </Grid.Column>
