@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useReducer } from "react";
 
 //style lib
 import "./App.css";
-import { Grid, Header, Button, Icon } from "semantic-ui-react";
+import { Grid, Header, Button } from "semantic-ui-react";
 import { createMedia } from "@artsy/fresnel";
 
 //context
