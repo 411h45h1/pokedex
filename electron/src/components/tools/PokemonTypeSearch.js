@@ -89,6 +89,7 @@ const PokemonTypeSearch = () => {
         {pokemonTypes.map((type, key) => (
           <Grid.Column key={key} style={{ marginBottom: 20 }}>
             <Button
+              id="NoDrag"
               compact
               color={
                 firstTypeSelected === type

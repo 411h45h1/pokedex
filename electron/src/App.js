@@ -53,14 +53,20 @@ const App = () => {
   };
 
   return (
-    <Scrollbars style={{ width: "100vw", height: "100vh" }}>
+    <Scrollbars
+      style={{ width: "100vw", height: "100vh", backgroundColor: "#E0CDCA" }}
+    >
       {globalPokedexIndex && (
         // (console.log("H:", window.outerHeight, "W:", window.outerWidth),
         <>
           <style>{mediaStyles}</style>
           <MediaContextProvider>
             <AppContext.Provider value={{ state, dispatch }}>
-              <Grid style={{ margin: "5px 10px 5px 15px" }}>
+              <Grid
+                style={{
+                  margin: "5px 10px 5px 15px",
+                }}
+              >
                 <Grid.Row id="Drag">
                   <Grid.Column width={16} id="Drag" as={Media} at="mobile">
                     <Button.Group id="NoDrag" floated="right">
