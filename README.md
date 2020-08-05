@@ -12,7 +12,7 @@ npm install or yarn install
 npm run start or yarn start
 ```
 ## Windows Application
-You can download the pre-built version [here](https://1drv.ms/u/s!AoQhMrJoJDR62ljYFqMjK4uWhrGi?e=8d7xi7)   
+You can download the pre-built version [here](https://1drv.ms/u/s!AoQhMrJoJDR62ljYFqMjK4uWhrGi?e=uujtYU)   
 Alternativly you can build your own version locally
 
 ```
