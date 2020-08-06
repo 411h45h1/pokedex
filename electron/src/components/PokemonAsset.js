@@ -882,7 +882,9 @@ const PokemonAsset = ({ pokemonLoaded }) => {
 
   console.log("pokemonLoaded val", pokemonLoaded);
   let foundObj = pokemonAssetArr.find((i) => {
-    return i.id === pokemonLoaded;
+    return pokemonLoaded === "mr-mime"
+      ? i.id === "mrMime"
+      : i.id === pokemonLoaded;
   });
 
   return (
