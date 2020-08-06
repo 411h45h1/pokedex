@@ -1,5 +1,4 @@
 import React, { useEffect, useContext, useReducer } from "react";
-
 //style lib
 import "./App.css";
 import { Grid, Header, Button } from "semantic-ui-react";
@@ -39,7 +38,8 @@ const App = () => {
 
   const getGlobalPokedexIndex = async () => {
     let fetchPokedex = await fetch(
-      "https://pokeapi.co/api/v2/pokemon?limit=964"
+      //only Gen I
+      "https://pokeapi.co/api/v2/pokemon?limit=151"
     ).catch((err) => console.error(err));
     let pokedexIndex = await fetchPokedex.json();
     let refinedIndex = pokedexIndex.results.map((i, k) => {
