@@ -245,8 +245,8 @@ import {
   nidoking1,
   nidoqueen,
   nidoqueen1,
-  nidoranF,
-  nidoranF1,
+  nidoran_f,
+  nidoran_f1,
   nidoran_m,
   nidoran_m1,
   nidorina,
@@ -684,8 +684,8 @@ const pokemonAssetArr = [
   { id: "nidoking1", pokemon: nidoking1 },
   { id: "nidoqueen", pokemon: nidoqueen },
   { id: "nidoqueen1", pokemon: nidoqueen1 },
-  { id: "nidoranF", pokemon: nidoranF },
-  { id: "nidoranF1", pokemon: nidoranF1 },
+  { id: "nidoran_f", pokemon: nidoran_f },
+  { id: "nidoran_f1", pokemon: nidoran_f1 },
   { id: "nidoran_m", pokemon: nidoran_m },
   { id: "nidoran_m1", pokemon: nidoran_m1 },
   { id: "nidorina", pokemon: nidorina },
@@ -882,7 +882,11 @@ const PokemonAsset = ({ pokemonLoaded }) => {
 
   console.log("pokemonLoaded val", pokemonLoaded);
   let foundObj = pokemonAssetArr.find((i) => {
-    return pokemonLoaded === "mr-mime"
+    return pokemonLoaded === "nidoran-f"
+      ? i.id === "nidoran_f"
+      : pokemonLoaded === "nidoran-m"
+      ? i.id === "nidoran_m"
+      : pokemonLoaded === "mr-mime"
       ? i.id === "mrMime"
       : i.id === pokemonLoaded;
   });
