@@ -8,7 +8,7 @@ const AppMedia = createMedia({
     mobile: 320,
     tablet: 768,
     computer: 992,
-    largeScreen: 1200,
+    largeScreen: 1400,
     widescreen: 1920,
   },
 });

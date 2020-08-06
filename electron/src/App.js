@@ -9,7 +9,7 @@ import { createMedia } from "@artsy/fresnel";
 import AppContext from "./context/AppContext";
 import reducer from "./context/reducer";
 //components
-import { PokedexInput, PokedexOutput } from "./components";
+import { PokedexInput, PokedexOutput, RandomPokemonGif } from "./components";
 import PokemonLogo from "./assets/PokemonLogo";
 import { Scrollbars } from "react-custom-scrollbars";
 
@@ -18,7 +18,7 @@ const AppMedia = createMedia({
     mobile: 320,
     tablet: 768,
     computer: 992,
-    largeScreen: 1200,
+    largeScreen: 1400,
     widescreen: 1920,
   },
 });
@@ -100,7 +100,7 @@ const App = () => {
                   </Grid.Column>
 
                   <Grid.Column
-                    width={10}
+                    width={7}
                     id="Drag"
                     as={Media}
                     greaterThanOrEqual="tablet"
@@ -111,7 +111,16 @@ const App = () => {
                   </Grid.Column>
 
                   <Grid.Column
-                    width={6}
+                    width={4}
+                    id="Drag"
+                    as={Media}
+                    greaterThanOrEqual="computer"
+                  >
+                    <RandomPokemonGif style={{ maxHeight: 150 }} />
+                  </Grid.Column>
+
+                  <Grid.Column
+                    width={5}
                     id="Drag"
                     as={Media}
                     greaterThanOrEqual="tablet"

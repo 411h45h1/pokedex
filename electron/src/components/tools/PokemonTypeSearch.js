@@ -1,6 +1,19 @@
 import React, { useContext, useState } from "react";
 import { Grid, Image, Button } from "semantic-ui-react";
 import AppContext from "../../context/AppContext";
+import { createMedia } from "@artsy/fresnel";
+
+const AppMedia = createMedia({
+  breakpoints: {
+    mobile: 320,
+    tablet: 768,
+    computer: 992,
+    largeScreen: 1400,
+    widescreen: 1920,
+  },
+});
+
+const { Media } = AppMedia;
 
 const PokemonTypeSearch = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -84,32 +97,88 @@ const PokemonTypeSearch = () => {
   };
 
   return (
-    <Grid>
-      <Grid.Row columns="3">
-        {pokemonTypes.map((type, key) => (
-          <Grid.Column key={key} style={{ marginBottom: 20 }}>
-            <Button
-              id="NoDrag"
-              compact
-              color={
-                firstTypeSelected === type
-                  ? "green"
-                  : secondTypeSelected === type
-                  ? "green"
-                  : null
-              }
-              onClick={() => handleUpdate(type)}
-            >
-              <Image
-                src={require(`../../assets/typeIcons/${type}.png`)}
-                alt={`The Pokemon type ${type}`}
-                width={"100%"}
-              />
-            </Button>
-          </Grid.Column>
-        ))}
-      </Grid.Row>
-    </Grid>
+    <>
+      <Grid as={Media} at="mobile">
+        <Grid.Row columns="3">
+          {pokemonTypes.map((type, key) => (
+            <Grid.Column key={key} style={{ marginBottom: 20 }}>
+              <Button
+                id="NoDrag"
+                compact
+                color={
+                  firstTypeSelected === type
+                    ? "green"
+                    : secondTypeSelected === type
+                    ? "green"
+                    : null
+                }
+                onClick={() => handleUpdate(type)}
+              >
+                <Image
+                  src={require(`../../assets/typeIcons/${type}.png`)}
+                  alt={`The Pokemon type ${type}`}
+                  size={"medium"}
+                />
+              </Button>
+            </Grid.Column>
+          ))}
+        </Grid.Row>
+      </Grid>
+      {/* tablet */}
+      <Grid as={Media} at="tablet">
+        <Grid.Row columns="3">
+          {pokemonTypes.map((type, key) => (
+            <Grid.Column key={key} style={{ marginBottom: 20 }}>
+              <Button
+                id="NoDrag"
+                compact
+                color={
+                  firstTypeSelected === type
+                    ? "green"
+                    : secondTypeSelected === type
+                    ? "green"
+                    : null
+                }
+                onClick={() => handleUpdate(type)}
+              >
+                <Image
+                  src={require(`../../assets/typeIcons/${type}.png`)}
+                  alt={`The Pokemon type ${type}`}
+                  size={"large"}
+                />
+              </Button>
+            </Grid.Column>
+          ))}
+        </Grid.Row>
+      </Grid>
+      {/* computer */}
+      <Grid as={Media} greaterThanOrEqual="computer">
+        <Grid.Row columns="3">
+          {pokemonTypes.map((type, key) => (
+            <Grid.Column key={key} style={{ marginBottom: 20 }}>
+              <Button
+                id="NoDrag"
+                compact
+                color={
+                  firstTypeSelected === type
+                    ? "green"
+                    : secondTypeSelected === type
+                    ? "green"
+                    : null
+                }
+                onClick={() => handleUpdate(type)}
+              >
+                <Image
+                  src={require(`../../assets/typeIcons/${type}.png`)}
+                  alt={`The Pokemon type ${type}`}
+                  size="huge"
+                />
+              </Button>
+            </Grid.Column>
+          ))}
+        </Grid.Row>
+      </Grid>
+    </>
   );
 };
 export default PokemonTypeSearch;

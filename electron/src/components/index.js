@@ -8,3 +8,4 @@ export { default as PokemonTypeSearch } from "./tools/PokemonTypeSearch";
 export { default as TypeSearchOutput } from "./tools/TypeSearchOutput";
 export { default as isMobile } from "./tools/isMobile";
 export { default as isTablet } from "./tools/isTablet";
+export { default as RandomPokemonGif } from "./RandomPokemonGif";
