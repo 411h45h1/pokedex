@@ -94,6 +94,7 @@ const PokemonSearch = () => {
   const handleSubmit = () =>
     getEntry(pokemonName)
       .then((res) => {
+        //TODO use res.name to check if the 3d animation exists then display that sprite
         dispatch({
           type: "UPDATE_POKEDEX_ENTRY",
           payload: {

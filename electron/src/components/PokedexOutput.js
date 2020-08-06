@@ -50,6 +50,7 @@ const PokedexOutput = () => {
   const handlePrev = () =>
     getEntry(pokeDexEntry.id - 1)
       .then((res) => {
+        //TODO use res.name to check if the 3d animation exists then display that sprite
         dispatch({
           type: "UPDATE_POKEDEX_ENTRY",
           payload: {
@@ -66,6 +67,7 @@ const PokedexOutput = () => {
   const handleNext = () =>
     getEntry(pokeDexEntry.id + 1)
       .then((res) => {
+        //TODO use res.name to check if the 3d animation exists then display that sprite
         dispatch({
           type: "UPDATE_POKEDEX_ENTRY",
           payload: {
@@ -82,6 +84,7 @@ const PokedexOutput = () => {
   const handleRandomPokemon = () =>
     getEntry(Math.floor(Math.random() * 808))
       .then((res) => {
+        //TODO use res.name to check if the 3d animation exists then display that sprite
         dispatch({
           type: "UPDATE_POKEDEX_ENTRY",
           payload: {
