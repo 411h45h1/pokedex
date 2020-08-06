@@ -27,7 +27,6 @@ const pokemonGifs = [
   dizzy,
   gangar,
   greninja,
-
   hondoom,
   infernape,
   kirlia,

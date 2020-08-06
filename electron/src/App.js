@@ -11,6 +11,7 @@ import reducer from "./context/reducer";
 import { PokedexInput, PokedexOutput, RandomPokemonGif } from "./components";
 import PokemonLogo from "./assets/PokemonLogo";
 import { Scrollbars } from "react-custom-scrollbars";
+import PokemonAsset from "./components/PokemonAsset";
 
 const AppMedia = createMedia({
   breakpoints: {
@@ -28,7 +29,7 @@ const { Media, MediaContextProvider } = AppMedia;
 const App = () => {
   const initialState = useContext(AppContext);
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { globalPokedexIndex } = state;
+  const { globalPokedexIndex, pokeDexEntry } = state;
 
   useEffect(() => {
     if (!globalPokedexIndex) {
@@ -39,7 +40,7 @@ const App = () => {
   const getGlobalPokedexIndex = async () => {
     let fetchPokedex = await fetch(
       //only Gen I
-      "https://pokeapi.co/api/v2/pokemon?limit=151"
+      "https://pokeapi.co/api/v2/pokemon?limit=152"
     ).catch((err) => console.error(err));
     let pokedexIndex = await fetchPokedex.json();
     let refinedIndex = pokedexIndex.results.map((i, k) => {
@@ -117,6 +118,7 @@ const App = () => {
                     greaterThanOrEqual="computer"
                   >
                     <RandomPokemonGif style={{ maxHeight: 150 }} />
+                    {/* <PokemonAsset style={{ maxHeight: 150 }} src={pokeDexEntry} /> */}
                   </Grid.Column>
 
                   <Grid.Column

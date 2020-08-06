@@ -80,7 +80,7 @@ const PokedexOutput = () => {
       .catch((err) => console.log("Error @ Submit", err));
 
   const handleRandomPokemon = () =>
-    getEntry(Math.floor(Math.random() * 808))
+    getEntry(Math.floor(Math.random() * 151))
       .then((res) => {
         dispatch({
           type: "UPDATE_POKEDEX_ENTRY",
@@ -108,13 +108,13 @@ const PokedexOutput = () => {
       </Label>
       <div style={{ margin: "2.5px 0px 2.5px 0px" }} />
       <Label as={Media} at="mobile" size={"large"} color="red" ribbon="right">
-        {pokeDexEntry.id < 808
+        {pokeDexEntry.id < 151
           ? `Pokédex Entry #${pokeDexEntry.id} - ${pokeDexEntry.name}`
           : `Pokédex ${pokeDexEntry.name}`}
       </Label>
 
       <Label as={Media} at="tablet" size={"large"} color="red" ribbon="right">
-        {pokeDexEntry.id < 808
+        {pokeDexEntry.id < 151
           ? `Pokédex Entry #${pokeDexEntry.id} - ${pokeDexEntry.name}`
           : `Pokédex ${pokeDexEntry.name}`}
       </Label>
@@ -126,12 +126,12 @@ const PokedexOutput = () => {
         color="red"
         ribbon="right"
       >
-        {pokeDexEntry.id < 808
+        {pokeDexEntry.id < 151
           ? `Pokédex Entry #${pokeDexEntry.id} - ${pokeDexEntry.name}`
           : `Pokédex ${pokeDexEntry.name}`}
       </Label>
       {/* //////
-      {pokeDexEntry.id < 808 ? (
+      {pokeDexEntry.id <151 ? (
 
         <Label
           size={isMobile() || isTablet() ? "large" : "huge"}
