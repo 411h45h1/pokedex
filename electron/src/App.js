@@ -38,7 +38,7 @@ const App = () => {
 
   const getGlobalPokedexIndex = async () => {
     let fetchPokedex = await fetch(
-      "https://pokeapi.co/api/v2/pokemon?limit=964"
+      "https://pokeapi.co/api/v2/pokemon?limit=807"
     ).catch((err) => console.error(err));
     let pokedexIndex = await fetchPokedex.json();
     let refinedIndex = pokedexIndex.results.map((i, k) => {
