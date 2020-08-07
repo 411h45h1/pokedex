@@ -113,13 +113,13 @@ const PokedexOutput = () => {
       </Label>
       <div style={{ margin: "2.5px 0px 2.5px 0px" }} />
       <Label as={Media} at="mobile" size={"large"} color="red" ribbon="right">
-        {pokeDexEntry.id < 151
+        {pokeDexEntry.id <= 251
           ? `Pokédex Entry #${pokeDexEntry.id} - ${pokeDexEntry.name}`
           : `Pokédex ${pokeDexEntry.name}`}
       </Label>
 
       <Label as={Media} at="tablet" size={"large"} color="red" ribbon="right">
-        {pokeDexEntry.id < 151
+        {pokeDexEntry.id <= 251
           ? `Pokédex Entry #${pokeDexEntry.id} - ${pokeDexEntry.name}`
           : `Pokédex ${pokeDexEntry.name}`}
       </Label>
@@ -131,7 +131,7 @@ const PokedexOutput = () => {
         color="red"
         ribbon="right"
       >
-        {pokeDexEntry.id < 151
+        {pokeDexEntry.id <= 251
           ? `Pokédex Entry #${pokeDexEntry.id} - ${pokeDexEntry.name}`
           : `Pokédex ${pokeDexEntry.name}`}
       </Label>
