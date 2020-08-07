@@ -1509,11 +1509,9 @@ const PokemonAsset = ({ pokemonLoaded }) => {
   });
 
   return (
-    <img
-      alt="pokemon"
-      src={foundObj.pokemon}
-      style={{ maxHeight: 150, height: 100 }}
-    />
+    <div style={{ marginTop: 25, marginBottom: 25 }}>
+      <img alt="pokemon" src={foundObj.pokemon} style={{ maxHeight: 150 }} />
+    </div>
   );
 };
 //

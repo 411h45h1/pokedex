@@ -213,12 +213,9 @@ const PokedexOutput = () => {
         <Grid.Row as={Media} at="tablet" centered columns={1}>
           <Grid.Column>
             {pokeDexEntry.photo ? (
-              <Image
-                src={pokeDexEntry.photo}
-                alt="Pokemon"
-                height={"100%"}
-                width={"100%"}
-              />
+              <Grid centered>
+                <PokemonAsset pokemonLoaded={pokeDexEntry.name.toLowerCase()} />
+              </Grid>
             ) : (
               <Grid centered>
                 <h6 style={{ fontSize: 20, marginTop: 30 }}>
