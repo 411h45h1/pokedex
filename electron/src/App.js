@@ -99,7 +99,7 @@ const App = () => {
                   </Grid.Column>
 
                   <Grid.Column
-                    width={7}
+                    width={11}
                     id="Drag"
                     as={Media}
                     greaterThanOrEqual="tablet"
@@ -107,16 +107,6 @@ const App = () => {
                     <Header as={Media} greaterThanOrEqual="tablet" id="NoDrag">
                       <PokemonLogo height={150} width={400} style={{}} />
                     </Header>
-                  </Grid.Column>
-
-                  <Grid.Column
-                    width={4}
-                    id="Drag"
-                    as={Media}
-                    greaterThanOrEqual="computer"
-                  >
-                    <RandomPokemonGif style={{ maxHeight: 150 }} />
-                    {/* <PokemonAsset style={{ maxHeight: 150 }} src={pokeDexEntry} /> */}
                   </Grid.Column>
 
                   <Grid.Column
