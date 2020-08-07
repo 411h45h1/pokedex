@@ -11,7 +11,6 @@ import reducer from "./context/reducer";
 import { PokedexInput, PokedexOutput, RandomPokemonGif } from "./components";
 import PokemonLogo from "./assets/PokemonLogo";
 import { Scrollbars } from "react-custom-scrollbars";
-import PokemonAsset from "./components/PokemonAsset";
 
 const AppMedia = createMedia({
   breakpoints: {
@@ -29,7 +28,7 @@ const { Media, MediaContextProvider } = AppMedia;
 const App = () => {
   const initialState = useContext(AppContext);
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { globalPokedexIndex, pokeDexEntry } = state;
+  const { globalPokedexIndex } = state;
 
   useEffect(() => {
     if (!globalPokedexIndex) {

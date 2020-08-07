@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import AppContext from "../context/AppContext";
+import React from "react";
 import {
   abra,
   abra1,
@@ -1495,11 +1494,9 @@ const pokemonAssetArr = [
   { id: "yanma", pokemon: yanma },
   { id: "yanma1", pokemon: yanma1 },
 ];
-let randomize = Math.floor(Math.random() * pokemonAssetArr.length);
+//let randomize = Math.floor(Math.random() * pokemonAssetArr.length);
 
 const PokemonAsset = ({ pokemonLoaded }) => {
-  const { state } = useContext(AppContext);
-
   console.log("pokemonLoaded val", pokemonLoaded);
   let foundObj = pokemonAssetArr.find((i) => {
     return pokemonLoaded === "nidoran-f"
