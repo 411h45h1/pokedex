@@ -211,10 +211,16 @@ const PokedexOutput = () => {
           <Grid.Column>
             {pokeDexEntry.photo ? (
               <Grid centered>
-                <div style={{ marginTop: 25, marginBottom: 25 }}>
+                <div
+                  style={{
+                    height: "100",
+                    width: "100",
+                    margin: 15,
+                  }}
+                >
                   <PokemonAsset
                     pokemonLoaded={pokeDexEntry.name.toLowerCase()}
-                    height={80}
+                    height={"100%"}
                   />
                 </div>
               </Grid>

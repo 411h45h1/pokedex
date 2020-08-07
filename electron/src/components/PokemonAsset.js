@@ -1508,7 +1508,13 @@ const PokemonAsset = ({ pokemonLoaded, height }) => {
       : i.id === pokemonLoaded;
   });
 
-  return <img alt="pokemon" src={foundObj.pokemon} height={height && height} />;
+  return (
+    <img
+      alt="pokemon"
+      src={foundObj.pokemon}
+      style={{ height: height && height }}
+    />
+  );
 };
 //
 

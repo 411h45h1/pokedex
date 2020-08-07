@@ -1,6 +1,7 @@
 {
-  "name": "gen1dex",
+  "name": "pokedex",
   "homepage": "./",
+  "author": "Ahmed Ali",
   "main": "./start.js",
   "version": "0.1.0",
   "private": true,
