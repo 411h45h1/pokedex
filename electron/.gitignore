@@ -16,6 +16,14 @@ package-lock.json
 # distributions
 /dist
 
+# 3D assets
+/src/assets/pokedex/gen2
+/src/assets/pokedex/gen3
+/src/assets/pokedex/gen4
+/src/assets/pokedex/gen5
+/src/assets/pokedex/gen6
+/src/assets/pokedex/gen7
+
 # misc
 .DS_Store
 .env.local

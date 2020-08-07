@@ -83,7 +83,7 @@ const PokedexOutput = () => {
       .catch((err) => console.log("Error @ Submit", err));
 
   const handleRandomPokemon = () =>
-    getEntry(Math.floor(Math.random() * 151))
+    getEntry(Math.floor(Math.random() * 251))
       .then((res) => {
         //TODO use res.name to check if the 3d animation exists then display that sprite
         dispatch({
