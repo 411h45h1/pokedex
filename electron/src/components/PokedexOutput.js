@@ -51,7 +51,6 @@ const PokedexOutput = () => {
   const handlePrev = () =>
     getEntry(pokeDexEntry.id - 1)
       .then((res) => {
-        //TODO use res.name to check if the 3d animation exists then display that sprite
         dispatch({
           type: "UPDATE_POKEDEX_ENTRY",
           payload: {
@@ -68,7 +67,6 @@ const PokedexOutput = () => {
   const handleNext = () =>
     getEntry(pokeDexEntry.id + 1)
       .then((res) => {
-        //TODO use res.name to check if the 3d animation exists then display that sprite
         dispatch({
           type: "UPDATE_POKEDEX_ENTRY",
           payload: {
@@ -85,7 +83,6 @@ const PokedexOutput = () => {
   const handleRandomPokemon = () =>
     getEntry(Math.floor(Math.random() * 251))
       .then((res) => {
-        //TODO use res.name to check if the 3d animation exists then display that sprite
         dispatch({
           type: "UPDATE_POKEDEX_ENTRY",
           payload: {
@@ -214,7 +211,12 @@ const PokedexOutput = () => {
           <Grid.Column>
             {pokeDexEntry.photo ? (
               <Grid centered>
-                <PokemonAsset pokemonLoaded={pokeDexEntry.name.toLowerCase()} />
+                <div style={{ marginTop: 25, marginBottom: 25 }}>
+                  <PokemonAsset
+                    pokemonLoaded={pokeDexEntry.name.toLowerCase()}
+                    height={80}
+                  />
+                </div>
               </Grid>
             ) : (
               <Grid centered>
@@ -228,10 +230,14 @@ const PokedexOutput = () => {
         <Grid.Row as={Media} greaterThanOrEqual="computer" centered columns={2}>
           <Grid.Column>
             {pokeDexEntry.photo ? (
-              <PokemonAsset
-                pokemonLoaded={pokeDexEntry.name.toLowerCase()}
-                style={{ maxHeight: 150 }}
-              />
+              <Grid centered>
+                <div style={{ marginTop: 25, marginBottom: 80 }}>
+                  <PokemonAsset
+                    height={"140%"}
+                    pokemonLoaded={pokeDexEntry.name.toLowerCase()}
+                  />
+                </div>
+              </Grid>
             ) : (
               // <Image
               //   src={pokeDexEntry.photo}

@@ -1496,7 +1496,7 @@ const pokemonAssetArr = [
 ];
 //let randomize = Math.floor(Math.random() * pokemonAssetArr.length);
 
-const PokemonAsset = ({ pokemonLoaded }) => {
+const PokemonAsset = ({ pokemonLoaded, height }) => {
   console.log("pokemonLoaded val", pokemonLoaded);
   let foundObj = pokemonAssetArr.find((i) => {
     return pokemonLoaded === "nidoran-f"
@@ -1508,11 +1508,7 @@ const PokemonAsset = ({ pokemonLoaded }) => {
       : i.id === pokemonLoaded;
   });
 
-  return (
-    <div style={{ marginTop: 25, marginBottom: 25 }}>
-      <img alt="pokemon" src={foundObj.pokemon} style={{ maxHeight: 150 }} />
-    </div>
-  );
+  return <img alt="pokemon" src={foundObj.pokemon} height={height && height} />;
 };
 //
 
