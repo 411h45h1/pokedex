@@ -4,16 +4,21 @@
 
 ## Quick Instructions
 
-The Pokédex can be viewed [here](https://ahmedalihashi.github.io/pokedex/).   
+The Pokédex can be viewed [here](https://ahmedalihashi.github.io/pokedex/).  
 Or to setup locally
+
 ```
 git clone https://github.com/AhmedAlihashi/pokedex.git
 npm install or yarn install
 npm run start or yarn start
 ```
+
 ## Windows Application
-You can download the pre-built version [here](https://1drv.ms/u/s!AoQhMrJoJDR62ljYFqMjK4uWhrGi?e=uujtYU)   
+
+You can download the pre-built version [here](https://1drv.ms/u/s!AoQhMrJoJDR62ljYFqMjK4uWhrGi?e=uujtYU)
+
 Alternativly you can build your own version locally
+_Ps. if you want to view the 3d asset edition i packaged click [here](https://1drv.ms/u/s!AoQhMrJoJDR62nf0FSVkByoAkffa?e=fl6bmS)_
 
 ```
 git clone https://github.com/AhmedAlihashi/pokedex.git
@@ -23,7 +28,11 @@ npm run build-win or yarn build~win
 ```
 
 ## ScreenShot
+
 ### Website
+
 <img src='./github/1.png' height='600' width='800' ></img>
+
 ### Windows Application
+
 <img src='./github/electron1.png' height='550' width='800' ></img>
