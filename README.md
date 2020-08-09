@@ -17,8 +17,7 @@ npm run start or yarn start
 
 You can download the pre-built version [here](https://1drv.ms/u/s!AoQhMrJoJDR62ljYFqMjK4uWhrGi?e=uujtYU)
 
-Alternativly you can build your own version locally
-_Ps. if you want to view the 3d asset edition i packaged click [here](https://1drv.ms/u/s!AoQhMrJoJDR62nf0FSVkByoAkffa?e=fl6bmS)_
+Alternativly you can build your own version locally   
 
 ```
 git clone https://github.com/AhmedAlihashi/pokedex.git
@@ -26,7 +25,7 @@ cd electron
 npm install or yarn install
 npm run build-win or yarn build~win
 ```
-
+_Ps. if you want to view the 3d asset edition i packaged click [here](https://mega.nz/file/X6hVzYJa#T3n_B9C2a1_TWnXYE7R4euz_7gtYsU1d5lEULgLyhz0)_
 ## ScreenShot
 
 ### Website
