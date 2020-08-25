@@ -25,7 +25,7 @@ cd electron
 npm install or yarn install
 npm run build-win or yarn build~win
 ```
-_Ps. if you want to view the 3d asset edition i packaged click [here](https://mega.nz/file/X6hVzYJa#T3n_B9C2a1_TWnXYE7R4euz_7gtYsU1d5lEULgLyhz0)_
+_Ps. if you want to view the 3d asset edition i packaged click [here](https://drive.google.com/file/d/1_tnUK_Zsm0JTbYhZ0o5Sq28RZJ72NkRm/view?usp=sharing)_
 ## ScreenShot
 
 ### Website
