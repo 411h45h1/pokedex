@@ -15,7 +15,7 @@ npm run start or yarn start
 
 ## Windows Application
 
-You can download the pre-built version [here](https://1drv.ms/u/s!AoQhMrJoJDR62ljYFqMjK4uWhrGi?e=uujtYU)
+You can download the pre-built version [here](https://drive.google.com/file/d/1_tnUK_Zsm0JTbYhZ0o5Sq28RZJ72NkRm/view?usp=sharing)
 
 Alternativly you can build your own version locally   
 
